@@ -26,9 +26,17 @@ public class Case {
         this.Medicine = Medicine;
     }
     
+    //CaseDB
+    ArrayList<Case> CaseList;
+    public void CaseDatabase(){
+        CaseList = new ArrayList<Case>();
+    }
     
-    public void caseCreate(){
-        
+    
+    
+    
+    public void caseCreate(int CaseID, String CaseResponsible, String CitizenProfile, String CaseDesc, String Relative, String Medicine){
+    CaseList.add(this);
     }
     
     public void caseDelete(int CaseID){
