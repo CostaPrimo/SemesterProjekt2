@@ -13,6 +13,13 @@ public class Logger {
     int journalID;
     
     public Logger(){
+        date = new Date();
+        userID = 0;
+        caseID = 0;
+        journalID = 0;
+    }
+    
+    public void log(){
         
     }
     
