@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sensafe.udred;
+package sensafe.udred.business;
 
 /**
  *
@@ -12,13 +12,16 @@ package sensafe.udred;
 public abstract class User {
     
     private String username;
-    private int userID;
+    static private int userID = 1000;
     private String password;
+    
     
     public User(String username, int userID, String password){
         this.username = username;
         this.userID = userID;
         this.password = password;
+        userID++;
+        
     }
 
     public int getUserID() {
