@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package sensafe.udred.business;
-
+import java.util.ArrayList;
 /**
  *
  * @author jtrue
@@ -26,6 +26,7 @@ public class Case {
         this.Medicine = Medicine;
     }
     
+    
     public void caseCreate(){
         
     }
@@ -34,8 +35,8 @@ public class Case {
         
     }
 
-    public void getCase(int CaseID) {
-        
+    public int getCaseID() {
+        return this.CaseID;
     }
     
     public void caseSave() {
