@@ -15,7 +15,7 @@ public class Logger {
     public Logger(Case caseProfile, Journal journal, User user){
         this.date = new Date();
         this.userID = user.getUserID();
-        this.caseID = caseProfile.getID();
+        this.caseID = caseProfile.getCaseID();
         this.journalID = journal.getJournalID();
     }
 
