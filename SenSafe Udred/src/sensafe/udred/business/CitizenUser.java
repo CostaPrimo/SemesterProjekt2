@@ -17,4 +17,11 @@ public class CitizenUser extends User {
     super(username);
     this.CPRNumber = CPRNumber;
     }
+
+    @Override
+    public String toString() {
+        return "User ID:" + getUserID() + ":" + " CPR: " + CPRNumber;
+    }
+    
+    
 }

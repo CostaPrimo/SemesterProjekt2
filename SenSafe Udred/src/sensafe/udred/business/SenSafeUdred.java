@@ -18,11 +18,11 @@ public class SenSafeUdred {
      */
     public static void main(String[] args) {
         File file = new File("Test");
-        UserDatabase database = new UserDatabase("test", file);
+        UserDatabase database = new UserDatabase("test", "userDatabase.txt");
         database.userCreate("Kim", "1923918");
         database.userCreate("Trox", "hamme", 5000, "kim@kim.dk", "Handkkap", "2323232");
-        database.userDelete(0);
-        database.userDelete(1);
+        database.userChangeDepartment(1002, "BARBIE");
+        database.removeUserInfoFromFile(1001);
     }
         
         
