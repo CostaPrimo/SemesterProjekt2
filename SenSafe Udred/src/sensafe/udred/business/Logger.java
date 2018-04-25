@@ -17,7 +17,35 @@ public class Logger {
         this.date = new Date();
         this.userID = user.getUserID();
         this.caseID = caseProfile.getID();
-        this.journalID = journal.getID();
+        this.journalID = journal.getJournalID();
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @return the caseID
+     */
+    public int getCaseID() {
+        return caseID;
+    }
+
+    /**
+     * @return the journalID
+     */
+    public int getJournalID() {
+        return journalID;
     }
     
 }

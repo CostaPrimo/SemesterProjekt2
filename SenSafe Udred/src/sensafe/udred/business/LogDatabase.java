@@ -18,10 +18,10 @@ public class LogDatabase {
     public void log(Journal journal, User user, Case caseProfile){
        LogList.add(new Logger(caseProfile, journal, user));
     }
-    public Logger getlog(int i){
-        return LogList.get(i);
+    public Logger getlog(int key){
+        return LogList.get(key);
     }
-    public void deleteLog(){
-        
+    public void deleteLog(int key){
+        LogList.remove(key);
     }
 }
