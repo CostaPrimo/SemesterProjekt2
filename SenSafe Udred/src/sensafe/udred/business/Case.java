@@ -26,5 +26,20 @@ public class Case {
         this.Medicine = Medicine;
     }
     
+    public void caseCreate(){
+        
+    }
+    
+    public void caseDelete(int CaseID){
+        
+    }
+
+    public void getCase(int CaseID) {
+        
+    }
+    
+    public void caseSave() {
+        
+    }
     
 }
