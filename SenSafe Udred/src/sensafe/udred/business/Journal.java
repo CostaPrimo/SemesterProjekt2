@@ -12,7 +12,7 @@ package sensafe.udred.business;
  */
 public class Journal {
     
-    private int journalNumber;
+    private int journalID;
     private String journalWriter;
     private String resume;
     
@@ -23,5 +23,7 @@ public class Journal {
     public void journalSave(){
         
     }
-    
+    public int getJournalID(){
+        return this.journalID;
+    }
 }
