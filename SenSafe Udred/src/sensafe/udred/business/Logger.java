@@ -7,7 +7,6 @@ import java.util.Date;
  * @author Jeppe Enevold
  */
 public class Logger {
-    Date date;
     private Date date;
     private int userID;
     private int caseID;
