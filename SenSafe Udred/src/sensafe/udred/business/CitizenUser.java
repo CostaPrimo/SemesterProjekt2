@@ -13,8 +13,8 @@ public class CitizenUser extends User {
     
     private String CPRNumber;
 
-    public CitizenUser (String username, int userID, String password, String CPRNumber){
-    super(username, userID, password);
+    public CitizenUser (String username, String password, String CPRNumber){
+    super(username, password);
     this.CPRNumber = CPRNumber;
     }
 }

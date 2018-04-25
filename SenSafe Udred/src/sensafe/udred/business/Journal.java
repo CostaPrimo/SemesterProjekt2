@@ -16,5 +16,12 @@ public class Journal {
     private String journalWriter;
     private String resume;
     
+    public void journalCreate(){
+        
+    }
+    
+    public void journalSave(){
+        
+    }
     
 }

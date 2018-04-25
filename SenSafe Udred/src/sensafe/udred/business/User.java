@@ -9,24 +9,32 @@ package sensafe.udred.business;
  *
  * @author Nikolaj Frank-Jensen
  */
-public abstract class User {
+public abstract class User implements Comparable<User>{
     
     private String username;
     static private int userID = 1000;
     private String password;
     
     
-    public User(String username, int userID, String password){
+    public User(String username, String password){
         this.username = username;
-        this.userID = userID;
         this.password = password;
         userID++;
-        
     }
 
     public int getUserID() {
         return userID;
     }
     
-    
+    @Override
+    public int compareTo(User o){
+        int result;
+        if(this.userID > o.userID){
+            result = 1;
+        }
+        else{
+            result = -1;
+        }
+        return result;
+    }
 }
