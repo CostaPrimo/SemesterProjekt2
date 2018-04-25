@@ -8,19 +8,16 @@ import java.util.Date;
  */
 public class Logger {
     Date date;
-    int userID;
-    int caseID;
-    int journalID;
+    private Date date;
+    private int userID;
+    private int caseID;
+    private int journalID;
     
-    public Logger(){
-        date = new Date();
-        userID = 0;
-        caseID = 0;
-        journalID = 0;
-    }
-    
-    public void log(){
-        
+    public Logger(Case caseProfile, Journal journal, User user){
+        this.date = new Date();
+        this.userID = user.getUserID();
+        this.caseID = caseProfile.getID();
+        this.journalID = journal.getID();
     }
     
 }
