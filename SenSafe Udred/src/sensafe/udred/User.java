@@ -20,4 +20,10 @@ public abstract class User {
         this.userID = userID;
         this.password = password;
     }
+
+    public int getUserID() {
+        return userID;
+    }
+    
+    
 }
