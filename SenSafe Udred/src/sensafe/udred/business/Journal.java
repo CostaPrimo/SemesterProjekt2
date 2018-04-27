@@ -16,6 +16,12 @@ public class Journal {
     private String journalWriter;
     private String resume;
     
+    public Journal(int ID, Employee writer, String resume){
+        this.journalID = ID;
+        this.journalWriter = writer.getName();
+        this.resume = resume;
+    }
+    
     public void journalCreate(){
         
     }

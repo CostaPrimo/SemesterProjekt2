@@ -19,6 +19,10 @@ public class Logger {
         this.journalID = journal.getJournalID();
     }
 
+    @Override
+    public String toString(){
+        return "Date ; " + this.date + " ; UserID ; " + this.userID + " ; CaseID ; " + this.caseID + " ; JournalID ; " + this.journalID; 
+    }
     /**
      * @return the date
      */
