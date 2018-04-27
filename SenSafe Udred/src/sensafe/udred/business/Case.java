@@ -13,43 +13,33 @@ import java.util.ArrayList;
  */
 public class Case {
 
-    private int CaseID;
-    private String CaseResponsible;
-    private String CitizenProfile;
-    private String CaseDesc;
-    private String Relative;    
-    private String Medicine;
     
-    public Case(int CaseID, String CaseResponsible, String CitizenProfile, String CaseDesc, String Relative, String Medicine) {
-        this.CaseID = CaseID;
-        this.CaseResponsible = CaseResponsible;
-        this.CitizenProfile = CitizenProfile;
-        this.CaseDesc = CaseDesc;
-        this.Relative = Relative;
-        this.Medicine = Medicine;
+
+    private int caseID;
+    private Employee employee;
+    private CitizenProfile citizenProfile;
+    private String caseDesc;
+    private String relative;    
+    private String medicine;
+    
+    public Case(int CaseID, Employee employee, CitizenProfile citizenProfile, String CaseDesc, String Relative, String Medicine) {
+        this.caseID = CaseID;
+        this.employee = employee;
+        this.citizenProfile = citizenProfile;
+        this.caseDesc = CaseDesc;
+        this.relative = Relative;
+        this.medicine = Medicine;
     }
 
-    //CaseDB
-    ArrayList<Case> CaseList;
-    
-    public void CaseDatabase() {
-        CaseList = new ArrayList<Case>();
+    /**
+     * @return the citizenProfile
+     */
+    public CitizenProfile getCitizenProfile() {
+        return citizenProfile;
     }
-    
-    public void caseCreate(int CaseID, String CaseResponsible, String CitizenProfile, String CaseDesc, String Relative, String Medicine) {
-        CaseList.add(this);
-    }
-    
-    public void caseDelete(int CaseID) {
-        CaseList.remove(CaseID);
-    }
-    
+   
     public int getCaseID() {
-        return this.CaseID;
-    }
-    
-    public void caseSave(int CaseID) {
-        CaseList.add(CaseID, this);
+        return this.caseID;
     }
     
 }

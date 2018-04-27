@@ -21,6 +21,7 @@ public class SenSafeUdred {
         
         File file = new File("Test");
         UserDatabase database = new UserDatabase("test", "userDatabase.txt");
+        CaseDatabase caseDatabase = new CaseDatabase("caseTest", "caseDatabase.txt");
         Scanner scanner = new Scanner(System.in);
         boolean boo = true;
         
@@ -30,7 +31,8 @@ public class SenSafeUdred {
         System.out.println("Tast 2 for at slette en bruger");
         System.out.println("Tast 3 for at se allerede oprettet brugere");
         System.out.println("Tast 4 for at oprette en ny sag");
-        System.out.println("Tast 5 for at afslutte programmet");
+        System.out.println("Tast 5 for at se relaterede sager");
+        System.out.println("Tast 6 for at afslutte programmet");
         
         while(boo == true){
             int input = scanner.nextInt();
@@ -60,11 +62,33 @@ public class SenSafeUdred {
                 case 3: 
                     System.out.println("Ikke indsat endnu");
                     break;
-                case 4: 
-                    System.out.println("Ikke indsat endnu");
+                    
+                // Case 4 mangler en måde hvorpå man kan indtaste en employee og citizenprofile              
+                case 4:
+                    System.out.println("Indtast case ID");
+                    int caseID = scanner.nextInt();
+                    System.out.println("Indtast employee ID");
+                    Employee employee = scanner.next();
+                    System.out.println("Intast citizens CRP");
+                    String cpr = scanner.next();
+                    CitizenProfile citizenProfile = caseDatabase.findCitizenProfile(cpr);
+                    System.out.println("Intast caseDesc");
+                    String caseDesc = scanner.next();
+                    System.out.println("Indtast relatives");
+                    String relative = scanner.next();
+                    System.out.println("Intast medicine");
+                    String medicine = scanner.next();
+                    System.out.println("Du har indtastet: " + caseID + ", " + employee + ", " + citizenProfile + ", " + caseDesc + ", " + relative + ", " + medicine);
+                    caseDatabase.caseCreate(caseID, employee, citizenProfile, caseDesc, relative, medicine);
                     break;
+
                 case 5: 
-                    System.out.println("Ikke indsat endnu");
+                    System.out.println("Indtast det CPR-nummer du vil søge på");
+                    String CPRNumber = scanner.next();
+                    caseDatabase.showCaseOverview(CPRNumber);
+                    break;
+                case 6: 
+                    System.out.println("Program exiting switch-loop.");
                     boo = false;
                 default:
                     System.out.println("Invalid input");
