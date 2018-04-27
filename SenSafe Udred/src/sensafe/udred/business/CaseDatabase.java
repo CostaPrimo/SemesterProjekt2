@@ -21,14 +21,16 @@ public class CaseDatabase {
     }
     
     
-    public void findCitizenProfile(String CPRNummer){
+    public CitizenProfile findCitizenProfile(String CPRNummer){
         for (CitizenProfile c : citizenCollection){
             if (CPRNummer == c.getCPR()){
                 System.out.println(c);
+                return c;
+                
             }
             
         }
-        
+        return null;
     }
     
     public void addTocitizenCollection(CitizenProfile e){
