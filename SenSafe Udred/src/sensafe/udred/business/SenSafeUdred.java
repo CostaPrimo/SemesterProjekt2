@@ -23,6 +23,7 @@ public class SenSafeUdred {
         database.userCreate("Trox", "hamme", 5000, "kim@kim.dk", "Handkkap", "2323232");
         database.userChangeDepartment(1002, "BARBIE");
         database.removeUserInfoFromFile(1001);
+        
     }
         
         

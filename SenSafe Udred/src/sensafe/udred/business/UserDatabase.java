@@ -111,4 +111,23 @@ public class UserDatabase {
             }
         }
     }
+    
+    public void loadUsers(){
+        
+        Scanner scanner = null;
+        
+        try {
+            scanner = new Scanner(file);
+            
+            while(scanner.hasNext()){
+                String username;
+                
+                String[] lineToRead = scanner.nextLine().split(":");
+                if(lineToRead.length>4){
+                    
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
 }

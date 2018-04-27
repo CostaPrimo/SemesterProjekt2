@@ -13,9 +13,9 @@ import java.util.Random;
  */
 public abstract class User implements Comparable<User>{
     
-    private String username;
+    protected String username;
     static private int userID = 1000;
-    private char[] password;
+    protected char[] password;
     
     
     public User(String username){
@@ -61,5 +61,12 @@ public abstract class User implements Comparable<User>{
             result = -1;
         }
         return result;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
     }
 }

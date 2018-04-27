@@ -11,7 +11,6 @@ package sensafe.udred.business;
  */
 public class Employee extends User {
 
-    
     private String name;
     private int zipCode;
     private String email;
@@ -42,6 +41,13 @@ public class Employee extends User {
     
     @Override
     public String toString(){
-        return "User ID:" + getUserID() + ":" +  " Name: " + name + ":" + " Zipcode: " + zipCode + ":" + " Email: " + email + ":" + " Department: " + department + ":" + " PhoneNumber: " + phonenumber;
+        return getUserID() + ":" + name + ":" + username + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber;
+    }
+    
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
 }
