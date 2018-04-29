@@ -6,6 +6,7 @@
 package sensafe.udred.business;
 
 import java.util.Random;
+import org.w3c.dom.css.Counter;
 
 /**
  *
@@ -14,15 +15,20 @@ import java.util.Random;
 public abstract class User implements Comparable<User>{
     
     protected String username;
-    static private int userID = 1000;
+    private static int userID; //Save virker, men ikke load da de tager samme reference??
     protected char[] password;
     
-    
+    //First time program is ran.
     public User(String username){
         this.username = username;
+        userID = 1000;
         userID++;
         password = passwordGenerator(8);
         
+    }
+    //Used during load.
+    public User(int userID){
+        setUserID(userID);
     }
     
     private char [] passwordGenerator(int len){
@@ -68,5 +74,12 @@ public abstract class User implements Comparable<User>{
      */
     public String getUsername() {
         return username;
+    }
+
+    /**
+     * @param aUserID the userID to set
+     */
+    public void setUserID(int aUserID) {
+        userID = aUserID;
     }
 }

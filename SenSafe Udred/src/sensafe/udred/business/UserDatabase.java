@@ -19,7 +19,7 @@ import java.util.TreeSet;
  */
 public class UserDatabase {
 
-    private Collection<User> userCollection;
+    private TreeSet<User> userCollection;
     private String databaseName;
     //This file will be replaced with a database later. Possibly an URL connection.
     private String databaseFileName;
@@ -55,7 +55,6 @@ public class UserDatabase {
         }
     }
 
-    //Dette kan dog gøres "bedre" hvis vi har seperate collections. Så skal vi ikke caste med instance of for at sikre metoden må kaldes. Hvad tænker i?
     public void userChangeDepartment(int userID, String newDepartment) {
         for (User user : userCollection) {
             if (user.getUserID() == userID) {
@@ -111,23 +110,65 @@ public class UserDatabase {
             }
         }
     }
-    
-    public void loadUsers(){
-        
+
+    public TreeSet<User> loadUsers() {
+
         Scanner scanner = null;
-        
         try {
             scanner = new Scanner(file);
-            
-            while(scanner.hasNext()){
+
+            while (scanner.hasNext()) {
+                int userID;
+                String name;
                 String username;
-                
+                char[] password;
+                int zipCode;
+                String CPRNumber;
+                String email;
+                String department;
+                String phoneNumber;
+
                 String[] lineToRead = scanner.nextLine().split(":");
-                if(lineToRead.length>4){
-                    
+                if (lineToRead.length > 4) {
+                    userID = Integer.parseInt(lineToRead[0]);
+                    name = lineToRead[1];
+                    username = lineToRead[2];
+                    password = lineToRead[3].toCharArray();
+                    zipCode = Integer.parseInt(lineToRead[4]);
+                    email = lineToRead[5];
+                    department = lineToRead[6];
+                    phoneNumber = lineToRead[7];
+                    Employee employee = new Employee(userID, name, username, password, zipCode, email, department, phoneNumber);
+                    userCollection.add(employee);
+
+                } else {
+                    //Lav citizen
                 }
             }
-        } catch (Exception e) {
+
+        } catch (IOException e) {
+            System.out.println("Error opening file");
+        } finally {
+            scanner.close();
         }
+        return userCollection;
+    }
+
+    public TreeSet<User> getUserCollection() {
+        return userCollection;
+    }
+
+    public Employee lookupUser(int userID) {
+        Employee employee = null;
+        for (User user : userCollection) {
+            if (user.getUserID() == userID) {
+                employee = (Employee) user;
+                break;
+            }
+        }
+        if (employee == null) {
+            System.out.println("No such user");
+        }
+        return employee;
     }
 }

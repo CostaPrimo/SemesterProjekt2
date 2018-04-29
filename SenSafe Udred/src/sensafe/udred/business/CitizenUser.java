@@ -20,7 +20,7 @@ public class CitizenUser extends User {
 
     @Override
     public String toString() {
-        return "User ID:" + getUserID() + ":" + " CPR: " + CPRNumber;
+        return  getUserID() + ":" + username + ":" + password + ":" + CPRNumber;
     }
     
     

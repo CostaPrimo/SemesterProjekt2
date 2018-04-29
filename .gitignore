@@ -5,3 +5,4 @@ SenSafe Udred/build/
 SenSafe Udred/dist/
 SenSafe Udred/src/sensafe/udred/business/SenSafeUdred.java
 SenSafe Udred/build/classes/
+*.class

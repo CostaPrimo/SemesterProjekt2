@@ -18,14 +18,16 @@ public class SenSafeUdred {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         File file = new File("Test");
         UserDatabase database = new UserDatabase("test", "userDatabase.txt");
+        System.out.println(database.getUserCollection());
+        database.loadUsers();
+        System.out.println(database.getUserCollection());
         CaseDatabase caseDatabase = new CaseDatabase("caseTest", "caseDatabase.txt");
         Scanner scanner = new Scanner(System.in);
         boolean boo = true;
         
-        
+        //Lav login?
         
         System.out.println("Tast 1 for at oprette en ny bruger");
         System.out.println("Tast 2 for at slette en bruger");
@@ -68,8 +70,9 @@ public class SenSafeUdred {
                     System.out.println("Indtast case ID");
                     int caseID = scanner.nextInt();
                     System.out.println("Indtast employee ID");
-                    Employee employee = scanner.next();
-                    System.out.println("Intast citizens CRP");
+                    userID = scanner.nextInt();
+                    Employee employee = database.lookupUser(userID);
+                    System.out.println("Intast citizens CPR");
                     String cpr = scanner.next();
                     CitizenProfile citizenProfile = caseDatabase.findCitizenProfile(cpr);
                     System.out.println("Intast caseDesc");
