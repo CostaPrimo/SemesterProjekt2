@@ -50,8 +50,6 @@ public class SenSafeUdred {
         Scanner scanner = new Scanner(System.in);
         boolean boo = true;
         
-        //Lav login?
-        
         System.out.println("Tast 1 for at oprette en ny bruger");
         System.out.println("Tast 2 for at slette en bruger");
         System.out.println("Tast 3 for at se allerede oprettet brugere");
@@ -75,7 +73,6 @@ public class SenSafeUdred {
                     String department = scanner.next();
                     System.out.println("Intast telefonnummer");
                     String phoneNumber = scanner.next();
-//                    System.out.println(username + name + zipcode + email + department + phoneNumber);
                     database.userCreate(name, zipcode, email, department, phoneNumber);
                     break;
                 case 2: 
@@ -83,12 +80,11 @@ public class SenSafeUdred {
                     int userID = scanner.nextInt();
                     database.userDelete(userID);
                     break;
+                    
                 case 3: 
-                    System.out.println("Ikke indsat endnu");
                     System.out.println(database.getUserCollection());
                     break;
                     
-                // Case 4 mangler en måde hvorpå man kan indtaste en employee og citizenprofile              
                 case 4:
                     System.out.println("Indtast case ID");
                     int caseID = scanner.nextInt();
@@ -97,9 +93,7 @@ public class SenSafeUdred {
                     Employee employee = database.lookupUser(userID);
                     System.out.println("Intast citizens CPR");
                     String cpr = scanner.next();
-                    System.out.println(cpr);
                     CitizenProfile citizenProfile = caseDatabase.findCitizenProfile(cpr);
-                    System.out.println(citizenProfile);
                     System.out.println("Intast caseDesc");
                     String caseDesc = scanner.next();
                     System.out.println("Indtast relatives");
@@ -109,7 +103,7 @@ public class SenSafeUdred {
                     System.out.println("Du har indtastet: " + caseID + ", " + employee + ", " + citizenProfile + ", " + caseDesc + ", " + relative + ", " + medicine);
                     caseDatabase.caseCreate(caseID, employee, citizenProfile, caseDesc, relative, medicine);
                     break;
-
+                    
                 case 5: 
                     System.out.println("Indtast det CPR-nummer du vil søge på");
                     String CPRNumber = scanner.next();
@@ -153,22 +147,7 @@ public class SenSafeUdred {
                     boo = false;
                 default:
                     System.out.println("Invalid input");
-               
-                
             }
-        }
-//        
-//        File file = new File("Test");
-//        UserDatabase database = new UserDatabase("test", "userDatabase.txt");
-//        database.userCreate("Kim", "1923918");
-//        database.userCreate("Trox", "hamme", 5000, "kim@kim.dk", "Handkkap", "2323232");
-//        database.userChangeDepartment(1002, "BARBIE");
-//        database.removeUserInfoFromFile(1001);
-//        
+        }      
     }
-        
-        
 }
-    
-    
-
