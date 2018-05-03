@@ -18,8 +18,8 @@ public class Employee extends User {
     private String phonenumber;
     
     //First time an employee is created.
-    public Employee(String username, String name, int zipCode, String email, String department, String phonenumber){
-        super(username);
+    public Employee(String name, int zipCode, String email, String department, String phonenumber){
+        super();
         this.name = name;
         this.zipCode = zipCode;
         this.email = email;
@@ -27,9 +27,8 @@ public class Employee extends User {
         this.phonenumber = phonenumber;
     }
     //Second time an employee is created by loading.
-    public Employee(int userID, String name, String username, char[] password, int zipCode, String email, String department, String phonenumber){
+    public Employee(int userID, String name, char[] password, int zipCode, String email, String department, String phonenumber){
         super(userID);
-        this.username = username;
         this.name = name;
         this.password = password;
         this.zipCode = zipCode;
@@ -54,7 +53,7 @@ public class Employee extends User {
     @Override
     public String toString(){
         String password = new String(this.password);
-        return getUserID() + ":" + name + ":" + username + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber + "\n";
+        return getUserID() + ":" + name + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber + "\n";
     }
     
     /**

@@ -13,14 +13,14 @@ public class CitizenUser extends User {
     
     private String CPRNumber;
 
-    public CitizenUser (String username, String CPRNumber){
-    super(username);
+    public CitizenUser (String CPRNumber){
+    super();
     this.CPRNumber = CPRNumber;
     }
 
     @Override
     public String toString() {
-        return  getUserID() + ":" + username + ":" + password + ":" + CPRNumber + "\n";
+        return  getUserID() + ":" + password + ":" + CPRNumber + "\n";
     }
     
     

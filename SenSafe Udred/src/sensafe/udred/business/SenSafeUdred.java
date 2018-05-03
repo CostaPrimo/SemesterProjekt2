@@ -18,12 +18,32 @@ public class SenSafeUdred {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        int currentUserID = 0;
+        User currentUser = null;
         File file = new File("Test");
         UserDatabase database = new UserDatabase("test", "userDatabase.txt");
         System.out.println(database.getUserCollection());
         database.loadUsers();
         System.out.println(database.getUserCollection());
         CaseDatabase caseDatabase = new CaseDatabase("caseTest", "caseDatabase.txt");
+        //Login section
+        
+        System.out.println("Welcome to SenSafe Udred, please enter your username and password to login\n");
+        Scanner loginScanner = new Scanner(System.in);
+        boolean loggingIn = true;
+        while(loggingIn){
+            int userID = loginScanner.nextInt();
+            String password = loginScanner.next();
+            boolean validLogin = database.validatePassword(userID, password);
+            if(validLogin){
+                currentUserID = userID;
+                currentUser = database.lookupUser(userID);
+                loggingIn = false;
+            }
+        }
+        if(currentUser instanceof Employee){
+        System.out.println("Welcome" + ((Employee) currentUser).getName());
+        }
         Scanner scanner = new Scanner(System.in);
         boolean boo = true;
         
@@ -41,8 +61,6 @@ public class SenSafeUdred {
             
             switch(input){
                 case 1: 
-                    System.out.println("indtast brugernavn");
-                    String username = scanner.next();
                     System.out.println("Indtast navn");
                     String name = scanner.next();
                     System.out.println("Intast postnummer");
@@ -54,7 +72,7 @@ public class SenSafeUdred {
                     System.out.println("Intast telefonnummer");
                     String phoneNumber = scanner.next();
 //                    System.out.println(username + name + zipcode + email + department + phoneNumber);
-                    database.userCreate(username, name, zipcode, email, department, phoneNumber);
+                    database.userCreate(name, zipcode, email, department, phoneNumber);
                     break;
                 case 2: 
                     System.out.println("Indtast userID");

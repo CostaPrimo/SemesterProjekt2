@@ -14,14 +14,12 @@ import org.w3c.dom.css.Counter;
  */
 public abstract class User implements Comparable<User>{
     
-    protected String username;
     private int userID; //Save virker, men ikke load da de tager samme reference??
     private static int tempID;
     protected char[] password;
     
     //First time program is ran.
-    public User(String username){
-        this.username = username;
+    public User(){
         password = passwordGenerator(8);
         userID = 1 + tempID;
         System.out.println(userID);
@@ -76,12 +74,7 @@ public abstract class User implements Comparable<User>{
         return result;
     }
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
+   
 
     /**
      * @param aUserID the userID to set

@@ -32,15 +32,15 @@ public class UserDatabase {
         file = new File(databaseFileName);
     }
 
-    public void userCreate(String username, String name, int zipcode, String email, String department, String phoneNumber) {
-        Employee user = new Employee(username, name, zipcode, email, department, phoneNumber);
+    public void userCreate(String name, int zipcode, String email, String department, String phoneNumber) {
+        Employee user = new Employee(name, zipcode, email, department, phoneNumber);
         userCollection.add(user);
         System.out.println("User created" + user.getClass() + user.getUserID());
         writeInfoToFile(user.toString());
     }
 
-    public void userCreate(String username, String CPR) {
-        CitizenUser user = new CitizenUser(username, CPR);
+    public void userCreate(String CPR) {
+        CitizenUser user = new CitizenUser(CPR);
         userCollection.add(user);
         System.out.println("User created" + user.getClass() + user.getUserID());
         writeInfoToFile(user.toString());
@@ -91,8 +91,8 @@ public class UserDatabase {
             while (reader.hasNext()) {
                 String lineToWrite = reader.nextLine();
                 String[] lineArrayToRead = lineToWrite.split(":");
-                System.out.println(lineArrayToRead[1]);
-                if (Integer.parseInt(lineArrayToRead[1]) == userID) {
+                System.out.println(lineArrayToRead[0]);
+                if (Integer.parseInt(lineArrayToRead[0]) == userID) {
                     continue;
                 }
                 {
@@ -120,7 +120,6 @@ public class UserDatabase {
             while (scanner.hasNext()) {
                 int userID;
                 String name;
-                String username;
                 char[] password;
                 int zipCode;
                 String CPRNumber;
@@ -132,13 +131,12 @@ public class UserDatabase {
                 if (lineToRead.length > 4) {
                     userID = Integer.parseInt(lineToRead[0]);
                     name = lineToRead[1];
-                    username = lineToRead[2];
-                    password = lineToRead[3].toCharArray();
-                    zipCode = Integer.parseInt(lineToRead[4]);
-                    email = lineToRead[5];
-                    department = lineToRead[6];
-                    phoneNumber = lineToRead[7];
-                    Employee employee = new Employee(userID, name, username, password, zipCode, email, department, phoneNumber);
+                    password = lineToRead[2].toCharArray();
+                    zipCode = Integer.parseInt(lineToRead[3]);
+                    email = lineToRead[4];
+                    department = lineToRead[5];
+                    phoneNumber = lineToRead[6];
+                    Employee employee = new Employee(userID, name, password, zipCode, email, department, phoneNumber);
                     userCollection.add(employee);
 
                 } else {
@@ -170,5 +168,30 @@ public class UserDatabase {
             System.out.println("No such user");
         }
         return employee;
+    }
+    
+    public boolean validatePassword(int userID, String password){
+        Scanner scanner = null;
+        boolean isCorrect = false;
+        try {
+            scanner = new Scanner(file);
+            while(scanner.hasNext()){
+                String[] lineToRead = scanner.nextLine().split(":");
+                int userIDInFile = Integer.parseInt(lineToRead[0]);
+                String passwordInFile = lineToRead[2];
+                if((userID  == userIDInFile) && (password.compareTo(passwordInFile) == 0)){
+                    isCorrect = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading file, try again please");
+        }
+        
+        finally{
+            if(scanner != null){
+                scanner.close();
+            }
+        }
+        return isCorrect;
     }
 }
