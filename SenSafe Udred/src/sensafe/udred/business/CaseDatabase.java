@@ -120,15 +120,15 @@ public class CaseDatabase {
 
         
     public CitizenProfile findCitizenProfile(String CPRNummer){
+        CitizenProfile temp = null;
         for (CitizenProfile c : citizenArray){
-            if (CPRNummer == c.getCPR()){
+            if (CPRNummer.compareTo(c.getCPR())== 0){
                 System.out.println(c);
-                return c;
-                
+                temp = c;
             }
             
         }
-        return null;
+        return temp;
     }
     
     public void addTocitizenArray(CitizenProfile e){

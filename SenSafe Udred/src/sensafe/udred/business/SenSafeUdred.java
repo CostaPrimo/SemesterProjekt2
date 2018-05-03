@@ -19,13 +19,17 @@ public class SenSafeUdred {
      */
     public static void main(String[] args) {
         int currentUserID = 0;
-        User currentUser = null;
+        Employee currentUser = null;
         File file = new File("Test");
         UserDatabase database = new UserDatabase("test", "userDatabase.txt");
         System.out.println(database.getUserCollection());
         database.loadUsers();
         System.out.println(database.getUserCollection());
         CaseDatabase caseDatabase = new CaseDatabase("caseTest", "caseDatabase.txt");
+        CitizenProfile test = new CitizenProfile("Kim", "kim@mail.dk", "23");
+        System.out.println(test);
+        caseDatabase.addTocitizenArray(test);
+        System.out.println(caseDatabase.findCitizenProfile("23"));
         //Login section
         
         System.out.println("Welcome to SenSafe Udred, please enter your username and password to login\n");
@@ -41,9 +45,8 @@ public class SenSafeUdred {
                 loggingIn = false;
             }
         }
-        if(currentUser instanceof Employee){
-        System.out.println("Welcome" + ((Employee) currentUser).getName());
-        }
+        
+        System.out.println("Welcome" + currentUser.getName());
         Scanner scanner = new Scanner(System.in);
         boolean boo = true;
         
@@ -54,7 +57,8 @@ public class SenSafeUdred {
         System.out.println("Tast 3 for at se allerede oprettet brugere");
         System.out.println("Tast 4 for at oprette en ny sag");
         System.out.println("Tast 5 for at se relaterede sager");
-        System.out.println("Tast 6 for at afslutte programmet");
+        System.out.println("Tast 6 for at se citizenprofile");
+        System.out.println("Tast 7 for at afslutte programmet");
         
         while(boo == true){
             int input = scanner.nextInt();
@@ -93,7 +97,9 @@ public class SenSafeUdred {
                     Employee employee = database.lookupUser(userID);
                     System.out.println("Intast citizens CPR");
                     String cpr = scanner.next();
+                    System.out.println(cpr);
                     CitizenProfile citizenProfile = caseDatabase.findCitizenProfile(cpr);
+                    System.out.println(citizenProfile);
                     System.out.println("Intast caseDesc");
                     String caseDesc = scanner.next();
                     System.out.println("Indtast relatives");
@@ -109,7 +115,40 @@ public class SenSafeUdred {
                     String CPRNumber = scanner.next();
                     caseDatabase.showCaseOverview(CPRNumber);
                     break;
-                case 6: 
+                    
+                case 6:
+                    System.out.println("Please enter the CPR number for the citizen you want to lookup");
+                    boolean isOnProfile = true;
+                    Scanner scannerCitizenProfile = new Scanner(System.in);
+                    String CPRCitizen = scanner.next();
+                    CitizenProfile tempCitizen;
+                    tempCitizen = caseDatabase.findCitizenProfile(CPRCitizen);
+                    int choice;
+                    while(isOnProfile){
+                        System.out.println("Press 1 to get name of this citizen");
+                        System.out.println("Press 2 to get cprnumber of this citizen");
+                        System.out.println("Press 3 to show caseoverview for this citizen");
+                        System.out.println("Press 4 to show a specific case for this user");
+                        choice = scannerCitizenProfile.nextInt();
+                        switch(choice){
+                            case 1:
+                                System.out.println(tempCitizen.getName());
+                                break;
+                                
+                            case 2:
+                                System.out.println(tempCitizen.getCPR());
+                                break;
+                                
+                            case 3:
+                                System.out.println(caseDatabase.showCaseOverview(tempCitizen.getCPR()));
+                                break;
+                            
+                            default:
+                               isOnProfile = false;
+                               break;
+                        } 
+                    }
+                case 7: 
                     System.out.println("Program exiting switch-loop.");
                     boo = false;
                 default:

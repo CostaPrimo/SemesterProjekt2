@@ -1,0 +1,4 @@
+2001:1001:sadjka:hejmeddig:23:sdjk:sdkj:2323
+:CitizenProfile{Name=Kim, Email=kim@mail.dk, CPR=23}:kimernice:poul:astma
+2002:1001:sadjka:hejmeddig:23:sdjk:sdkj:2323
+:CitizenProfile{Name=Kim, Email=kim@mail.dk, CPR=23}:frankernice:peter:pamol

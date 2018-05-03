@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author jtrue
  */
-public class Case {
+public class Case implements Comparable<Case>{
 
     
 
@@ -41,5 +41,25 @@ public class Case {
     public int getCaseID() {
         return this.caseID;
     }
+    
+    @Override
+    public int compareTo(Case o){
+        int result;
+        if(this.caseID > o.caseID){
+            result = 1;
+        }
+        else{
+            result = -1;
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return caseID + ":" + employee + ":" + citizenProfile + ":" + caseDesc + ":" + relative + ":" + medicine;
+    }
+    
+    
+    
     
 }
