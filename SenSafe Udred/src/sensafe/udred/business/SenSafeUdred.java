@@ -63,6 +63,7 @@ public class SenSafeUdred {
                     break;
                 case 3: 
                     System.out.println("Ikke indsat endnu");
+                    System.out.println(database.getUserCollection());
                     break;
                     
                 // Case 4 mangler en måde hvorpå man kan indtaste en employee og citizenprofile              

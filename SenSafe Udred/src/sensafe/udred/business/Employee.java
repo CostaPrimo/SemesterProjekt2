@@ -54,7 +54,7 @@ public class Employee extends User {
     @Override
     public String toString(){
         String password = new String(this.password);
-        return getUserID() + ":" + name + ":" + username + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber;
+        return getUserID() + ":" + name + ":" + username + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber + "\n";
     }
     
     /**
