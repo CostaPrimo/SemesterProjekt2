@@ -13,14 +13,14 @@ import java.util.ArrayList;
  *
  * @author Jeppe Enevold
  */
-public class LogDatabase {
+public class LogController {
  
     //Collection<Logger> LogList;
     private ArrayList<Logger> LogList;
     private String LogDatabase; //Replace later
     private File logFile;
     
-    public LogDatabase(String LogDatabase){
+    public LogController(String LogDatabase){
         LogList = new ArrayList<Logger>();
         logFile = new File(LogDatabase);
     }

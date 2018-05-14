@@ -10,7 +10,7 @@ import java.util.TreeSet;
  *
  * @author Kim Christensen
  */
-public class UserDatabase {
+public class UserController {
 
     private TreeSet<User> userCollection;
     private String databaseName;
@@ -18,7 +18,7 @@ public class UserDatabase {
     private String databaseFileName;
     private File file;
 
-    public UserDatabase(String databaseName, String databaseFileName) {
+    public UserController(String databaseName, String databaseFileName) {
         this.databaseName = databaseName;
         this.databaseFileName = databaseFileName;
         userCollection = new TreeSet<>();

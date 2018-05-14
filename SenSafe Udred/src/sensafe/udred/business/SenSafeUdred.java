@@ -5,10 +5,10 @@
  */
 package sensafe.udred.business;
 
-import sensafe.udred.business.caseManagement.CaseDatabase;
+import sensafe.udred.business.caseManagement.CaseController;
 import sensafe.udred.business.caseManagement.CitizenProfile;
 import sensafe.udred.business.UserManagement.Employee;
-import sensafe.udred.business.UserManagement.UserDatabase;
+import sensafe.udred.business.UserManagement.UserController;
 import java.io.File;
 import java.util.Scanner;
 
@@ -25,11 +25,11 @@ public class SenSafeUdred {
         int currentUserID = 0;
         Employee currentUser = null;
         File file = new File("Test");
-        UserDatabase database = new UserDatabase("test", "userDatabase.txt");
+        UserController database = new UserController("test", "userDatabase.txt");
         System.out.println(database.getUserCollection());
         database.loadUsers();
         System.out.println(database.getUserCollection());
-        CaseDatabase caseDatabase = new CaseDatabase("caseTest", "caseDatabase.txt");
+        CaseController caseDatabase = new CaseController("caseTest", "caseDatabase.txt");
         CitizenProfile test = new CitizenProfile("Kim", "kim@mail.dk", "23");
         System.out.println(test);
         caseDatabase.addTocitizenArray(test);

@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sensafe.udred.acquaintance;
+package sensafe.udred.persistance;
 
 /**
  *
  * @author Jeppe Enevold
  */
-public interface IUI {
-    void injectBusiness(IBusiness businessLayer);
-    void startApplication(String[] args);
+public class UserDatabase {
+    
 }

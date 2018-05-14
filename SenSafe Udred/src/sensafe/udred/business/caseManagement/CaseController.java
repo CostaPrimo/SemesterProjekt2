@@ -19,7 +19,7 @@ import java.util.TreeSet;
  *
  * @author Nick
  */
-public class CaseDatabase {
+public class CaseController {
     
     private ArrayList<CitizenProfile> citizenArray = new ArrayList<>();
     private Collection<Case> caseCollection;
@@ -29,7 +29,7 @@ public class CaseDatabase {
     private File file;
     
     
-    public CaseDatabase(String databaseName, String fileName) {
+    public CaseController(String databaseName, String fileName) {
         this.databaseName = databaseName;
         this.databaseFileName = fileName;
         caseCollection = new TreeSet<>();
