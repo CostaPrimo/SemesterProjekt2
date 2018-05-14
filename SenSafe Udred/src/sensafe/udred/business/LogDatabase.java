@@ -1,5 +1,8 @@
 package sensafe.udred.business;
 
+import sensafe.udred.business.caseManagement.Case;
+import sensafe.udred.business.caseManagement.Journal;
+import sensafe.udred.business.UserManagement.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

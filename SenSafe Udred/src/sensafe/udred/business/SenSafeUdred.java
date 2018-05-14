@@ -5,6 +5,10 @@
  */
 package sensafe.udred.business;
 
+import sensafe.udred.business.caseManagement.CaseDatabase;
+import sensafe.udred.business.caseManagement.CitizenProfile;
+import sensafe.udred.business.UserManagement.Employee;
+import sensafe.udred.business.UserManagement.UserDatabase;
 import java.io.File;
 import java.util.Scanner;
 

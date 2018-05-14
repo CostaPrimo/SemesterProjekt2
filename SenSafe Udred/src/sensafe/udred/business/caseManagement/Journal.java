@@ -1,4 +1,6 @@
-package sensafe.udred.business;
+package sensafe.udred.business.caseManagement;
+
+import sensafe.udred.business.UserManagement.Employee;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -1,4 +1,4 @@
-package sensafe.udred.business;
+package sensafe.udred.business.UserManagement;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
