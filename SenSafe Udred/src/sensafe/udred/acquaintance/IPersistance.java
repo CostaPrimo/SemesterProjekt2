@@ -10,5 +10,5 @@ package sensafe.udred.acquaintance;
  * @author Jeppe Enevold
  */
 public interface IPersistance {
-    
+        public void createCitizenUser(String CPR, String Password, int userID);
 }
