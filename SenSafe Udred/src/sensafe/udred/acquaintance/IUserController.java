@@ -10,5 +10,5 @@ package sensafe.udred.acquaintance;
  * @author Jeppe Enevold
  */
 public interface IUserController {
-    
+    public String userCreate(String CPR);
 }

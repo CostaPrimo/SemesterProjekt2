@@ -32,11 +32,18 @@ public class UserController implements IUserController{
         writeInfoToFile(user.toString());
     }
 
-    public void userCreate(String CPR) {
+    //Create(CPR, PASSWORD, ID)
+    //userCreate(CPR) -> CitizenUser(CPR, PASSWORD, ID)
+    //CitizenUser.toString().split(";") -> PASSWORD + ID.toInteger
+    
+    
+    
+    @Override
+    public String userCreate(String CPR) {
         CitizenUser user = new CitizenUser(CPR);
         userCollection.add(user);
         System.out.println("User created" + user.getClass() + user.getUserID());
-        writeInfoToFile(user.toString());
+        return user.toString();
     }
 
     public void userDelete(int userID) {

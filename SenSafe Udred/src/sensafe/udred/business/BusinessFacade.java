@@ -16,6 +16,11 @@ public class BusinessFacade implements IBusiness {
     private ILogController logController;
     private IUserController userController;
 
+    /**
+     * 
+     * inject methods
+     */
+    //-------------------------------------------------------------------------------------------------------------------
     @Override
     public void injectData(IPersistance persistanceLayer) {
         this.persistance = persistanceLayer;
@@ -36,4 +41,10 @@ public class BusinessFacade implements IBusiness {
         this.caseController = caseController;
     }
     
+    //-------------------------------------------------------------------------------------------------------------------    
+    
+    public void createUser(String CPR){
+        String[]temp = userController.userCreate(CPR).split(";");
+        persistance.createCitizenUser(CPR, temp[1], Integer.parseInt(temp[0]));
+    }
 }
