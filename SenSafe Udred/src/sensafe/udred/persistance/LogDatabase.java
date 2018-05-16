@@ -6,7 +6,6 @@
 package sensafe.udred.persistance;
 
 import java.sql.*;
-import java.util.Scanner;
 
 /**
  *
@@ -18,15 +17,34 @@ public class LogDatabase {
         
     }
     
-    public void writeInfoToLD(){
-        
+    public void writeInfoToLD(Date date, int actorID, int targetID, String action){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenLDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO LogActivity VALUES (?, ?, ?, ?)");
+            PStatement.setDate(1, date);
+            PStatement.setInt(2, actorID);
+            PStatement.setInt(3, targetID);
+            PStatement.setString(4, action);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
     }
     
     public void deleteLog(){
         
     }
     
-    private void OpenLDConnection(){
+    private Statement OpenLDConnection(){
         
         try {
             Class.forName("org.postgresql.Driver");
@@ -39,21 +57,19 @@ public class LogDatabase {
         String username = "cremkbgt";
         String password = "kXnelPrVsQ6xV0EKEb54yVlJgyc0JQYZ";
 
+        Statement st = null;
 
         try {
             Connection db = DriverManager.getConnection(url, username, password);
-            Statement st = db.createStatement();
-            Scanner sc = new Scanner(System.in);
-            String i = sc.nextLine();
-            ResultSet rs = null;
+            st = db.createStatement();
             
             
-            st.close();
-            rs.close();
             
         } catch (Exception e){
             System.out.println(e);
         }
+        
+        return st;
         
     }
     
