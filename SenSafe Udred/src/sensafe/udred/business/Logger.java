@@ -1,7 +1,6 @@
 package sensafe.udred.business;
 
 import sensafe.udred.business.caseManagement.Case;
-import sensafe.udred.business.caseManagement.Journal;
 import sensafe.udred.business.UserManagement.User;
 import java.util.Date;
 
@@ -11,47 +10,46 @@ import java.util.Date;
  */
 public class Logger {
     private Date date;
-    private int userID;
-    private int caseID;
-    private int journalID;
+    private int actorID;
+    private int targetID;
+    private Action action;
     
-    public Logger(Case caseProfile, Journal journal, User user){
+    public Logger(User user, Case caseProfile, Action action){
+        this.action = action;
         this.date = new Date();
-        this.userID = user.getUserID();
-        this.caseID = caseProfile.getCaseID();
-        this.journalID = journal.getJournalID();
+        this.actorID = user.getUserID();
+        this.targetID = caseProfile.getCaseID();
     }
 
     @Override
     public String toString(){
-        return "Date ; " + this.date + " ; UserID ; " + this.userID + " ; CaseID ; " + this.caseID + " ; JournalID ; " + this.journalID; 
+        return "Date ; " + this.date + " ; ActorID ; " + this.actorID + " ; TargetID ; " + this.targetID + " ; Action ; " + this.action; 
     }
     /**
      * @return the date
      */
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     /**
      * @return the userID
      */
-    public int getUserID() {
-        return userID;
+    public int getActorID() {
+        return this.actorID;
     }
 
     /**
      * @return the caseID
      */
-    public int getCaseID() {
-        return caseID;
-    }
-
-    /**
-     * @return the journalID
-     */
-    public int getJournalID() {
-        return journalID;
+    public int getTargetID() {
+        return this.targetID;
     }
     
+    /**
+     * @return the Action
+     */
+    public Action getAction(){
+        return this.action;
+    }
 }
