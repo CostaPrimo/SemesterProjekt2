@@ -6,7 +6,6 @@
 package sensafe.udred.persistance;
 
 import java.sql.*;
-import java.util.Scanner;
 
 /**
  *
@@ -18,16 +17,109 @@ public class UserDatabase {
         
     }
     
-    public void writeInfoToUD(){
+    public void writeInfoToEmployee(int userID, String name, String zipCode, String email, String department, String phoneNumber, String password){
+        
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PStatement.setInt(1, userID);
+            PStatement.setString(2, name);
+            PStatement.setString(3, zipCode);
+            PStatement.setString(4, email);
+            PStatement.setString(5, department);
+            PStatement.setString(6, phoneNumber);
+            PStatement.setString(7, password);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    public void writeInfoToCitizenUser(String CPRNumber, String password, int userID){
+        
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CitizenUser VALUES (?, ?, ?)");
+            PStatement.setString(1, CPRNumber);
+            PStatement.setString(2, password);
+            PStatement.setInt(3, userID);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
         
     }
     
-    public void deleteUser(){
+    public void deleteCitizenUser(String CPRNumber, String password){
         
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM CitizenUser VALUES (?, ?)");
+            PStatement.setString(1, CPRNumber);
+            PStatement.setString(2, password);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
     }
     
+    public void deleteEmployee(int userID, String name, String zipCode, String email, String department, String phoneNumber, String password){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM Employee VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PStatement.setInt(1, userID);
+            PStatement.setString(2, name);
+            PStatement.setString(3, zipCode);
+            PStatement.setString(4, email);
+            PStatement.setString(5, department);
+            PStatement.setString(6, phoneNumber);
+            PStatement.setString(7, password);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+    }
     
-    private void OpenUDConnection(){
+
+    
+    
+    private Statement OpenUDConnection(){
         
         try {
             Class.forName("org.postgresql.Driver");
@@ -40,21 +132,26 @@ public class UserDatabase {
         String username = "cremkbgt";
         String password = "kXnelPrVsQ6xV0EKEb54yVlJgyc0JQYZ";
 
+        Statement st = null;
 
         try {
             Connection db = DriverManager.getConnection(url, username, password);
-            Statement st = db.createStatement();
-            Scanner sc = new Scanner(System.in);
-            String i = sc.nextLine();
-            ResultSet rs = null;
+            st = db.createStatement();
             
             
-            st.close();
-            rs.close();
             
         } catch (Exception e){
             System.out.println(e);
         }
+        
+        return st;
+        
+    }
+    
+    public static void main(String[] args) {
+        
+        
+        
         
     }
     
