@@ -11,4 +11,7 @@ package sensafe.udred.acquaintance;
  */
 public interface IBusiness {
     void injectData(IPersistance persistanceLayer);
+    void injectLogController(ILogController logController);
+    void injectUserController(IUserController userController);
+    void injectCaseController(ICaseController caseController);
 }

@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 import java.util.TreeSet;
+import sensafe.udred.acquaintance.ICaseController;
 
 /**
  *
  * @author Nick
  */
-public class CaseController {
+public class CaseController implements ICaseController {
     
     private ArrayList<CitizenProfile> citizenArray = new ArrayList<>();
     private Collection<Case> caseCollection;

@@ -1,9 +1,6 @@
 package sensafe.udred.business;
 
-import sensafe.udred.business.caseManagement.Case;
-import sensafe.udred.business.UserManagement.User;
 import java.util.Date;
-
 /**
  *
  * @author Jeppe Enevold
@@ -13,12 +10,13 @@ public class Logger {
     private int actorID;
     private int targetID;
     private Action action;
-    
-    public Logger(User user, Case caseProfile, Action action){
-        this.action = action;
+        
+    //Log User to Journal Interraction
+    public Logger(int ActorID, int TargetID, Action action){
         this.date = new Date();
-        this.actorID = user.getUserID();
-        this.targetID = caseProfile.getCaseID();
+        this.actorID = ActorID;
+        this.targetID = TargetID;
+        this.action = action;
     }
 
     @Override

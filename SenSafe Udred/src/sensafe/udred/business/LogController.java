@@ -1,19 +1,18 @@
 package sensafe.udred.business;
 
-import sensafe.udred.business.caseManagement.Case;
-import sensafe.udred.business.UserManagement.User;
+import sensafe.udred.acquaintance.ILogController;
 
 /**
  *
  * @author Jeppe Enevold
  */
-public class LogController {
+public class LogController implements ILogController {
     
-    public LogController(String LogDatabase){
+    public LogController(){
         //LogList = new ArrayList<Logger>();
     }
     
-    public void log(User user, Case caseProfile, Action action){
+    public void log(int ActorID, int TargetID, Action action){
        if(action.isUnknown(action)){
        //Return error string
        }
@@ -23,7 +22,8 @@ public class LogController {
        
     }
     
-    public Logger getlog(int targetID){
+    public String getlog(int targetID){
         //return LogList.get(targetID);
+        return "temp";
     }
 }

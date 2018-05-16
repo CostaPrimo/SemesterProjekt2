@@ -10,14 +10,18 @@ package sensafe.udred.business.UserManagement;
  * @author Nick
  */
 public class SysAdmin {
-    private String Username;
+    private int AdminID;
     private String Password;
 
     public SysAdmin(String Username, String Password) {
-        this.Username = Username;
-        this.Password = Password;
+        //NEED Autogeneratoin of AdminID + password
+        
+        //this.AdminID = Username;
+        //this.Password = Password;
     }
     
-    
+    public int getAdminID(){
+        return this.AdminID;
+    }
     
 }

@@ -3,14 +3,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 import java.util.Scanner;
 import java.util.TreeSet;
+import sensafe.udred.acquaintance.IUserController;
 /**
  *
  * @author Kim Christensen
  */
-public class UserController {
+public class UserController implements IUserController{
 
     private TreeSet<User> userCollection;
     private String databaseName;
