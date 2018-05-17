@@ -31,12 +31,6 @@ public class UserController implements IUserController{
         System.out.println("User created" + user.getClass() + user.getUserID());
         writeInfoToFile(user.toString());
     }
-
-    //Create(CPR, PASSWORD, ID)
-    //userCreate(CPR) -> CitizenUser(CPR, PASSWORD, ID)
-    //CitizenUser.toString().split(";") -> PASSWORD + ID.toInteger
-    
-    
     
     @Override
     public String userCreate(String CPR) {
