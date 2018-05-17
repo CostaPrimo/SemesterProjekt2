@@ -48,7 +48,10 @@ public class SenSafeUdred {
         business.injectUserController(userController);
         
         //-------------------------------------------------------------------------------------------------------------------          
+        business.createLog(1069, 2042, "create");
         
+        
+        /*
         int currentUserID = 0;
         Employee currentUser = null;
         File file = new File("Test");
@@ -179,6 +182,7 @@ public class SenSafeUdred {
                 default:
                     System.out.println("Invalid input");
             }
-        }      
+        }
+        */
     }
 }

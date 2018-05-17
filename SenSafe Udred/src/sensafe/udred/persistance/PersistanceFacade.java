@@ -1,5 +1,7 @@
 package sensafe.udred.persistance;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import sensafe.udred.acquaintance.IPersistance;
 
 /**
@@ -14,5 +16,10 @@ public class PersistanceFacade implements IPersistance {
         @Override
         public void createCitizenUser(String CPR, String password, int userID){
             userDatabase.writeInfoToCitizenUser(CPR, password, userID);
+        }
+        
+        @Override
+        public void createLog(Date date, int ActorID, int TargetID, String action){
+            logDatabase.writeInfoToLD(new Timestamp(date.getTime()), ActorID, TargetID, action);
         }
 }

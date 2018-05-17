@@ -1,5 +1,6 @@
 package sensafe.udred.business;
 
+import java.util.Date;
 import sensafe.udred.acquaintance.IBusiness;
 import sensafe.udred.acquaintance.ICaseController;
 import sensafe.udred.acquaintance.ILogController;
@@ -50,6 +51,6 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void createLog(int ActorID, int TargetID, String action){
-        //logController.log(ActorID, TargetID, action);
+        persistance.createLog(logController.log(ActorID, TargetID, action),ActorID,TargetID,logController.verifyAction(action));
     }
 }
