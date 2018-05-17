@@ -42,15 +42,15 @@ public class BusinessFacade implements IBusiness {
     }
     
     //-------------------------------------------------------------------------------------------------------------------    
-    @Override
-    public void createCitizenUser(String CPR){
-        String[]temp = userController.userCreate(CPR).split(";");
-        persistance.createCitizenUser(CPR, temp[1], Integer.parseInt(temp[0]));
-    }
+//    @Override
+//    public void createCitizenUser(String CPR){
+//        String[]temp = userController.userCreate(CPR).split(";");
+//        persistance.createCitizenUser(CPR, temp[1], Integer.parseInt(temp[0]));
+//    }
     
-    public void createEmployee(St){
-        
-    }
+//    public void createEmployee(St){
+//        
+//    }
     
     @Override
     public void createLog(int ActorID, int TargetID, String action){
@@ -66,6 +66,21 @@ public class BusinessFacade implements IBusiness {
     @Override
     public String loadEmployee(int ID){
         return persistance.loadEmployee(ID);
+    }
+    
+    @Override
+    public String loadCitizenProfile(String CPR){
+        return persistance.loadCitizenProfile(CPR);
+    }
+    
+    @Override
+    public String loadCase(int caseID){
+        return persistance.loadCase(caseID);
+    }
+    
+    @Override
+    public String loadJournal(int journalID){
+        return persistance.loadJournal(journalID);
     }
     
     

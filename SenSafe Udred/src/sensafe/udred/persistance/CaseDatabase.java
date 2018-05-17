@@ -57,6 +57,7 @@ public class CaseDatabase {
             PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenProfile WHERE CPRNumber = ?");
             PStatement.setString(1, CPRNumber);
             rs = PStatement.executeQuery();
+            rs.next();
             output += rs.getString(1) + ";";
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
@@ -249,8 +250,8 @@ public class CaseDatabase {
 
     public static void main(String[] args) {
         CaseDatabase cd = new CaseDatabase();
-        cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 1);
-        cd.writeInfoToJournal(5001, "resume", 1, 2001);
+        //cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 6969);
+        cd.writeInfoToJournal(6969, "resumeadasdasdsadsad", 6969, 2001);
     }
     
 }

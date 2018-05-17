@@ -23,9 +23,10 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee WHERE ID = ?");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee WHERE userID = ?");
             PStatement.setInt(1, ID);
             rs = PStatement.executeQuery();
+            rs.next();
             output += rs.getString(1) + ";";
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
@@ -54,9 +55,10 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser WHERE ID = ?");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser WHERE userID = ?");
             PStatement.setInt(1, ID);
             rs = PStatement.executeQuery();
+            rs.next();
             output += rs.getString(1) + ";";
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
@@ -207,7 +209,8 @@ public class UserDatabase {
     }
     
     public static void main(String[] args) {
-        
+        UserDatabase ud = new UserDatabase();
+        ud.writeInfoToEmployee(6969, "Kurt", "234", "kim@lul.dk", "Heckdepartment", "69696969", "detteerenkode123");
     }
     
 }

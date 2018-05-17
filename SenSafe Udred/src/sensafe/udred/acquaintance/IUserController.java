@@ -10,5 +10,6 @@ package sensafe.udred.acquaintance;
  * @author Jeppe Enevold
  */
 public interface IUserController {
-    public String createEmployee(String CPR);
+    //public String createEmployee(String CPR);
+    public String createCitizenUser(String CPR);
 }

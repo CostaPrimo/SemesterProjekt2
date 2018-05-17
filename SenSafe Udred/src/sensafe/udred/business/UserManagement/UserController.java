@@ -32,7 +32,7 @@ public class UserController implements IUserController{
     }
     
     @Override
-    public String CreateCitizenUser(String CPR) {
+    public String createCitizenUser(String CPR) {
         CitizenUser user = new CitizenUser(CPR);
         System.out.println("User created" + user.getClass() + user.getUserID());
         return user.toString();

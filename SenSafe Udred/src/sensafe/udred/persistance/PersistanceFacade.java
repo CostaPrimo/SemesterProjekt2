@@ -25,4 +25,21 @@ public class PersistanceFacade implements IPersistance {
     public String loadCitizenUser(int ID) {
         return userDatabase.loadCitizenUsers(ID);
     }
+    
+    @Override
+    public String loadCitizenProfile(String CPR){
+        return caseDatabase.loadCitizenProfile(CPR);
+    }
+    
+    @Override
+    public String loadCase(int caseID){
+        return caseDatabase.loadCaseTable(caseID);
+    }
+    @Override
+    public String loadJournal(int journalID){
+        return caseDatabase.loadJournal();
+    }
+    
+        
 }
+

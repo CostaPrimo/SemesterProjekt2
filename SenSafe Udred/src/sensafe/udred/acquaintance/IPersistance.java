@@ -13,4 +13,7 @@ public interface IPersistance {
         public void createCitizenUser(String CPR, String Password, int userID);
         public String loadEmployee(int ID);
         public String loadCitizenUser(int ID);
+        public String loadCitizenProfile(String CPR);
+        public String loadCase(int caseID);
+        public String loadJournal(int journalID);
 }

@@ -15,8 +15,11 @@ public interface IBusiness {
     void injectUserController(IUserController userController);
     void injectCaseController(ICaseController caseController);
     
-    void createUser(String CPR);
+    //void createUser(String CPR);
     void createLog(int ActorID, int TargetID, String action);
     String loadCitizenUser(int ID);
     String loadEmployee(int ID);
+    String loadCitizenProfile(String CPR);
+    String loadCase(int caseID);
+    String loadJournal(int journalID);
 }
