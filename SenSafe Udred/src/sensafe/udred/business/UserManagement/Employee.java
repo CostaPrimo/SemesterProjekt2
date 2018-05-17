@@ -12,13 +12,13 @@ package sensafe.udred.business.UserManagement;
 public class Employee extends User {
     private int userID;
     private String name;
-    private int zipCode;
+    private String zipCode;
     private String email;
     private String department;
     private String phonenumber;
     
     //First time an employee is created.
-    public Employee(String name, int zipCode, String email, String department, String phonenumber){
+    public Employee(String name, String zipCode, String email, String department, String phonenumber){
         super();
         this.name = name;
         this.zipCode = zipCode;
@@ -27,7 +27,7 @@ public class Employee extends User {
         this.phonenumber = phonenumber;
     }
     //Second time an employee is created by loading.
-    public Employee(int userID, String name, char[] password, int zipCode, String email, String department, String phonenumber){
+    public Employee(int userID, String name, char[] password, String zipCode, String email, String department, String phonenumber){
         super(userID);
         this.name = name;
         this.password = password;

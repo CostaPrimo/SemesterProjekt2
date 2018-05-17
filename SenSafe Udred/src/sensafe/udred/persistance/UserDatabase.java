@@ -17,13 +17,71 @@ public class UserDatabase {
         
     }
     
+    public String loadEmployee(int ID){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee WHERE ID = ?");
+            PStatement.setInt(1, ID);
+            rs = PStatement.executeQuery();
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output += rs.getString(4) + ";";
+            output += rs.getString(5) + ";";
+            output += rs.getString(6) + ";";
+            output += rs.getString(7) + ";";
+            output+= "\n";
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
+    
+     public String loadCitizenUsers(int ID){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser WHERE ID = ?");
+            PStatement.setInt(1, ID);
+            rs = PStatement.executeQuery();
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output+= "\n";
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
+    
     public void writeInfoToEmployee(int userID, String name, String zipCode, String email, String department, String phoneNumber, String password){
         
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?, ?)");
             PStatement.setInt(1, userID);
             PStatement.setString(2, name);
             PStatement.setString(3, zipCode);
@@ -95,7 +153,7 @@ public class UserDatabase {
         ResultSet rs = null;
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM Employee VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM Employee VALUES (?, ?, ?, ?, ?, ?, ?)");
             PStatement.setInt(1, userID);
             PStatement.setString(2, name);
             PStatement.setString(3, zipCode);
@@ -149,9 +207,6 @@ public class UserDatabase {
     }
     
     public static void main(String[] args) {
-        
-        
-        
         
     }
     

@@ -15,4 +15,14 @@ public class PersistanceFacade implements IPersistance {
         public void createCitizenUser(String CPR, String password, int userID){
             userDatabase.writeInfoToCitizenUser(CPR, password, userID);
         }
+
+    @Override
+    public String loadEmployee(int ID) {
+        return userDatabase.loadEmployee(ID);
+    }
+
+    @Override
+    public String loadCitizenUser(int ID) {
+        return userDatabase.loadCitizenUsers(ID);
+    }
 }

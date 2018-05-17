@@ -11,4 +11,6 @@ package sensafe.udred.acquaintance;
  */
 public interface IPersistance {
         public void createCitizenUser(String CPR, String Password, int userID);
+        public String loadEmployee(int ID);
+        public String loadCitizenUser(int ID);
 }

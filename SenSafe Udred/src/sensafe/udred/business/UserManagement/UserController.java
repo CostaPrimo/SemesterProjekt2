@@ -25,17 +25,15 @@ public class UserController implements IUserController{
         file = new File(databaseFileName);
     }
 
-    public void userCreate(String name, int zipcode, String email, String department, String phoneNumber) {
-        Employee user = new Employee(name, zipcode, email, department, phoneNumber);
-        userCollection.add(user);
-        System.out.println("User created" + user.getClass() + user.getUserID());
-        writeInfoToFile(user.toString());
+    public String CreateEmployee(String name, String zipcode, String email, String department, String phoneNumber) {
+        Employee employee = new Employee(name, zipcode, email, department, phoneNumber);
+        System.out.println("User created");
+        return employee.toString();
     }
     
     @Override
-    public String userCreate(String CPR) {
+    public String CreateCitizenUser(String CPR) {
         CitizenUser user = new CitizenUser(CPR);
-        userCollection.add(user);
         System.out.println("User created" + user.getClass() + user.getUserID());
         return user.toString();
     }
@@ -104,52 +102,6 @@ public class UserController implements IUserController{
             }
         }
     }
-
-    public TreeSet<User> loadUsers() {
-
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-
-            while (scanner.hasNext()) {
-                int userID;
-                String name;
-                char[] password;
-                int zipCode;
-                String CPRNumber;
-                String email;
-                String department;
-                String phoneNumber;
-
-                String[] lineToRead = scanner.nextLine().split(":");
-                if (lineToRead.length > 4) {
-                    userID = Integer.parseInt(lineToRead[0]);
-                    name = lineToRead[1];
-                    password = lineToRead[2].toCharArray();
-                    zipCode = Integer.parseInt(lineToRead[3]);
-                    email = lineToRead[4];
-                    department = lineToRead[5];
-                    phoneNumber = lineToRead[6];
-                    Employee employee = new Employee(userID, name, password, zipCode, email, department, phoneNumber);
-                    userCollection.add(employee);
-
-                } else {
-                    //Lav citizen
-                }
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error opening file");
-        } finally {
-            scanner.close();
-        }
-        return userCollection;
-    }
-
-    public TreeSet<User> getUserCollection() {
-        return userCollection;
-    }
-
     public Employee lookupUser(int userID) {
         Employee employee = null;
         for (User user : userCollection) {

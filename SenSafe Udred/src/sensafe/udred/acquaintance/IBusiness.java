@@ -17,4 +17,6 @@ public interface IBusiness {
     
     void createUser(String CPR);
     void createLog(int ActorID, int TargetID, String action);
+    String loadCitizenUser(int ID);
+    String loadEmployee(int ID);
 }

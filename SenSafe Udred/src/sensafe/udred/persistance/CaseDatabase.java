@@ -18,6 +18,92 @@ public class CaseDatabase {
         
     }
     
+    public String loadCaseTable(int ID){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CaseTable WHERE CaseID = ?");
+            PStatement.setInt(1, ID);
+            rs = PStatement.executeQuery();
+            while(rs.next()){
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output += rs.getString(4) + ";";
+            output+= "\n";
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
+    
+    public String loadCitizenProfile(String CPRNumber){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenProfile WHERE CPRNumber = ?");
+            PStatement.setString(1, CPRNumber);
+            rs = PStatement.executeQuery();
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output+= "\n";
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
+    
+    public String loadJournal(){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Journal");
+            rs = PStatement.executeQuery();
+            while(rs.next()){
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output += rs.getString(4) + ";";
+            output+= "\n";
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
+    
     public void writeInfoToCitizenProfile(String name, String email, String CPRNumber){
         Statement st = null;
         ResultSet rs = null;
@@ -158,10 +244,13 @@ public class CaseDatabase {
         } catch (Exception e){
             System.out.println(e);
         }
-        
         return st;
-        
     }
 
+    public static void main(String[] args) {
+        CaseDatabase cd = new CaseDatabase();
+        cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 1);
+        cd.writeInfoToJournal(5001, "resume", 1, 2001);
+    }
     
 }
