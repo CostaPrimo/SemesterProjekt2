@@ -21,7 +21,7 @@ public class Logger {
 
     @Override
     public String toString(){
-        return "Date ; " + this.date + " ; ActorID ; " + this.actorID + " ; TargetID ; " + this.targetID + " ; Action ; " + this.action.toString(); 
+        return "Date;" + this.date + ";ActorID;" + this.actorID + ";TargetID;" + this.targetID + ";Action;" + this.action.toString(); 
     }
     /**
      * @return the date
