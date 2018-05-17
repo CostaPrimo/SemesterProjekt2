@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -61,7 +63,7 @@
             </HBox>
          </center>
          <top>
-            <Label id="SenSafeUdredLogIndTitel" alignment="CENTER" text="SenSafe Udred" underline="true" BorderPane.alignment="CENTER">
+            <Label id="LogInTitel" alignment="CENTER" text="SenSafe Udred" underline="true" BorderPane.alignment="CENTER">
                <font>
                   <Font size="26.0" />
                </font>
@@ -71,12 +73,17 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
       </BorderPane>
-      <BorderPane id="AdminForsideBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="AdminFrontpageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
-            <VBox id="AdminForsideVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox id="AdminFrontPageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="AdminOpretBrugerKnape" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Opret Bruger" />
-                  <Button id="AdminSletBrugerKnap" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Slet Bruger">
+                  <Button id="AdminCreatEmployeeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Opret Employee" />
+                  <Button id="AdminCreateCitizenButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Opret Citizen">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button id="AdminDeleteUserButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Slet Bruger">
                      <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                      </VBox.margin>
@@ -85,7 +92,7 @@
             </VBox>
          </center>
          <top>
-            <Label id="SenSafeUdredAdminForsideLabel" alignment="CENTER" text="SenSafe Udred" BorderPane.alignment="CENTER">
+            <Label id="AdminTitelLabel" alignment="CENTER" text="SenSafe Udred" BorderPane.alignment="CENTER">
                <font>
                   <Font size="26.0" />
                </font>
@@ -180,61 +187,6 @@
             </Label>
          </top>
       </BorderPane>
-      <BorderPane id="SletBrugerBorderPane" centerShape="false" layoutX="1.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-         <top>
-            <Label alignment="CENTER" text="Slet Bruger" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-         </top>
-         <center>
-            <HBox id="SletBrugerHBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox prefHeight="360.0" prefWidth="193.0" />
-                  <VBox id="SletBrugerMidtVBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="223.0">
-                     <children>
-                        <Label id="AdminIndtastBrugerIDLabel" text="Indtast BrugerID" />
-                        <TextField id="AdminBrugerIDTextField">
-                           <VBox.margin>
-                              <Insets left="30.0" right="20.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <Button id="AdminSletBrugerKnap" alignment="CENTER" mnemonicParsing="false" text="Slet Bruger">
-                           <VBox.margin>
-                              <Insets bottom="70.0" left="107.0" />
-                           </VBox.margin>
-                        </Button>
-                        <GridPane id="SletBrugerLogInGrid" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="116.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="104.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label id="SletBrugerTextLabel" prefHeight="17.0" prefWidth="131.0" text="Indtast Admin Login" />
-                              <PasswordField id="SletBrugerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField id="SletBrugerLoginBrugerID" GridPane.rowIndex="2" />
-                              <Label id="AdminSletBrugerBrugerIDConfirmLabel" text="BrugerID" GridPane.rowIndex="1" />
-                              <Label id="AdminConfirmPasswordLabel" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button id="SletBrugerLogIndKnap" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </GridPane>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="360.0" prefWidth="190.0" />
-               </children>
-            </HBox>
-         </center>
-      </BorderPane>
       <BorderPane id="FindCitizenProfilBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <HBox id="FindCitizenProfileCenterHBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -272,8 +224,15 @@
                </font>
             </Label>
          </top>
+         <bottom>
+            <Button mnemonicParsing="false" text="Tilbage" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="450.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
       </BorderPane>
-      <BorderPane id="CaseInformationBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="CaseInformationBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <top>
             <Label id="CaseInformationTitelLabel" alignment="CENTER" text="SenSafe Udred" BorderPane.alignment="CENTER">
                <font>
@@ -284,8 +243,276 @@
          <center>
             <HBox id="CaseInformationCenterHBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="550.0" />
-                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="579.0" />
+                  <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="492.0">
+                     <children>
+                        <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="152.0">
+                           <children>
+                              <Label text="Case Information: " />
+                              <Label text="CaseID: " />
+                              <Label text="Employee" />
+                              <Label text="CitizenProfile" />
+                              <Label text="Relative(s): " />
+                              <Label text="Medicine: " />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="360.0" prefWidth="157.0">
+                           <children>
+                              <Label text="Label">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label text="Label" />
+                              <Label text="Label" />
+                              <Label text="Label" />
+                              <Label text="Label" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="579.0">
+                     <children>
+                        <Label text="Case description:" />
+                        <TextArea editable="false" prefHeight="126.0" prefWidth="343.0" />
+                        <Label text="Journaler:" />
+                        <ListView prefHeight="92.0" prefWidth="343.0" />
+                        <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Tilbage">
+                           <VBox.margin>
+                              <Insets left="250.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children></VBox>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+      <BorderPane id="DeleteUserBorderPane" centerShape="false" layoutX="1.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <top>
+            <Label id="DeleteUserTitel" alignment="CENTER" text="Slet Bruger" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <HBox id="DeleteUserHBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="360.0" prefWidth="193.0" />
+                  <VBox id="DeleteUserMiddleVBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="223.0">
+                     <children>
+                        <Label id="DeleteUserUserIDLabel" text="Indtast BrugerID" />
+                        <TextField id="DeleteUserUserIDTextField">
+                           <VBox.margin>
+                              <Insets left="30.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button id="DeleteUserButton" alignment="CENTER" mnemonicParsing="false" text="Slet Bruger">
+                           <VBox.margin>
+                              <Insets bottom="70.0" left="107.0" />
+                           </VBox.margin>
+                        </Button>
+                        <GridPane id="SletBrugerLogInGrid" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="116.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="104.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label id="DeleteUserTextLabel" prefHeight="17.0" prefWidth="131.0" text="Indtast Admin Login" />
+                              <PasswordField id="SletBrugerPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField id="DeleteUserBrugerIDTextField" GridPane.rowIndex="2" />
+                              <Label id="DeleteUserBrugerIDLabel" text="BrugerID" GridPane.rowIndex="1" />
+                              <Label id="DeleteUserPasswordLabel" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button id="DeleteUserConfirmButton" mnemonicParsing="false" text="Confirm" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="360.0" prefWidth="190.0" />
+               </children>
+            </HBox>
+         </center>
+         <bottom>
+            <Button id="DeleteUserBackButton" mnemonicParsing="false" text="Tilbage" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+      <BorderPane id="CreateEmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <top>
+            <Label text="SenSafe Udred Opret Bruger" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <HBox id="CreateEmployeeCenterHBox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox id="CreateEmployeeLabelVBox" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="498.0">
+                     <children>
+                        <Label id="CreateEmployeeNameLabel" alignment="CENTER_RIGHT" text="Name: " />
+                        <Label id="CreateEmployeeEmailLabel" text="Email: ">
+                           <VBox.margin>
+                              <Insets top="14.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label id="CreateEmployeeZipcodeLabel" text="Zipcode: ">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label id="CreateEmployeeDepartmentLabel" text="Department: ">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label id="CreateEmployeePhonenumberLabel" text="PhoneNumber: ">
+                           <VBox.margin>
+                              <Insets bottom="25.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="360.0" prefWidth="521.0">
+                     <children>
+                        <TextField id="CreateEmployeeNameTextField">
+                           <VBox.margin>
+                              <Insets left="20.0" right="150.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField id="CreateEmployeeEmailTextField">
+                           <VBox.margin>
+                              <Insets left="20.0" right="150.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField id="CreateEmployeeZipcodeTextField">
+                           <VBox.margin>
+                              <Insets left="20.0" right="150.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField id="CreateEmployeeDepartmentTextField">
+                           <VBox.margin>
+                              <Insets left="20.0" right="150.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField id="CreateEmployeePhonenumberTextField">
+                           <VBox.margin>
+                              <Insets left="20.0" right="150.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Button id="CreateEmployeeButton" mnemonicParsing="false" text="Opret Employee" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center>
+         <bottom>
+            <Button id="CreateEmployeeBackButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Tilbage" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="520.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
+      <BorderPane id="CreateCitizenBorderPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <top>
+            <Label id="CreateCitizenTitel" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWidth="600.0" text="SenSafe Udred Opret Citizen " BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label id="CreateCitizenCPRLabel" text="CPR:  " />
+                  <TextField id="CreateCitizenCPRTextField">
+                     <VBox.margin>
+                        <Insets left="200.0" right="200.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button id="CreateCitizenButton" mnemonicParsing="false" text="Create Citizen">
+                     <VBox.margin>
+                        <Insets left="250.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <bottom>
+            <Button id="CreateCitizenBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Tilbage" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="450.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
+      <BorderPane id="CreateCaseBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <top>
+            <Label text="SenSafe Udred Opret Sag" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox id="CreateCaseQueastionsVBox" prefHeight="360.0" prefWidth="271.0">
+                     <children>
+                        <Label text="Hvad drejer henvendelsen sig om?" />
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="67.5" />
+                           </VBox.margin>
+                        </Separator>
+                        <Label text="Er det klart hvad borgeren søger " />
+                        <Label text="om?" />
+                        <Separator prefWidth="200.0" />
+                        <Label text="Hvor kommer henvendelsen fra?" />
+                        <Label text="Er borgeren indforstået med">
+                           <VBox.margin>
+                              <Insets top="165.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="henvendelsen?" />
+                     </children>
+                  </VBox>
+                  <VBox id="CreateCaseAnswersVBox" prefHeight="360.0" prefWidth="502.0">
+                     <children>
+                        <TextArea id="CreateCaseHenvendelseTextArea" prefHeight="85.0" prefWidth="415.0" />
+                        <Separator prefWidth="200.0" />
+                        <CheckBox mnemonicParsing="false" text="Ja" />
+                        <CheckBox mnemonicParsing="false" text="Nej" />
+                        <Separator prefWidth="200.0" />
+                        <CheckBox mnemonicParsing="false" text="Borger" />
+                        <CheckBox mnemonicParsing="false" text="Pårørende" />
+                        <CheckBox mnemonicParsing="false" text="Læge" />
+                        <CheckBox mnemonicParsing="false" text="Hospital" />
+                        <CheckBox mnemonicParsing="false" text="Anden forvaltning" />
+                        <CheckBox mnemonicParsing="false" text="Igangværende indsats" />
+                        <CheckBox mnemonicParsing="false" text="Anden kommune" />
+                        <CheckBox mnemonicParsing="false" text="Andre" />
+                        <Label text="Angiv Kontakt muligheder: " />
+                        <TextField />
+                        <CheckBox mnemonicParsing="false" text="Ja">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <CheckBox mnemonicParsing="false" text="Nej" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </center>
