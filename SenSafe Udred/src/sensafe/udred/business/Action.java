@@ -10,9 +10,16 @@ package sensafe.udred.business;
  * @author Jeppe Enevold
  */
 public enum Action {
-    CREATE, DELETE, VIEW,UNKNOWN;
+    CREATE("create"), DELETE("delete"), VIEW("view"),UNKNOWN("?");
     
-    public boolean isUnknown(Action action){
-        return action==Action.UNKNOWN;
+    private String actionDone;
+    
+    Action(String action){
+        this.actionDone = action;
+    }
+    
+    @Override
+    public String toString(){
+        return actionDone;
     }
 }

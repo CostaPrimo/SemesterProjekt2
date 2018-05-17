@@ -10,5 +10,5 @@ package sensafe.udred.acquaintance;
  * @author Jeppe Enevold
  */
 public interface ILogController {
-    
+    public String log(int ActorID, int TargetID, String Action);
 }

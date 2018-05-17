@@ -42,9 +42,14 @@ public class BusinessFacade implements IBusiness {
     }
     
     //-------------------------------------------------------------------------------------------------------------------    
-    
+    @Override
     public void createUser(String CPR){
         String[]temp = userController.userCreate(CPR).split(";");
         persistance.createCitizenUser(CPR, temp[1], Integer.parseInt(temp[0]));
+    }
+    
+    @Override
+    public void createLog(int ActorID, int TargetID, String action){
+        //logController.log(ActorID, TargetID, action);
     }
 }

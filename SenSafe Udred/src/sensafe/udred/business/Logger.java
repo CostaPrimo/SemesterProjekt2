@@ -10,7 +10,7 @@ public class Logger {
     private int actorID;
     private int targetID;
     private Action action;
-        
+    
     //Log User to Journal Interraction
     public Logger(int ActorID, int TargetID, Action action){
         this.date = new Date();
@@ -21,7 +21,7 @@ public class Logger {
 
     @Override
     public String toString(){
-        return "Date ; " + this.date + " ; ActorID ; " + this.actorID + " ; TargetID ; " + this.targetID + " ; Action ; " + this.action; 
+        return "Date ; " + this.date + " ; ActorID ; " + this.actorID + " ; TargetID ; " + this.targetID + " ; Action ; " + this.action.toString(); 
     }
     /**
      * @return the date

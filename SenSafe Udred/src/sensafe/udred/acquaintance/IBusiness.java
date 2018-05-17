@@ -14,4 +14,7 @@ public interface IBusiness {
     void injectLogController(ILogController logController);
     void injectUserController(IUserController userController);
     void injectCaseController(ICaseController caseController);
+    
+    void createUser(String CPR);
+    void createLog(int ActorID, int TargetID, String action);
 }
