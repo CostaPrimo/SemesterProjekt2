@@ -27,7 +27,7 @@ public class Employee extends User {
         this.phonenumber = phonenumber;
     }
     //Second time an employee is created by loading.
-    public Employee(int userID, String name, char[] password, String zipCode, String email, String department, String phonenumber){
+    public Employee(int userID, String name, String zipCode, String email, String department, String phonenumber, String password){
         super(userID);
         this.name = name;
         this.password = password;
@@ -52,8 +52,7 @@ public class Employee extends User {
     
     @Override
     public String toString(){
-        String password = new String(this.password);
-        return getUserID() + ":" + name + ":" + password + ":" + zipCode + ":" + email + ":" + department + ":" + phonenumber + "\n";
+        return getUserID() + ";" + name + ";" + zipCode + ";" + email + ";" + department + ";" + phonenumber  + ";" + password;
     }
     
     /**

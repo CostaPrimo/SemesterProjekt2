@@ -16,7 +16,7 @@ public abstract class User implements Comparable<User>{
     
     private int userID; //Save virker, men ikke load da de tager samme reference??
     private static int tempID;
-    protected char[] password;
+    protected String password;
     
     //First time program is ran.
     public User(){
@@ -36,7 +36,7 @@ public abstract class User implements Comparable<User>{
         setUserID(userID);
     }
     
-    private char [] passwordGenerator(int len){
+    private String passwordGenerator(int len){
         String capitalChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String smallChars = "abcdefghijklmnopqrstuvwxyz";
         String numbers = "0123456789";
@@ -51,11 +51,11 @@ public abstract class User implements Comparable<User>{
             password[i] = values.charAt(random.nextInt(values.length()));
         }
         System.out.println("kode lavet");
-        return password;
+        return new String (password);
     }
 
-    public char[] getPassword() {
-        return password;
+    public String getPassword() {
+        return new String(password);
     }
 
     public int getUserID() {

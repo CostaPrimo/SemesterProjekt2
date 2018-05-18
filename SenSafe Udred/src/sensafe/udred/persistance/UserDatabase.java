@@ -210,7 +210,6 @@ public class UserDatabase {
     
     public static void main(String[] args) {
         UserDatabase ud = new UserDatabase();
-        ud.writeInfoToEmployee(6969, "Kurt", "234", "kim@lul.dk", "Heckdepartment", "69696969", "detteerenkode123");
     }
     
 }

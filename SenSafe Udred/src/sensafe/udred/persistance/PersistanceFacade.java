@@ -47,8 +47,8 @@ public class PersistanceFacade implements IPersistance {
     }
 
     @Override
-    public void createEmployee(int userID, String name, String zipCode, String email, String department, String phonenumber, char[] password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createEmployee(int userID, String name, String zipCode, String email, String department, String phonenumber, String password) {
+        userDatabase.writeInfoToEmployee(userID, name, zipCode, email, department, phonenumber, password);
     }
 
     

@@ -47,8 +47,8 @@ public class SenSafeUdred {
         business.injectLogController(logController);
         business.injectUserController(userController);
         
-        String journal = business.loadJournal(6969);
-        System.out.println(journal);
+        business.createEmployee("Poul", "6969", "email@lul.dk", "Handikat", "69696969");
+        business.createLog(70000, 69692, "view");
         //-------------------------------------------------------------------------------------------------------------------          
         
 //        int currentUserID = 0;

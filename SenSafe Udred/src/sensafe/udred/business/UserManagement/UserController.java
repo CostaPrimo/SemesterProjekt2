@@ -25,7 +25,7 @@ public class UserController implements IUserController{
         file = new File(databaseFileName);
     }
 
-    public String CreateEmployee(String name, String zipcode, String email, String department, String phoneNumber) {
+    public String createEmployee(String name, String zipcode, String email, String department, String phoneNumber) {
         Employee employee = new Employee(name, zipcode, email, department, phoneNumber);
         System.out.println("User created");
         return employee.toString();
