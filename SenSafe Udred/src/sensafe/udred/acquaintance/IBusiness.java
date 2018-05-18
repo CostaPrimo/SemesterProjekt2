@@ -22,4 +22,6 @@ public interface IBusiness {
     String loadCitizenProfile(String CPR);
     String loadCase(int caseID);
     String loadJournal(int journalID);
+    public void createCitizenUser(String CPR);
+    public void createEmployee(String name, String zipCode, String email, String department, String phonenumber);
 }

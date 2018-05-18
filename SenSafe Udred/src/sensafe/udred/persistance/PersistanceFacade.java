@@ -39,6 +39,8 @@ public class PersistanceFacade implements IPersistance {
     public String loadJournal(int journalID){
         return caseDatabase.loadJournal();
     }
+
+    
     
         
 }
