@@ -17,13 +17,13 @@ public class LogDatabase {
         
     }
     
-    public void writeInfoToLD(Date date, int actorID, int targetID, String action){
+    public void writeInfoToLD(Timestamp date, int actorID, int targetID, String action){
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenLDConnection();
             PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO LogActivity VALUES (?, ?, ?, ?)");
-            PStatement.setDate(1, date);
+            PStatement.setTimestamp(1, date);
             PStatement.setInt(2, actorID);
             PStatement.setInt(3, targetID);
             PStatement.setString(4, action);

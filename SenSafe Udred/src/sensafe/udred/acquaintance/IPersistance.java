@@ -5,6 +5,8 @@
  */
 package sensafe.udred.acquaintance;
 
+import java.util.Date;
+
 /**
  *
  * @author Jeppe Enevold
@@ -12,6 +14,7 @@ package sensafe.udred.acquaintance;
 public interface IPersistance {
         public void createCitizenUser(String CPR, String Password, int userID);
         public void createEmployee(int userID, String name, String zipCode, String email, String department, String phonenumber, char [] password);
+        public void createLog(Date date, int ActorID, int TargetID, String action);
         public String loadEmployee(int ID);
         public String loadCitizenUser(int ID);
         public String loadCitizenProfile(String CPR);
