@@ -5,10 +5,13 @@
  */
 package sensafe.udred.acquaintance;
 
+import java.util.Date;
+
 /**
  *
  * @author Jeppe Enevold
  */
 public interface ILogController {
-    public String log(int ActorID, int TargetID, String Action);
+    public Date log(int ActorID, int TargetID, String Action);
+    public String verifyAction(String action);
 }

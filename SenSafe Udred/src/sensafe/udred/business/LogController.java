@@ -1,5 +1,6 @@
 package sensafe.udred.business;
 
+import java.util.Date;
 import java.util.HashMap;
 import sensafe.udred.acquaintance.ILogController;
 
@@ -21,15 +22,19 @@ public class LogController implements ILogController {
     }
     
     @Override
-    public String log(int ActorID, int TargetID, String action){
-       if(isUnknown(getAction(action))){
-           return "non valid action";
-       }
-       else{
-           return new Logger(ActorID, TargetID, getAction(action)).toString();
-       }
+    public Date log(int ActorID, int TargetID, String action){
+        return new Logger(ActorID, TargetID, getAction(action)).getDate();
     }
     
+    @Override
+    public String verifyAction(String action){
+        if(isUnknown(getAction(action))){
+           return "non valid action";
+       }
+        else{
+           return action;
+        }
+    }
     public String getlog(int targetID){
         //return LogList.get(targetID);
         return "temp";

@@ -54,7 +54,7 @@ public class BusinessFacade implements IBusiness {
     
     @Override
     public void createLog(int ActorID, int TargetID, String action){
-        //logController.log(ActorID, TargetID, action);
+        persistance.createLog(logController.log(ActorID, TargetID, action), ActorID, TargetID, logController.verifyAction(action));
     }
     
     @Override
