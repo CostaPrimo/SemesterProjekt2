@@ -38,7 +38,7 @@ public class CitizenProfile {
 
     @Override
     public String toString() {
-        return "CitizenProfile{" + "Name=" + Name + ", Email=" + Email + ", CPR=" + CPR + '}';
+        return Name + ";" + Email + ";" + CPR;
     }
 
     

@@ -127,16 +127,15 @@ public class CaseDatabase {
         }
     }
     
-    public void writeInfoToCaseTable(int caseID, String caseDescription, String citizen, int caseResponsible){
+    public void writeInfoToCaseTable(String caseDescription, String citizenProfile, int caseResponsible){
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CaseTable VALUES (?, ?, ?, ?)");
-            PStatement.setInt(1, caseID);
-            PStatement.setString(2, caseDescription);
-            PStatement.setString(3, citizen);
-            PStatement.setInt(4, caseResponsible);
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CaseTable VALUES (?, ?, ?)");
+            PStatement.setString(1, caseDescription);
+            PStatement.setString(2, citizenProfile);
+            PStatement.setInt(3, caseResponsible);
             rs = PStatement.executeQuery();
         } catch (Exception e) {
             System.out.println("Exception" + e);
@@ -251,7 +250,7 @@ public class CaseDatabase {
     public static void main(String[] args) {
         CaseDatabase cd = new CaseDatabase();
         //cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 6969);
-        cd.writeInfoToJournal(6969, "resumeadasdasdsadsad", 6969, 2001);
+        cd.writeInfoToCaseTable("TestDescription", "KIM", 6969);
     }
     
 }

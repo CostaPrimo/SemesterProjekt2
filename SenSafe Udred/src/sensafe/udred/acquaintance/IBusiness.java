@@ -15,7 +15,6 @@ public interface IBusiness {
     void injectUserController(IUserController userController);
     void injectCaseController(ICaseController caseController);
     
-    //void createUser(String CPR);
     void createLog(int ActorID, int TargetID, String action);
     String loadCitizenUser(int ID);
     String loadEmployee(int ID);
@@ -24,4 +23,8 @@ public interface IBusiness {
     String loadJournal(int journalID);
     public void createCitizenUser(String CPR);
     public void createEmployee(String name, String zipCode, String email, String department, String phonenumber);
+    public void createCitizenProfile(String name, String email, String CPRNumber);
+    public void createCase(String caseDescription, String citizenProfile, int caseResponsible);
+    //public void createJournal();
+    public boolean validateLogin(int ID, String Password);
 }

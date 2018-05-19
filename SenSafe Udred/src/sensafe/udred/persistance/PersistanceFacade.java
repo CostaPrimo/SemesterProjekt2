@@ -50,6 +50,21 @@ public class PersistanceFacade implements IPersistance {
     public void createEmployee(int userID, String name, String zipCode, String email, String department, String phonenumber, String password) {
         userDatabase.writeInfoToEmployee(userID, name, zipCode, email, department, phonenumber, password);
     }
+    
+    @Override
+    public void createCitizenProfile(String name, String email, String CPRNumber){
+        caseDatabase.writeInfoToCitizenProfile(name, email, CPRNumber);
+    }
+    
+    @Override
+    public void createCase(String caseDescription, String citizenProfile, int caseResponsible){
+        caseDatabase.writeInfoToCaseTable(caseDescription, citizenProfile, caseResponsible);
+    }
+    
+    @Override
+    public boolean validateLogin(int ID, String password){
+        return userDatabase.validateLogin(ID, password);
+    }
 
     
     

@@ -38,13 +38,13 @@ public class CaseController implements ICaseController {
 }
     
     //"case" er allerede en ting i netbeans, så objektet kaldes "cases" i stedet.
-    public void caseCreate(int caseID, Employee employee, CitizenProfile citizenProfile, String caseDesc, String relative, String medicine) {
-        String citizenProfileCPR = citizenProfile.getCPR();
-        Case cases = new Case(caseID, employee, citizenProfile, caseDesc, relative, medicine);
-        caseCollection.add(cases);
-        System.out.println("Case created " + cases.getClass() + cases.getCaseID());
-        writeInfoToFile(cases.toString());
-    }
+//    public void caseCreate(int caseID, Employee employee, CitizenProfile citizenProfile, String caseDesc, String relative, String medicine) {
+//        String citizenProfileCPR = citizenProfile.getCPR();
+//        Case cases = new Case(caseID, employee, citizenProfile, caseDesc, relative, medicine);
+//        caseCollection.add(cases);
+//        System.out.println("Case created " + cases.getClass() + cases.getCaseID());
+//        writeInfoToFile(cases.toString());
+//    }
     
     public void caseDelete(int caseID) {
         for (Case cases : caseCollection) {
@@ -56,21 +56,21 @@ public class CaseController implements ICaseController {
         }
     }
      
-    public TreeSet<Case> showCaseOverview(String CPRNumber){
-        TreeSet<Case> tempSet = new TreeSet<>(); 
-        for (Case cases : caseCollection) {
-            if (cases.getCitizenProfile().getCPR() == CPRNumber) {
-                tempSet.add(cases);
-                System.out.println("Case added to tempSet.");
-                
-            } else { 
-                System.out.println("No matching cases found.");
-            }
-        } 
-        System.out.println("Set returned.");
-        return tempSet;
-        
-    }
+//    public TreeSet<Case> showCaseOverview(String CPRNumber){
+//        TreeSet<Case> tempSet = new TreeSet<>(); 
+//        for (Case cases : caseCollection) {
+//            if (cases.getCitizenProfile().getCPR() == CPRNumber) {
+//                tempSet.add(cases);
+//                System.out.println("Case added to tempSet.");
+//                
+//            } else { 
+//                System.out.println("No matching cases found.");
+//            }
+//        } 
+//        System.out.println("Set returned.");
+//        return tempSet;
+//        
+//    }
     
     
     
@@ -136,6 +136,11 @@ public class CaseController implements ICaseController {
     public void addTocitizenArray(CitizenProfile e){
         citizenArray.add(e);   
     
+    }
+    @Override
+    public String createCitizenProfile(String name, String email, String CPR){
+        CitizenProfile citizenProfile = new CitizenProfile(name, email, CPR);
+        return citizenProfile.toString();
     }
     
 }

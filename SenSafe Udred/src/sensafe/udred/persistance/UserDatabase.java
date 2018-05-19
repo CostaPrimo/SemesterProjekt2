@@ -5,7 +5,10 @@
  */
 package sensafe.udred.persistance;
 
+import java.security.Key;
 import java.sql.*;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -90,7 +93,9 @@ public class UserDatabase {
             PStatement.setString(4, email);
             PStatement.setString(5, department);
             PStatement.setString(6, phoneNumber);
+            password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(7, password);
+            
             rs = PStatement.executeQuery();
         } catch (Exception e) {
             System.out.println("Exception" + e);
@@ -112,8 +117,33 @@ public class UserDatabase {
             st = OpenUDConnection();
             PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CitizenUser VALUES (?, ?, ?)");
             PStatement.setString(1, CPRNumber);
+            password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(2, password);
             PStatement.setInt(3, userID);
+            rs = PStatement.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        
+    }
+    
+    public void writeInfoToAdmin(int adminID, String password){ //Created for making the first admin. Pass is: adminPass
+        
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO admin VALUES (?, ?)");
+            PStatement.setInt(1, adminID);
+            password = encryptPassword(password).replaceAll("\u0000","");
+            PStatement.setString(2, password);
             rs = PStatement.executeQuery();
         } catch (Exception e) {
             System.out.println("Exception" + e);
@@ -210,6 +240,66 @@ public class UserDatabase {
     
     public static void main(String[] args) {
         UserDatabase ud = new UserDatabase();
+        //ud.writeInfoToAdmin(5000, "adminPass");
     }
     
+    private static String encryptPassword(String password){
+            //SOURCE FROM https://stackoverflow.com/a/32583766/5274680 - Minor changes. Decrypt not used.
+        try {
+        String text = password;
+        String key = "KimFraBirNiTru3N"; // 128 bit key
+        // Create key and cipher
+        Key aesKey = new SecretKeySpec(key.getBytes(),"AES");
+        Cipher cipher = Cipher.getInstance("AES");
+        // encrypt the text
+        cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+        byte[] encrypted = cipher.doFinal(text.getBytes());
+
+        StringBuilder sb = new StringBuilder();
+        for (byte b: encrypted) {
+            sb.append((char)b);
+        }
+
+        // the encrypted String
+        String enc = sb.toString();
+        System.out.println("encrypted:" + enc);
+        
+        return enc;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public boolean validateLogin(int ID, String password){
+        Statement st = null;
+        ResultSet rs = null;
+        boolean isCorrect = false;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("select userid, password from employee where userid = ? AND password = ? union select userid, password from citizenuser where userid = ? AND password = ? union select adminID, password from admin where adminID = ? AND password = ?");
+            PStatement.setInt(1, ID);
+            password = encryptPassword(password).replaceAll("\u0000", "");
+            PStatement.setString(2, password);
+            PStatement.setInt(3, ID);
+            PStatement.setString(4, password);
+            PStatement.setInt(5, ID);
+            PStatement.setString(6, password);
+            rs = PStatement.executeQuery();
+            if(rs.next()){
+                isCorrect = true;
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (Exception e) {
+            }
+        }
+        return isCorrect;
+    }
 }

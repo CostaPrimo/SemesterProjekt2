@@ -12,30 +12,24 @@ import java.util.ArrayList;
  *
  * @author jtrue
  */
-public class Case implements Comparable<Case>{
-
-    
-
+public class Case{
     private int caseID;
-    private Employee employee;
-    private CitizenProfile citizenProfile;
-    private String caseDesc;
-    private String relative;    
-    private String medicine;
+    private String caseDescription;
+    private String citizenProfile;
+    private int caseResponsible;
     
-    public Case(int CaseID, Employee employee, CitizenProfile citizenProfile, String CaseDesc, String Relative, String Medicine) {
-        this.caseID = CaseID;
-        this.employee = employee;
+    public Case(int caseID, String caseDescription, String citizenProfile, int caseResponsible) {
+        this.caseID = caseID;
+        this.caseDescription = caseDescription;
         this.citizenProfile = citizenProfile;
-        this.caseDesc = CaseDesc;
-        this.relative = Relative;
-        this.medicine = Medicine;
+        this.caseResponsible = caseResponsible;
+        
     }
 
     /**
      * @return the citizenProfile
      */
-    public CitizenProfile getCitizenProfile() {
+    public String getCitizenProfile() {
         return citizenProfile;
     }
    
@@ -43,21 +37,10 @@ public class Case implements Comparable<Case>{
         return this.caseID;
     }
     
-    @Override
-    public int compareTo(Case o){
-        int result;
-        if(this.caseID > o.caseID){
-            result = 1;
-        }
-        else{
-            result = -1;
-        }
-        return result;
-    }
 
     @Override
     public String toString() {
-        return caseID + ":" + employee + ":" + citizenProfile + ":" + caseDesc + ":" + relative + ":" + medicine;
+        return caseID + ";" + caseDescription + ";" + citizenProfile + ";" + caseResponsible;
     }
     
     

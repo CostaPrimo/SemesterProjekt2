@@ -10,5 +10,5 @@ package sensafe.udred.acquaintance;
  * @author Jeppe Enevold
  */
 public interface ICaseController {
-    
+    public String createCitizenProfile(String name, String email, String CPR);
 }
