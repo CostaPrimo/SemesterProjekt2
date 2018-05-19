@@ -14,8 +14,8 @@ public class PersistanceFacade implements IPersistance {
     private UserDatabase userDatabase = new UserDatabase();
 
     @Override
-    public void createCitizenUser(String CPR, String password, int userID){
-        userDatabase.writeInfoToCitizenUser(CPR, password, userID);
+    public void createCitizenUser(String CPR, String password){
+        userDatabase.writeInfoToCitizenUser(CPR, password);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class PersistanceFacade implements IPersistance {
     }
     @Override
     public String loadJournal(int journalID){
-        return caseDatabase.loadJournal();
+        return caseDatabase.loadJournal(journalID);
     }
 
     @Override
-    public void createEmployee(int userID, String name, String zipCode, String email, String department, String phonenumber, String password) {
-        userDatabase.writeInfoToEmployee(userID, name, zipCode, email, department, phonenumber, password);
+    public void createEmployee(String name, String zipCode, String email, String department, String phonenumber, String password) {
+        userDatabase.writeInfoToEmployee(name, zipCode, email, department, phonenumber, password);
     }
     
     @Override
@@ -61,6 +61,10 @@ public class PersistanceFacade implements IPersistance {
         caseDatabase.writeInfoToCaseTable(caseDescription, citizenProfile, caseResponsible);
     }
     
+    @Override
+    public void createJournal(String resume,int writer, int relatedCase){
+        caseDatabase.writeInfoToJournal(resume, writer, relatedCase);
+    }
     @Override
     public boolean validateLogin(int ID, String password){
         return userDatabase.validateLogin(ID, password);

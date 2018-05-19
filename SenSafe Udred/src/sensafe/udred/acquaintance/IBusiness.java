@@ -25,6 +25,6 @@ public interface IBusiness {
     public void createEmployee(String name, String zipCode, String email, String department, String phonenumber);
     public void createCitizenProfile(String name, String email, String CPRNumber);
     public void createCase(String caseDescription, String citizenProfile, int caseResponsible);
-    //public void createJournal();
+    public void createJournal(String resume, int writer, int relatedCase);
     public boolean validateLogin(int ID, String Password);
 }

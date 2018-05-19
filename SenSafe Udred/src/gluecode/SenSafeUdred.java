@@ -49,8 +49,17 @@ public class SenSafeUdred {
         UI.injectBusiness(business);
         UI.startApplication(args);
         
-        business.createEmployee("Poul", "6969", "email@lul.dk", "Handikat", "69696969");
-        business.createLog(70000, 69692, "view");
+        //business.createEmployee("Kim Christensen", "5000", "lul@email.dk", "Handikap Afdelingen", "42233223");
+        //business.createCitizenUser("1010294023");
+        //business.createCitizenProfile("KimCitipro", "kim@email.dk", "2904489338");
+        //business.createCase("Sample caseDescription", "2904489338", 2000);
+        //business.createJournal("Sample resume", 2000, 3001);
+        //System.out.println(business.loadEmployee(2000));
+        System.out.println(business.loadCitizenUser(1000));
+        System.out.println(business.loadCitizenProfile("2904489338"));
+        System.out.println(business.loadCase(3001));
+        System.out.println(business.loadJournal(4002));
+                
         //-------------------------------------------------------------------------------------------------------------------          
         
 //        int currentUserID = 0;

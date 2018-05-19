@@ -12,28 +12,17 @@ import org.w3c.dom.css.Counter;
  *
  * @author Nikolaj Frank-Jensen
  */
-public abstract class User implements Comparable<User>{
+public abstract class User{
     
     private int userID; //Save virker, men ikke load da de tager samme reference??
-    private static int tempID;
     protected String password;
     
     //First time program is ran.
     public User(){
         password = passwordGenerator(8);
-        userID = 1 + tempID;
-        System.out.println(userID);
-        tempID++;
     }
     //Used during load.
     public User(int userID){
-        System.out.println(tempID);
-        System.out.println(userID);
-        if(tempID<userID){
-        tempID = userID;
-            System.out.println(tempID);
-        }
-        setUserID(userID);
     }
     
     private String passwordGenerator(int len){
@@ -62,20 +51,6 @@ public abstract class User implements Comparable<User>{
         return userID;
     }
     
-    @Override
-    public int compareTo(User o){
-        int result;
-        if(this.userID > o.userID){
-            result = 1;
-        }
-        else{
-            result = -1;
-        }
-        return result;
-    }
-
-   
-
     /**
      * @param aUserID the userID to set
      */

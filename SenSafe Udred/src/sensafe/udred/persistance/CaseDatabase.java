@@ -76,23 +76,25 @@ public class CaseDatabase {
         return output;
     }
     
-    public String loadJournal(){
+    public String loadJournal(int journalID){
         Statement st = null;
         ResultSet rs = null;
         String output = "";
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Journal");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Journal WHERE journalID = ?");
+            PStatement.setInt(1, journalID);
             rs = PStatement.executeQuery();
-            while(rs.next()){
-            output += rs.getString(1) + ";";
-            output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
-            output += rs.getString(4) + ";";
+            rs.next();
+            output+= rs.getString(1)+ ";";
+            output+= rs.getString(2)+ ";";
+            output+= rs.getString(3)+ ";";
+            output+= rs.getString(4)+ ";";
             output+= "\n";
-            }
+            
         } catch (Exception e) {
             System.out.println(e.toString());
+            return null;
         }
         
         finally{
@@ -132,7 +134,7 @@ public class CaseDatabase {
         ResultSet rs = null;
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CaseTable VALUES (?, ?, ?)");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CaseTable(caseDescription, citizen, caseResponsible) VALUES (?, ?, ?)");
             PStatement.setString(1, caseDescription);
             PStatement.setString(2, citizenProfile);
             PStatement.setInt(3, caseResponsible);
@@ -149,16 +151,15 @@ public class CaseDatabase {
         }
     }
     
-    public void writeInfoToJournal(int journalID, String resume, int writer, int relatedCase){
+    public void writeInfoToJournal(String resume, int writer, int relatedCase){
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Journal VALUES (?, ?, ?, ?)");
-            PStatement.setInt(1, journalID);
-            PStatement.setString(2, resume);
-            PStatement.setInt(3, writer);
-            PStatement.setInt(4, relatedCase);
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Journal(resume, writer, relatedCase) VALUES (?, ?, ?)");
+            PStatement.setString(1, resume);
+            PStatement.setInt(2, writer);
+            PStatement.setInt(3, relatedCase);
             rs = PStatement.executeQuery();
         } catch (Exception e) {
             System.out.println("Exception" + e);

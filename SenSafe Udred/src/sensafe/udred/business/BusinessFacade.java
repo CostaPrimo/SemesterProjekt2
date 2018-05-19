@@ -45,17 +45,19 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void createCitizenUser(String CPR){
         String[]temp = userController.createCitizenUser(CPR).split(";");
-        persistance.createCitizenUser(CPR, temp[1], Integer.parseInt(temp[2]));
+        persistance.createCitizenUser(CPR, temp[1]);
+        System.out.println(temp[1]); //This needs to be printed out on GUI
     }
     @Override
     public void createEmployee(String name, String zipCode, String email, String department, String phonenumber){
         String[]temp = userController.createEmployee(name, zipCode, email, department, phonenumber).split(";");
-        persistance.createEmployee(Integer.parseInt(temp[0]),temp[1],temp[2],temp[3],temp[4],temp[5],temp[6]);
+        persistance.createEmployee(temp[1],temp[2],temp[3],temp[4],temp[5],temp[6]);
+        System.out.println(temp[6]); //This needs to be printed out on GUI
     }
     
     @Override
     public void createCitizenProfile(String name, String email, String CPRNumber){
-        String[]temp = caseController.createCitizenProfile(name, email, name).split(";"); //Laves i tilfælde af at citizenprofile får mere funktionalitet senere.
+        String[]temp = caseController.createCitizenProfile(name, email, CPRNumber).split(";"); //Laves i tilfælde af at citizenprofile får mere funktionalitet senere.
         persistance.createCitizenProfile(temp[0], temp[1], temp[2]);
     }
     @Override
@@ -65,6 +67,10 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void createCase(String caseDescription, String citizenProfile, int caseResponsible){
         persistance.createCase(caseDescription, citizenProfile, caseResponsible);
+    }
+    @Override
+    public void createJournal(String resume, int writer, int relatedCase){
+        persistance.createJournal(resume, writer, relatedCase);
     }
     
     @Override

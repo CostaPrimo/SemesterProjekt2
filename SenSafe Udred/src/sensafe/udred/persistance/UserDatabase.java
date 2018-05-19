@@ -80,21 +80,20 @@ public class UserDatabase {
         return output;
     }
     
-    public void writeInfoToEmployee(int userID, String name, String zipCode, String email, String department, String phoneNumber, String password){
+    public void writeInfoToEmployee(String name, String zipCode, String email, String department, String phoneNumber, String password){
         
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?, ?, ?, ?)");
-            PStatement.setInt(1, userID);
-            PStatement.setString(2, name);
-            PStatement.setString(3, zipCode);
-            PStatement.setString(4, email);
-            PStatement.setString(5, department);
-            PStatement.setString(6, phoneNumber);
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Employee(name,zipcode,email,department,phonenumber,password) VALUES (?, ?, ?, ?, ?, ?)");
+            PStatement.setString(1, name);
+            PStatement.setString(2, zipCode);
+            PStatement.setString(3, email);
+            PStatement.setString(4, department);
+            PStatement.setString(5, phoneNumber);
             password = encryptPassword(password).replaceAll("\u0000","");
-            PStatement.setString(7, password);
+            PStatement.setString(6, password);
             
             rs = PStatement.executeQuery();
         } catch (Exception e) {
@@ -109,17 +108,16 @@ public class UserDatabase {
         }
     }
     
-    public void writeInfoToCitizenUser(String CPRNumber, String password, int userID){
+    public void writeInfoToCitizenUser(String CPRNumber, String password){
         
         Statement st = null;
         ResultSet rs = null;
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CitizenUser VALUES (?, ?, ?)");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO CitizenUser(CPRNumber,Password) VALUES (?, ?)");
             PStatement.setString(1, CPRNumber);
             password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(2, password);
-            PStatement.setInt(3, userID);
             rs = PStatement.executeQuery();
         } catch (Exception e) {
             System.out.println("Exception" + e);
@@ -240,7 +238,7 @@ public class UserDatabase {
     
     public static void main(String[] args) {
         UserDatabase ud = new UserDatabase();
-        //ud.writeInfoToAdmin(5000, "adminPass");
+        ud.writeInfoToEmployee("autoTsssest", "3434", "email", "handi", "23232323", "password");
     }
     
     private static String encryptPassword(String password){
