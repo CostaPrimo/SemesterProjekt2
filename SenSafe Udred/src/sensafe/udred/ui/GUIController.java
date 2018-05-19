@@ -7,6 +7,7 @@ package sensafe.udred.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -28,7 +29,7 @@ import javafx.scene.layout.VBox;
  * @author Jeppe Enevold
  */
 public class GUIController implements Initializable {
-
+    
     @FXML
     private AnchorPane BaggrundAnchorPane;
     @FXML
@@ -281,12 +282,15 @@ public class GUIController implements Initializable {
     private void testfunction(){
        AdminFrontPageBorderPane.setVisible(false);
        CreateEmployeeBorderPane.setVisible(true);
-    
+       
     }
     @FXML
-    private void BackToAdminFrontPageFromCreateEmployee(){
-        CreateEmployeeBorderPane.setVisible(false);
-        AdminFrontPageBorderPane.setVisible(true);
+    private void BackToAdminFrontPageFromCreateEmployee(ActionEvent event){
+        if(event.getSource()== CreateEmployeeBackButton){
+            CreateEmployeeBorderPane.setVisible(false);
+            AdminFrontPageBorderPane.setVisible(true);
+            UIRun.getInstance().createLog(1100, 1220, "create");
+        }
     }
 }
 
