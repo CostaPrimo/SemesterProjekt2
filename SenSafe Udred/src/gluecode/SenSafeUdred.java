@@ -6,19 +6,17 @@
 package gluecode;
 
 import sensafe.udred.business.caseManagement.CaseController;
-import sensafe.udred.business.caseManagement.CitizenProfile;
-import sensafe.udred.business.UserManagement.Employee;
 import sensafe.udred.business.UserManagement.UserController;
-import java.io.File;
-import java.util.Scanner;
 import sensafe.udred.acquaintance.IBusiness;
 import sensafe.udred.acquaintance.ICaseController;
 import sensafe.udred.acquaintance.ILogController;
 import sensafe.udred.acquaintance.IPersistance;
+import sensafe.udred.acquaintance.IUI;
 import sensafe.udred.acquaintance.IUserController;
 import sensafe.udred.business.BusinessFacade;
 import sensafe.udred.business.LogController;
 import sensafe.udred.persistance.PersistanceFacade;
+import sensafe.udred.ui.UIRun;
 
 /**
  *
@@ -38,6 +36,7 @@ public class SenSafeUdred {
         
         IPersistance persistance = new PersistanceFacade();
         IBusiness business = new BusinessFacade();
+        IUI UI = new UIRun();
         ICaseController caseController = new CaseController("temp","temp");
         ILogController logController = new LogController();
         IUserController userController = new UserController("temp","temp");
@@ -46,6 +45,9 @@ public class SenSafeUdred {
         business.injectCaseController(caseController);
         business.injectLogController(logController);
         business.injectUserController(userController);
+        
+        UI.injectBusiness(business);
+        UI.startApplication(args);
         
         business.createEmployee("Poul", "6969", "email@lul.dk", "Handikat", "69696969");
         business.createLog(70000, 69692, "view");

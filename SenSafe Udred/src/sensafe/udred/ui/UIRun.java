@@ -10,12 +10,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sensafe.udred.acquaintance.IBusiness;
+import sensafe.udred.acquaintance.IUI;
 
 /**
  *
  * @author Nick
  */
-public class UIRun extends Application {
+public class UIRun extends Application implements IUI {
+    IBusiness business;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,11 +30,13 @@ public class UIRun extends Application {
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    @Override
+    public void injectBusiness(IBusiness businessLayer) {
+        this.business = businessLayer;
+    }
+
+    @Override
+    public void startApplication(String[] args) {
         launch(args);
     }
-    
 }
