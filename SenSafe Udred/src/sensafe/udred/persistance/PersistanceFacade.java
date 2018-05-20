@@ -70,6 +70,15 @@ public class PersistanceFacade implements IPersistance {
         return userDatabase.validateLogin(ID, password);
     }
 
+    @Override
+    public String showCaseOverview(String CPRNumber, String department){
+        return caseDatabase.showCaseOverview(CPRNumber, department);
+    }
+    
+    @Override
+    public String findCitizenProfile(String CPRNumber){
+        return caseDatabase.loadCitizenProfile(CPRNumber);
+    }
     
     
         

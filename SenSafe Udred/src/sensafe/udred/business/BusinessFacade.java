@@ -104,5 +104,14 @@ public class BusinessFacade implements IBusiness {
         return persistance.validateLogin(ID, password);
     }
     
+    @Override
+    public String showCaseOverview(String CPRNumber, String department){
+        return persistance.showCaseOverview(CPRNumber, department);
+    }
+    
+    @Override
+    public String findCitizenProfile(String CPRNumber){
+        return persistance.findCitizenProfile(CPRNumber);
+    }
     
 }

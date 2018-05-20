@@ -18,13 +18,15 @@ public interface IBusiness {
     void createLog(int ActorID, int TargetID, String action);
     String loadCitizenUser(int ID);
     String loadEmployee(int ID);
-    String loadCitizenProfile(String CPR);
+    String loadCitizenProfile(String CPRNumber);
     String loadCase(int caseID);
     String loadJournal(int journalID);
-    public void createCitizenUser(String CPR);
+    public void createCitizenUser(String CPRNumber);
     public void createEmployee(String name, String zipCode, String email, String department, String phonenumber);
     public void createCitizenProfile(String name, String email, String CPRNumber);
     public void createCase(String caseDescription, String citizenProfile, int caseResponsible);
     public void createJournal(String resume, int writer, int relatedCase);
     public boolean validateLogin(int ID, String Password);
+    public String showCaseOverview(String CPRNumber, String department);
+    public String findCitizenProfile(String CPRNumber);
 }

@@ -13,12 +13,12 @@ import java.util.Scanner;
  * @author Jeppe Enevold
  */
 public class CaseDatabase {
-    
-    public CaseDatabase(){
-        
+
+    public CaseDatabase() {
+
     }
-    
-    public String loadCaseTable(int ID){
+
+    public String loadCaseTable(int ID) {
         Statement st = null;
         ResultSet rs = null;
         String output = "";
@@ -27,28 +27,29 @@ public class CaseDatabase {
             PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CaseTable WHERE CaseID = ?");
             PStatement.setInt(1, ID);
             rs = PStatement.executeQuery();
-            while(rs.next()){
-            output += rs.getString(1) + ";";
-            output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
-            output += rs.getString(4) + ";";
-            output+= "\n";
+            while (rs.next()) {
+                output += rs.getString(1) + ";";
+                output += rs.getString(2) + ";";
+                output += rs.getString(3) + ";";
+                output += rs.getString(4) + ";";
+                output += "\n";
             }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        
-        finally{
+            if (output.isEmpty()) {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("No case found");
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         return output;
     }
-    
-    public String loadCitizenProfile(String CPRNumber){
+
+    public String loadCitizenProfile(String CPRNumber) {
         Statement st = null;
         ResultSet rs = null;
         String output = "";
@@ -61,22 +62,21 @@ public class CaseDatabase {
             output += rs.getString(1) + ";";
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
-            output+= "\n";
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        
-        finally{
+            output += "\n";
+        } catch (SQLException e) {
+            System.out.println("No user found");
+            return null;
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         return output;
     }
-    
-    public String loadJournal(int journalID){
+
+    public String loadJournal(int journalID) {
         Statement st = null;
         ResultSet rs = null;
         String output = "";
@@ -86,28 +86,26 @@ public class CaseDatabase {
             PStatement.setInt(1, journalID);
             rs = PStatement.executeQuery();
             rs.next();
-            output+= rs.getString(1)+ ";";
-            output+= rs.getString(2)+ ";";
-            output+= rs.getString(3)+ ";";
-            output+= rs.getString(4)+ ";";
-            output+= "\n";
-            
-        } catch (Exception e) {
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output += rs.getString(4) + ";";
+            output += "\n";
+
+        } catch (SQLException e) {
             System.out.println(e.toString());
             return null;
-        }
-        
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         return output;
     }
-    
-    public void writeInfoToCitizenProfile(String name, String email, String CPRNumber){
+
+    public void writeInfoToCitizenProfile(String name, String email, String CPRNumber) {
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -117,19 +115,18 @@ public class CaseDatabase {
             PStatement.setString(2, email);
             PStatement.setString(3, CPRNumber);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
-        }
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
-    
-    public void writeInfoToCaseTable(String caseDescription, String citizenProfile, int caseResponsible){
+
+    public void writeInfoToCaseTable(String caseDescription, String citizenProfile, int caseResponsible) {
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -139,19 +136,18 @@ public class CaseDatabase {
             PStatement.setString(2, citizenProfile);
             PStatement.setInt(3, caseResponsible);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
-        }
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
-    
-    public void writeInfoToJournal(String resume, int writer, int relatedCase){
+
+    public void writeInfoToJournal(String resume, int writer, int relatedCase) {
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -161,19 +157,18 @@ public class CaseDatabase {
             PStatement.setInt(2, writer);
             PStatement.setInt(3, relatedCase);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
-        }
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
-    
-    public void deleteCase(int caseID){
+
+    public void deleteCase(int caseID) {
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -181,10 +176,9 @@ public class CaseDatabase {
             PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM CaseTable WHERE caseID = ?");
             PStatement.setInt(1, caseID);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
-        }
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
@@ -192,8 +186,8 @@ public class CaseDatabase {
             }
         }
     }
-    
-    public void deleteJournal(int journalID){
+
+    public void deleteJournal(int journalID) {
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -201,34 +195,59 @@ public class CaseDatabase {
             PreparedStatement PStatement = st.getConnection().prepareStatement("DELETE FROM Journal WHERE JournalID = ?");
             PStatement.setInt(1, journalID);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
-        }
-        finally{
+        } finally {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
-    
-    public void findCitizenProfile(String CPRNumber){
-        
+
+    public void findCitizenProfile(String CPRNumber) {
+
     }
-    
-    
-    
-    
-    
-    private Statement OpenCDConnection(){
-        
+
+    public String showCaseOverview(String CPRNumber, String department) {
+        StringBuilder output = new StringBuilder();
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT(caseid,casedescription,citizen,caseresponsible) FROM casetable, employee WHERE citizen = ? AND department = ?");
+            PStatement.setString(1, CPRNumber);
+            PStatement.setString(2, department);
+            rs = PStatement.executeQuery();
+            while (rs.next()) {
+                output.append(rs.getString(1)).append(";");
+                output.append("\n");
+            }
+            if (output.length() != 0) {
+                return output.toString();
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception" + e);
+            return null;
+        } finally {
+            try {
+                st.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+    }
+
+    private Statement OpenCDConnection() {
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (java.lang.ClassNotFoundException e) {
             System.out.println(e);
         }
-
 
         String url = "jdbc:postgresql://horton.elephantsql.com:5432/cremkbgt";
         String username = "cremkbgt";
@@ -239,10 +258,8 @@ public class CaseDatabase {
         try {
             Connection db = DriverManager.getConnection(url, username, password);
             st = db.createStatement();
-            
-            
-            
-        } catch (Exception e){
+
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return st;
@@ -251,7 +268,9 @@ public class CaseDatabase {
     public static void main(String[] args) {
         CaseDatabase cd = new CaseDatabase();
         //cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 6969);
-        cd.writeInfoToCaseTable("TestDescription", "KIM", 6969);
+        //cd.writeInfoToCaseTable("TestDescription", "KIM", 6969);
+        //System.out.println(cd.showCaseOverview("2904489338", "Handikap Afdelingen"));
+        System.out.println(cd.loadCaseTable(3001));
     }
-    
+
 }

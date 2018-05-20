@@ -38,10 +38,10 @@ public class UserDatabase {
             output += rs.getString(6) + ";";
             output += rs.getString(7) + ";";
             output+= "\n";
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.toString());
+            return null;
         }
-        
         finally{
             try {
                 st.close();
@@ -66,15 +66,16 @@ public class UserDatabase {
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
             output+= "\n";
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.toString());
+            return null;
         }
         
         finally{
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         return output;
@@ -96,14 +97,14 @@ public class UserDatabase {
             PStatement.setString(6, password);
             
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
         finally{
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
@@ -119,7 +120,7 @@ public class UserDatabase {
             password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(2, password);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
         finally{
@@ -143,14 +144,14 @@ public class UserDatabase {
             password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(2, password);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
         finally{
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         
@@ -192,20 +193,17 @@ public class UserDatabase {
             PStatement.setString(6, phoneNumber);
             PStatement.setString(7, password);
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Exception" + e);
         }
         finally{
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
     }
-    
-
-    
     
     private Statement OpenUDConnection(){
         
@@ -228,7 +226,7 @@ public class UserDatabase {
             
             
             
-        } catch (Exception e){
+        } catch (SQLException e){
             System.out.println(e);
         }
         
@@ -287,7 +285,7 @@ public class UserDatabase {
                 isCorrect = true;
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.toString());
         }
         
@@ -295,7 +293,7 @@ public class UserDatabase {
             try {
                 st.close();
                 rs.close();
-            } catch (Exception e) {
+            } catch (SQLException e) {
             }
         }
         return isCorrect;

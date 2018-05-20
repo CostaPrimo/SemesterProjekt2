@@ -24,4 +24,6 @@ public interface IPersistance {
         public String loadCase(int caseID);
         public String loadJournal(int journalID);
         public boolean validateLogin(int ID, String password);
+        public String showCaseOverview(String CPRNumber, String department);
+        public String findCitizenProfile(String CPRNumber);
 }
