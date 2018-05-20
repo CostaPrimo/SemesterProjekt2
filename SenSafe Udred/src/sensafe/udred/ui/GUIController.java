@@ -279,17 +279,86 @@ public class GUIController implements Initializable {
         // TODO
     }    
    @FXML
-    private void testfunction(){
-       AdminFrontPageBorderPane.setVisible(false);
-       CreateEmployeeBorderPane.setVisible(true);
+    private void adminButtons(ActionEvent event){
+        if(event.getSource()==AdminFrontPageCreateEmployeeButton){
+            AdminFrontPageBorderPane.setVisible(false);
+            CreateEmployeeBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==AdminFrontPageCreateCitizenButton){
+            AdminFrontPageBorderPane.setVisible(false);
+            CreateCitizenBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==AdminFrontPageDeleteUserButton){
+            AdminFrontPageBorderPane.setVisible(false);
+            DeleteUserBorderPane.setVisible(true);
+        }
        
     }
     @FXML
-    private void BackToAdminFrontPageFromCreateEmployee(ActionEvent event){
+    private void citizenButtons(ActionEvent event){
+        if(event.getSource()==CitizenOpenCaseButton){
+            CitizenBorderPane.setVisible(false);
+            //TODO
+            //ADD LOAD CASE INFORMATION
+            CaseInformationBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==CitizenLogOutButton){
+            CitizenBorderPane.setVisible(false);
+            //Make sure to swap something around in logic layer
+            //ActiveUser == null            
+            LogInBorderPane.setVisible(true);
+        }
+    }
+    @FXML
+    private void employeeButtons(ActionEvent event){
+        if(event.getSource()==EmployeeCreateCaseButton){
+            EmployeeBorderPane.setVisible(false);
+            CreateCaseBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==EmployeeFindCitizenProfileButton){
+            EmployeeBorderPane.setVisible(false);
+            FindCitizenBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==EmployeeLogOutButton){
+            //Make sure to swap something around in logic layer
+            //ActiveUser == null
+            EmployeeBorderPane.setVisible(false);
+            LogInBorderPane.setVisible(true);
+        }
+    }
+    @FXML
+    private void goBack(ActionEvent event){
         if(event.getSource()== CreateEmployeeBackButton){
             CreateEmployeeBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
-            UIRun.getInstance().createLog(1100, 1220, "create");
+            //UIRun.getInstance().createLog(1100, 1220, "create");
+        }
+        else if(event.getSource()== CreateCitizenBackButton){
+            CreateCitizenBorderPane.setVisible(false);
+            AdminFrontPageBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==CreateCaseBackButton){
+            CreateCaseBorderPane.setVisible(false);
+            EmployeeBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==CaseInformationBackButton){
+            CaseInformationBorderPane.setVisible(false);
+            /*
+            if(user == employee){
+                EmployeeBorderPane.setVisible(true);
+            }
+            else {
+                CitizenBorderPane.setVisible(true);
+            }
+            */
+        }
+        else if(event.getSource()==FindCitizenGoBackButton){
+            FindCitizenBorderPane.setVisible(false);
+            EmployeeBorderPane.setVisible(true);
+        }
+        else if(event.getSource()==DeleteUserBackButton){
+            DeleteUserBorderPane.setVisible(false);
+            AdminFrontPageBorderPane.setVisible(true);
         }
     }
 }

@@ -55,10 +55,10 @@ public class SenSafeUdred {
         //business.createCase("Sample caseDescription", "2904489338", 2000);
         //business.createJournal("Sample resume", 2000, 3001);
         //System.out.println(business.loadEmployee(2000));
-        System.out.println(business.loadCitizenUser(1000));
-        System.out.println(business.loadCitizenProfile("2904489338"));
-        System.out.println(business.loadCase(3001));
-        System.out.println(business.loadJournal(4002));
+        //System.out.println(business.loadCitizenUser(1000));
+        //System.out.println(business.loadCitizenProfile("2904489338"));
+        //System.out.println(business.loadCase(3001));
+        //System.out.println(business.loadJournal(4002));
                 
         //-------------------------------------------------------------------------------------------------------------------          
         

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -19,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
+<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
       <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -74,17 +79,17 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
       </BorderPane>
-      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <VBox id="AdminFrontPageVBox" fx:id="AdminFrontPageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="AdminCreatEmployeeButton" fx:id="AdminFrontPageCreateEmployeeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#testfunction" prefHeight="25.0" prefWidth="115.0" text="Opret Employee" />
-                  <Button id="AdminCreateCitizenButton" fx:id="AdminFrontPageCreateCitizenButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Opret Citizen">
+                  <Button id="AdminCreatEmployeeButton" fx:id="AdminFrontPageCreateEmployeeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Employee" />
+                  <Button id="AdminCreateCitizenButton" fx:id="AdminFrontPageCreateCitizenButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Citizen">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="AdminDeleteUserButton" fx:id="AdminFrontPageDeleteUserButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Slet Bruger">
+                  <Button id="AdminDeleteUserButton" fx:id="AdminFrontPageDeleteUserButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Slet Bruger">
                      <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                      </VBox.margin>
@@ -114,12 +119,12 @@
          <center>
             <VBox id="ForsideVBox" fx:id="EmployeeVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="OpretSagForsideKnap" fx:id="EmployeeCreateCaseButton" alignment="CENTER" centerShape="false" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefWidth="120.0" text="Opret Sag">
+                  <Button id="OpretSagForsideKnap" fx:id="EmployeeCreateCaseButton" alignment="CENTER" centerShape="false" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#employeeButtons" prefWidth="120.0" text="Opret Sag">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button id="FindBorgerprofilForsideKnap" fx:id="EmployeeFindCitizenProfileButton" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="120.0" text="Find Borgerprofil">
+                  <Button id="FindBorgerprofilForsideKnap" fx:id="EmployeeFindCitizenProfileButton" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#employeeButtons" prefWidth="120.0" text="Find Borgerprofil">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -128,7 +133,7 @@
             </VBox>
          </center>
          <bottom>
-            <Button fx:id="EmployeeLogOutButton" mnemonicParsing="false" text="Log ud" BorderPane.alignment="CENTER" />
+            <Button fx:id="EmployeeLogOutButton" mnemonicParsing="false" onAction="#employeeButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane id="ForsideCitizenBorderPane" fx:id="CitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
@@ -173,7 +178,7 @@
                            </font>
                         </Label>
                         <ListView id="FrontpageCitizenCaseListview" fx:id="CitizenListView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" />
-                        <Button id="FrontpageCitizenCaseOpenButton" fx:id="CitizenOpenCaseButton" mnemonicParsing="false" text="Åben Case">
+                        <Button id="FrontpageCitizenCaseOpenButton" fx:id="CitizenOpenCaseButton" mnemonicParsing="false" onAction="#citizenButtons" text="Åben Case">
                            <VBox.margin>
                               <Insets left="171.0" />
                            </VBox.margin>
@@ -191,7 +196,7 @@
             </Label>
          </top>
          <bottom>
-            <Button fx:id="CitizenLogOutButton" mnemonicParsing="false" text="Log ud" BorderPane.alignment="CENTER" />
+            <Button fx:id="CitizenLogOutButton" mnemonicParsing="false" onAction="#citizenButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane id="FindCitizenProfilBorderPane" fx:id="FindCitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
@@ -232,7 +237,7 @@
             </Label>
          </top>
          <bottom>
-            <Button fx:id="FindCitizenGoBackButton" mnemonicParsing="false" text="Tilbage" BorderPane.alignment="CENTER">
+            <Button fx:id="FindCitizenGoBackButton" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="450.0" />
                </BorderPane.margin>
@@ -283,7 +288,7 @@
                         <TextArea fx:id="CaseInformationCaseDescriptionTextArea" editable="false" prefHeight="126.0" prefWidth="343.0" />
                         <Label fx:id="CaseInformationJournalerLabel" text="Journaler:" />
                         <ListView fx:id="CaseInformationJournalListView" prefHeight="92.0" prefWidth="343.0" />
-                        <Button fx:id="CaseInformationBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Tilbage">
+                        <Button fx:id="CaseInformationBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#goBack" text="Tilbage">
                            <VBox.margin>
                               <Insets left="250.0" />
                            </VBox.margin>
@@ -348,10 +353,10 @@
             </HBox>
          </center>
          <bottom>
-            <Button id="DeleteUserBackButton" fx:id="DeleteUserBackButton" mnemonicParsing="false" text="Tilbage" BorderPane.alignment="CENTER" />
+            <Button id="DeleteUserBackButton" fx:id="DeleteUserBackButton" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
-      <BorderPane id="CreateEmployeeBorderPane" fx:id="CreateEmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="CreateEmployeeBorderPane" fx:id="CreateEmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <top>
             <Label fx:id="CreateEmployeeTitel" text="SenSafe Udred Opret Bruger" BorderPane.alignment="CENTER">
                <font>
@@ -424,7 +429,7 @@
             </HBox>
          </center>
          <bottom>
-            <Button id="CreateEmployeeBackButton" fx:id="CreateEmployeeBackButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#BackToAdminFrontPageFromCreateEmployee" text="Tilbage" BorderPane.alignment="CENTER">
+            <Button id="CreateEmployeeBackButton" fx:id="CreateEmployeeBackButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="520.0" />
                </BorderPane.margin>
@@ -457,7 +462,7 @@
             </VBox>
          </center>
          <bottom>
-            <Button id="CreateCitizenBackButton" fx:id="CreateCitizenBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Tilbage" BorderPane.alignment="CENTER">
+            <Button id="CreateCitizenBackButton" fx:id="CreateCitizenBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="450.0" />
                </BorderPane.margin>
@@ -704,7 +709,7 @@
                         </HBox>
                      </center>
                      <bottom>
-                        <Button fx:id="CreateCaseBackButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Tilbage" BorderPane.alignment="CENTER" />
+                        <Button fx:id="CreateCaseBackButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
                      </bottom>
                   </BorderPane>
                </content>
