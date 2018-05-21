@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -256,14 +258,7 @@ public class GUIController implements Initializable {
     private TextField CreateCitizenCPRTextField;
     @FXML
     private Button CreateCitizenCreateCitizenButton;
-    @FXML
-    private ScrollPane CreateCaseScrollPane;
-    @FXML
-    private BorderPane CreateCaseBorderPane;
-    @FXML
-    private Button CreateCaseBackButton;
-    @FXML
-    private BorderPane CreateCaseInnerBorderPane;
+   
     @FXML
     private Button AdminFrontPageLogOutButton;
     @FXML
@@ -283,13 +278,27 @@ public class GUIController implements Initializable {
     @FXML
     private Label CreateCitizenWarningLabel;
     @FXML
-    private TextArea CreateCaseCaseDescTextArea;
+    private ScrollPane CreateCaseScrollPane1;
     @FXML
-    private TextField CreateCaseCPRTextField;
+    private BorderPane CreateCaseInnerBorderPane1;
     @FXML
-    private TextField CreateCaseEmployeeIDTextField;
+    private Button CreateCaseBackButton1;
     @FXML
-    private Button CreateCaseCreateCaseButton;
+    private TextArea CreateCaseCaseDescTextArea1;
+    @FXML
+    private TextField CreateCaseCPRTextField1;
+    @FXML
+    private TextField CreateCaseEmployeeIDTextField1;
+    @FXML
+    private Button CreateCaseCreateCaseButton1;
+    @FXML
+    private Pane CreateCaseCaseCreatedPopupPane;
+    @FXML
+    private Label CreateCaseCaseCreatedPopupLabel;
+    @FXML
+    private Button CreateCaseCaseCreatedPopupButton;
+    @FXML
+    private StackPane CreateCaseStackPane;
 
     
     
@@ -301,6 +310,8 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
    @FXML
     private void adminButtons(ActionEvent event){
         if(event.getSource()==AdminFrontPageCreateEmployeeButton){
@@ -344,7 +355,9 @@ public class GUIController implements Initializable {
     private void employeeButtons(ActionEvent event){
         if(event.getSource()==EmployeeCreateCaseButton){
             EmployeeBorderPane.setVisible(false);
-            CreateCaseBorderPane.setVisible(true);
+            
+            CreateCaseStackPane.setVisible(true);
+            CreateCaseScrollPane1.setVisible(true);
         }
         else if(event.getSource()==EmployeeFindCitizenProfileButton){
             EmployeeBorderPane.setVisible(false);
@@ -369,8 +382,9 @@ public class GUIController implements Initializable {
             CreateCitizenBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
         }
-        else if(event.getSource()==CreateCaseBackButton){
-            CreateCaseBorderPane.setVisible(false);
+      
+        else if(event.getSource()==CreateCaseBackButton1){
+            CreateCaseStackPane.setVisible(false);
             EmployeeBorderPane.setVisible(true);
         }
         else if(event.getSource()==CaseInformationBackButton){
@@ -402,8 +416,10 @@ public class GUIController implements Initializable {
             }
             //Citizen log in check
             else if(userID.charAt(0) == '1'){
+                //String CPR
                 LogInBorderPane.setVisible(false);
                 CitizenBorderPane.setVisible(true);
+               // UIRun.getInstance().loadCitizenProfile();
             }
             //Logind Admin
             else if (userID.charAt(0) == '5') {
@@ -454,18 +470,30 @@ public class GUIController implements Initializable {
         
     }
     //Ikke done metode
-@FXML
+    @FXML
     private void createCase(ActionEvent event){
-        String caseDesc = CreateCaseCaseDescTextArea.getText();
-        String employeeID = CreateCaseEmployeeIDTextField.getText();
-        String citizenProfile = CreateCaseCPRTextField.getText();
+        String caseDesc = CreateCaseCaseDescTextArea1.getText();
+        String employeeID = CreateCaseEmployeeIDTextField1.getText();
+        String citizenProfile = CreateCaseCPRTextField1.getText();
         
            if (caseDesc.isEmpty() || employeeID.isEmpty()|| citizenProfile.isEmpty()) {
-               
+               CreateCaseCaseCreatedPopupLabel.setText("Udfyld venligst alle felter");
+               CreateCaseCaseCreatedPopupPane.setVisible(true);
             }
            else {
+               
                UIRun.getInstance().createCase(caseDesc, citizenProfile, Integer.parseInt(employeeID));
+               CreateCaseCaseCreatedPopupLabel.setText("Sagen er oprettet");
+               CreateCaseCaseCreatedPopupPane.setVisible(true);
            }
-    }    
+    }  
+    @FXML
+    private void createCasePopupButton(ActionEvent event){
+        CreateCaseCaseCreatedPopupPane.setVisible(false);
+        CreateCaseScrollPane1.setVisible(false);
+        CreateCaseStackPane.setVisible(false);
+        EmployeeBorderPane.setVisible(true);
+    
+    }
 }
 

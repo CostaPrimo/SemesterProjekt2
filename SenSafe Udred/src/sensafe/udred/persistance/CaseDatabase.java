@@ -145,8 +145,10 @@ public class CaseDatabase {
         } finally {
             try {
                 st.close();
-                rs.close();
+              //  rs.close();
                 st.getConnection().close();
+                
+                
             } catch (SQLException e) {
             }
         }

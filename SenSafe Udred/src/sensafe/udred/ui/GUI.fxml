@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -20,11 +15,13 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
+<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
       <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -139,7 +136,7 @@
             <Button fx:id="EmployeeLogOutButton" mnemonicParsing="false" onAction="#employeeButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
-      <BorderPane id="ForsideCitizenBorderPane" fx:id="CitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="ForsideCitizenBorderPane" fx:id="CitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <HBox id="FrontpageCitizenCenterHBox" fx:id="CitizenCenterHbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
@@ -490,11 +487,11 @@
             </Button>
          </bottom>
       </BorderPane>
-      <BorderPane id="CreateCaseBorderPaneNodeID" fx:id="CreateCaseBorderPane" centerShape="false" layoutX="1.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-         <center>
-            <ScrollPane fx:id="CreateCaseScrollPane" prefHeight="1369.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+      <StackPane fx:id="CreateCaseStackPane" blendMode="SRC_ATOP" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ScrollPane fx:id="CreateCaseScrollPane1" prefHeight="1369.0" prefWidth="600.0" vbarPolicy="ALWAYS">
                <content>
-                  <BorderPane id="CreateCaseBorderPane" fx:id="CreateCaseInnerBorderPane" prefHeight="400.0" prefWidth="600.0">
+                  <BorderPane id="CreateCaseBorderPane" fx:id="CreateCaseInnerBorderPane1" prefHeight="400.0" prefWidth="600.0">
                      <center>
                         <HBox alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                            <children>
@@ -609,7 +606,7 @@
                               </VBox>
                               <VBox id="CreateCaseAnswersVBox" alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="502.0">
                                  <children>
-                                    <TextArea id="CreateCaseHenvendelseTextArea" fx:id="CreateCaseCaseDescTextArea" prefHeight="140.0" prefWidth="502.0">
+                                    <TextArea id="CreateCaseHenvendelseTextArea" fx:id="CreateCaseCaseDescTextArea1" prefHeight="140.0" prefWidth="502.0">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -619,8 +616,8 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Separator>
-                                    <TextField fx:id="CreateCaseCPRTextField" promptText="CPR" />
-                                    <TextField fx:id="CreateCaseEmployeeIDTextField" promptText="EmployeeID" />
+                                    <TextField fx:id="CreateCaseCPRTextField1" promptText="CPR" />
+                                    <TextField fx:id="CreateCaseEmployeeIDTextField1" promptText="EmployeeID" />
                                     <Separator prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets top="2.0" />
@@ -736,7 +733,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Separator>
-                                    <Button fx:id="CreateCaseCreateCaseButton" mnemonicParsing="false" text="CreateCase">
+                                    <Button fx:id="CreateCaseCreateCaseButton1" mnemonicParsing="false" onAction="#createCase" text="CreateCase">
                                        <VBox.margin>
                                           <Insets left="300.0" />
                                        </VBox.margin>
@@ -747,19 +744,18 @@
                         </HBox>
                      </center>
                      <bottom>
-                        <Button fx:id="CreateCaseBackButton" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
+                        <Button fx:id="CreateCaseBackButton1" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
                      </bottom>
                   </BorderPane>
                </content>
             </ScrollPane>
-         </center>
-         <top>
-            <Label text="SenSafe Udred Opret Sag" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-         </top>
-      </BorderPane>
+            <Pane fx:id="CreateCaseCaseCreatedPopupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="163.0" style="-fx-background-color: gray; -fx-pref-width: 160; -fx-pref-height: 100;" visible="false">
+               <children>
+                  <Label fx:id="CreateCaseCaseCreatedPopupLabel" layoutX="8.0" layoutY="14.0" text="Case er oprettet" />
+                  <Button fx:id="CreateCaseCaseCreatedPopupButton" alignment="CENTER" layoutX="23.0" layoutY="50.0" mnemonicParsing="false" onAction="#createCasePopupButton" text="Tilbage" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
