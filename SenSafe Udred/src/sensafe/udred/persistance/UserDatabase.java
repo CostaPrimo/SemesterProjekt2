@@ -97,14 +97,14 @@ public class UserDatabase {
             PStatement.setString(6, password);
             
             rs = PStatement.executeQuery();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Exception" + e);
         }
         finally{
             try {
                 st.close();
                 rs.close();
-            } catch (SQLException e) {
+            } catch (Exception e) {
             }
         }
     }

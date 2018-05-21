@@ -51,8 +51,8 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void createEmployee(String name, String zipCode, String email, String department, String phonenumber){
         String[]temp = userController.createEmployee(name, zipCode, email, department, phonenumber).split(";");
-        persistance.createEmployee(temp[1],temp[2],temp[3],temp[4],temp[5],temp[6]);
-        System.out.println(temp[6]); //This needs to be printed out on GUI
+        persistance.createEmployee(temp[0],temp[1],temp[2],temp[3],temp[4], temp[5]);
+        System.out.println(temp[5]); //This needs to be printed out on GUI
     }
     
     @Override

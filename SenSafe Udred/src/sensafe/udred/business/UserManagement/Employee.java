@@ -52,7 +52,7 @@ public class Employee extends User {
     
     @Override
     public String toString(){
-        return getUserID() + ";" + name + ";" + zipCode + ";" + email + ";" + department + ";" + phonenumber  + ";" + password;
+        return name + ";" + zipCode + ";" + email + ";" + department + ";" + phonenumber  + ";" + password;
     }
     
     /**
