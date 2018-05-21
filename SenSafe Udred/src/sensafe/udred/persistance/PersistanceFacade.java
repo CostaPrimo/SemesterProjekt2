@@ -79,6 +79,16 @@ public class PersistanceFacade implements IPersistance {
     public String findCitizenProfile(String CPRNumber){
         return caseDatabase.loadCitizenProfile(CPRNumber);
     }
+
+    @Override
+    public String loadAllCitizenUsers() {
+        return userDatabase.loadAllCitizenUsers();
+    }
+
+    @Override
+    public String loadAllEmployee() {
+        return userDatabase.loadAllEmployee();
+    }
     
     
         

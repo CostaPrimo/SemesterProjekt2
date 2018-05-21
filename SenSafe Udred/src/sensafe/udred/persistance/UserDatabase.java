@@ -52,7 +52,7 @@ public class UserDatabase {
         return output;
     }
     
-     public String loadCitizenUsers(int ID){
+    public String loadCitizenUsers(int ID){
         Statement st = null;
         ResultSet rs = null;
         String output = "";
@@ -66,6 +66,70 @@ public class UserDatabase {
             output += rs.getString(2) + ";";
             output += rs.getString(3) + ";";
             output+= "\n";
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+        return output;
+    }
+    
+    public String loadAllCitizenUsers(){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser");
+            rs = PStatement.executeQuery();
+//            rs.next();
+            while(rs.next()){
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output+= "\n";
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+            return null;
+        }
+        
+        finally{
+            try {
+                st.close();
+                rs.close();
+            } catch (SQLException e) {
+            }
+        }
+        return output;
+    }
+    
+    public String loadAllEmployee(){
+        Statement st = null;
+        ResultSet rs = null;
+        String output = "";
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee");
+            rs = PStatement.executeQuery();
+//            rs.next();
+            while (rs.next()){
+            output += rs.getString(1) + ";";
+            output += rs.getString(2) + ";";
+            output += rs.getString(3) + ";";
+            output += rs.getString(4) + ";";
+            output += rs.getString(5) + ";";
+            output += rs.getString(6) + ";";
+            output += rs.getString(7) + ";";
+            output+= "\n";
+            }
         } catch (SQLException e) {
             System.out.println(e.toString());
             return null;

@@ -114,4 +114,14 @@ public class BusinessFacade implements IBusiness {
         return persistance.findCitizenProfile(CPRNumber);
     }
     
+    @Override
+    public String loadAllCitizenUsers(){
+        return persistance.loadAllCitizenUsers();
+    }
+    
+    @Override
+    public String loadAllEmployee(){
+        return persistance.loadAllEmployee();
+    }
+    
 }
