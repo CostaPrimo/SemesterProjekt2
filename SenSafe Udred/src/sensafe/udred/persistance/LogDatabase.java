@@ -35,6 +35,7 @@ public class LogDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (Exception e) {
             }
         }

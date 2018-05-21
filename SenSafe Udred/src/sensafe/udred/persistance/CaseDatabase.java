@@ -43,6 +43,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -70,6 +71,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -99,6 +101,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -121,6 +124,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -142,6 +146,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -163,6 +168,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -182,6 +188,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -201,6 +208,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -236,6 +244,7 @@ public class CaseDatabase {
             try {
                 st.close();
                 rs.close();
+                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
