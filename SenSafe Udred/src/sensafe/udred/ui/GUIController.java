@@ -45,8 +45,6 @@ public class GUIController implements Initializable {
     @FXML
     private Label LogInUserNameLabel;
     @FXML
-    private TextField LogInUsernameTextField;
-    @FXML
     private Label LogInPasswordLabel;
     @FXML
     private PasswordField LogInPasswordField;
@@ -83,7 +81,6 @@ public class GUIController implements Initializable {
     private BorderPane CitizenBorderPane;
     @FXML
     private Label CitizenTitelLabel;
-    @FXML
     private Button CitizenLogOutButton;
     @FXML
     private HBox CitizenCenterHbox;
@@ -267,6 +264,12 @@ public class GUIController implements Initializable {
     private Button CreateCaseBackButton;
     @FXML
     private BorderPane CreateCaseInnerBorderPane;
+    @FXML
+    private Button AdminFrontPageLogOutButton;
+    @FXML
+    private Button CitizenBackButton;
+    @FXML
+    private TextField LogInUserIDTextField;
 
     
     
@@ -292,6 +295,13 @@ public class GUIController implements Initializable {
             AdminFrontPageBorderPane.setVisible(false);
             DeleteUserBorderPane.setVisible(true);
         }
+        else if (event.getSource() == AdminFrontPageLogOutButton){
+            AdminFrontPageBorderPane.setVisible(false);
+            //Make sure to swap something around in logic layer
+            //ActiveUser == null
+            LogInBorderPane.setVisible(true);
+            
+        }
        
     }
     @FXML
@@ -302,7 +312,8 @@ public class GUIController implements Initializable {
             //ADD LOAD CASE INFORMATION
             CaseInformationBorderPane.setVisible(true);
         }
-        else if(event.getSource()==CitizenLogOutButton){
+        else if(event.getSource()==CitizenBackButton){
+           
             CitizenBorderPane.setVisible(false);
             //Make sure to swap something around in logic layer
             //ActiveUser == null            
@@ -332,6 +343,7 @@ public class GUIController implements Initializable {
             CreateEmployeeBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
             //UIRun.getInstance().createLog(1100, 1220, "create");
+            
         }
         else if(event.getSource()== CreateCitizenBackButton){
             CreateCitizenBorderPane.setVisible(false);
@@ -343,14 +355,9 @@ public class GUIController implements Initializable {
         }
         else if(event.getSource()==CaseInformationBackButton){
             CaseInformationBorderPane.setVisible(false);
-            /*
-            if(user == employee){
-                EmployeeBorderPane.setVisible(true);
-            }
-            else {
-                CitizenBorderPane.setVisible(true);
-            }
-            */
+            CitizenBorderPane.setVisible(true);
+        
+            
         }
         else if(event.getSource()==FindCitizenGoBackButton){
             FindCitizenBorderPane.setVisible(false);
@@ -361,5 +368,19 @@ public class GUIController implements Initializable {
             AdminFrontPageBorderPane.setVisible(true);
         }
     }
+    @FXML
+    private void LogIn(ActionEvent event){
+        String userID = LogInUserIDTextField.getText();
+        String password = LogInPasswordField.getText();
+        
+        
+        if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password))
+            if (userID.charAt(0) == '2' ){
+                LogInBorderPane.setVisible(false);
+                EmployeeBorderPane.setVisible(true);
+            }
+        
+    }
+    
 }
 

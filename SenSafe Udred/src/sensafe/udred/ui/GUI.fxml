@@ -26,7 +26,7 @@
 
 <AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
-      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox fx:id="logInCenterHBox" alignment="CENTER" centerShape="false" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -41,7 +41,7 @@
                               <Insets top="75.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField id="UsernameTextField" fx:id="LogInUsernameTextField">
+                        <TextField id="UsernameTextField" fx:id="LogInUserIDTextField">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></TextField>
@@ -55,7 +55,7 @@
                   </VBox>
                   <VBox fx:id="LogInRightVBox" alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="207.0">
                      <children>
-                        <Button id="LogInButton" fx:id="LogInLogInButton" alignment="CENTER" centerShape="false" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" text="Log Ind">
+                        <Button id="LogInButton" fx:id="LogInLogInButton" alignment="CENTER" centerShape="false" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#LogIn" text="Log Ind">
                            <VBox.margin>
                               <Insets bottom="10.0" top="25.0" />
                            </VBox.margin>
@@ -79,7 +79,7 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
       </BorderPane>
-      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <VBox id="AdminFrontPageVBox" fx:id="AdminFrontPageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
@@ -104,6 +104,9 @@
                </font>
             </Label>
          </top>
+         <bottom>
+            <Button fx:id="AdminFrontPageLogOutButton" mnemonicParsing="false" onAction="#adminButtons" text="Log ud" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
       <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <padding>
@@ -196,7 +199,7 @@
             </Label>
          </top>
          <bottom>
-            <Button fx:id="CitizenLogOutButton" mnemonicParsing="false" onAction="#citizenButtons" text="Log ud" BorderPane.alignment="CENTER" />
+            <Button fx:id="CitizenBackButton" mnemonicParsing="false" onAction="#citizenButtons" text="Back" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane id="FindCitizenProfilBorderPane" fx:id="FindCitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
