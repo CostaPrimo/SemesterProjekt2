@@ -26,7 +26,7 @@
 
 <AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
-      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox fx:id="logInCenterHBox" alignment="CENTER" centerShape="false" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -402,7 +402,7 @@
                      <children>
                         <TextField id="CreateEmployeeNameTextField" fx:id="CreateEmployeeNameTextField">
                            <VBox.margin>
-                              <Insets left="20.0" right="150.0" />
+                              <Insets left="20.0" right="150.0" top="55.0" />
                            </VBox.margin>
                         </TextField>
                         <TextField id="CreateEmployeeEmailTextField" fx:id="CreateEmployeeEmailTextField">
@@ -425,7 +425,10 @@
                               <Insets left="20.0" right="150.0" top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button id="CreateEmployeeButton" fx:id="CreateEmployeeCreateEmployeeButton" mnemonicParsing="false" text="Opret Employee" />
+                        <Button id="CreateEmployeeButton" fx:id="CreateEmployeeCreateEmployeeButton" mnemonicParsing="false" onAction="#createEmployee" text="Opret Employee" />
+                        <Label fx:id="CreateEmployeeTextLabel" text="Password er:" />
+                        <Label fx:id="CreateEmployeePasswordLabel" />
+                        <Label fx:id="CreateEmployeeWarningLabel" text="Udfyld alle felter" visible="false" />
                      </children>
                   </VBox>
                </children>
@@ -456,11 +459,26 @@
                         <Insets left="200.0" right="200.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button id="CreateCitizenButton" fx:id="CreateCitizenCreateCitizenButton" mnemonicParsing="false" text="Create Citizen">
+                  <Button id="CreateCitizenButton" fx:id="CreateCitizenCreateCitizenButton" mnemonicParsing="false" onAction="#createCitizenUser" text="Create Citizen">
                      <VBox.margin>
                         <Insets left="250.0" />
                      </VBox.margin>
                   </Button>
+                  <Label fx:id="CreateCitizenTextLabel" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" text="Dit password er: ">
+                     <VBox.margin>
+                        <Insets left="250.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="CreateCitizenPasswordLabel">
+                     <VBox.margin>
+                        <Insets left="250.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="CreateCitizenWarningLabel" visible="false">
+                     <VBox.margin>
+                        <Insets left="300.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
          </center>
@@ -472,7 +490,7 @@
             </Button>
          </bottom>
       </BorderPane>
-      <BorderPane id="CreateCaseBorderPaneNodeID" fx:id="CreateCaseBorderPane" centerShape="false" layoutX="1.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="CreateCaseBorderPaneNodeID" fx:id="CreateCaseBorderPane" centerShape="false" layoutX="1.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <ScrollPane fx:id="CreateCaseScrollPane" prefHeight="1369.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
                <content>
@@ -485,9 +503,13 @@
                                     <Label text="Hvad drejer henvendelsen sig om?" />
                                     <Separator prefWidth="200.0">
                                        <VBox.margin>
-                                          <Insets top="21.0" />
+                                          <Insets top="53.0" />
                                        </VBox.margin>
                                     </Separator>
+                                    <Label text="Borgerens CPR nummer" />
+                                    <Label text="Hvilken Employee styrer casen" />
+                                    <Label text="Indtast EmployeeID" />
+                                    <Separator prefWidth="200.0" />
                                     <Label text="Er det klart hvad borgeren søger " />
                                     <Label text="om?" />
                                     <Separator prefWidth="200.0" />
@@ -582,11 +604,12 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Separator>
+                                    <Button mnemonicParsing="false" text="HiddenButton" visible="false" />
                                  </children>
                               </VBox>
                               <VBox id="CreateCaseAnswersVBox" alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="502.0">
                                  <children>
-                                    <TextArea id="CreateCaseHenvendelseTextArea" prefHeight="89.0" prefWidth="416.0">
+                                    <TextArea id="CreateCaseHenvendelseTextArea" fx:id="CreateCaseCaseDescTextArea" prefHeight="140.0" prefWidth="502.0">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -594,6 +617,13 @@
                                     <Separator prefWidth="200.0">
                                        <VBox.margin>
                                           <Insets />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <TextField fx:id="CreateCaseCPRTextField" promptText="CPR" />
+                                    <TextField fx:id="CreateCaseEmployeeIDTextField" promptText="EmployeeID" />
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets top="2.0" />
                                        </VBox.margin>
                                     </Separator>
                                     <CheckBox mnemonicParsing="false" text="Ja" />
@@ -706,6 +736,11 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Separator>
+                                    <Button fx:id="CreateCaseCreateCaseButton" mnemonicParsing="false" text="CreateCase">
+                                       <VBox.margin>
+                                          <Insets left="300.0" />
+                                       </VBox.margin>
+                                    </Button>
                                  </children>
                               </VBox>
                            </children>

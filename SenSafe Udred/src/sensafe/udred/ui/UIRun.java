@@ -73,12 +73,13 @@ public class UIRun extends Application implements IUI {
         return business.loadJournal(journalID);
     }
     
-    public void createCitizenUser(String CPR){
-        business.createCitizenUser(CPR);
+    public String createCitizenUser(String CPR){
+        return business.createCitizenUser(CPR);
+        
     }
     
-    public void createEmployee(String name, String zipCode, String email, String department, String phonenumber){
-        business.createEmployee(name, zipCode, email, department, phonenumber);
+    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber){
+       return business.createEmployee(name, zipCode, email, department, phonenumber);
     }
     
     public void createCitizenProfile(String name, String email, String CPRNumber){

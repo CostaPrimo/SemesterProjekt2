@@ -270,6 +270,26 @@ public class GUIController implements Initializable {
     private Button CitizenBackButton;
     @FXML
     private TextField LogInUserIDTextField;
+    @FXML
+    private Label CreateEmployeeWarningLabel;
+    @FXML
+    private Label CreateEmployeePasswordLabel;
+    @FXML
+    private Label CreateEmployeeTextLabel;
+    @FXML
+    private Label CreateCitizenTextLabel;
+    @FXML
+    private Label CreateCitizenPasswordLabel;
+    @FXML
+    private Label CreateCitizenWarningLabel;
+    @FXML
+    private TextArea CreateCaseCaseDescTextArea;
+    @FXML
+    private TextField CreateCaseCPRTextField;
+    @FXML
+    private TextField CreateCaseEmployeeIDTextField;
+    @FXML
+    private Button CreateCaseCreateCaseButton;
 
     
     
@@ -374,13 +394,78 @@ public class GUIController implements Initializable {
         String password = LogInPasswordField.getText();
         
         
-        if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password))
+        if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password)){
+            //Logind Employee
             if (userID.charAt(0) == '2' ){
                 LogInBorderPane.setVisible(false);
                 EmployeeBorderPane.setVisible(true);
             }
+            //Citizen log in check
+            else if(userID.charAt(0) == '1'){
+                LogInBorderPane.setVisible(false);
+                CitizenBorderPane.setVisible(true);
+            }
+            //Logind Admin
+            else if (userID.charAt(0) == '5') {
+                LogInBorderPane.setVisible(false);
+                AdminFrontPageBorderPane.setVisible(true);
+            }
+        }   
+    }
+    @FXML
+    private void createEmployee(ActionEvent event) {
+        String name = CreateEmployeeNameTextField.getText();
+        String Email = CreateEmployeeEmailTextField.getText();
+        String Zipcode = CreateEmployeeZipcodeTextField.getText();
+        String Department = CreateEmployeeDepartmentLabel.getText();
+        String Phonenumber = CreateEmployeePhoneNumberTextField.getText();
+        
+        if(name.isEmpty() || Email.isEmpty() || Zipcode.isEmpty() || Department.isEmpty() || Phonenumber.isEmpty()){
+            CreateEmployeeWarningLabel.setVisible(true);
+            CreateEmployeePasswordLabel.setText("");
+        }
+        else{
+            CreateEmployeeWarningLabel.setVisible(false);
+            CreateEmployeePasswordLabel.setText(UIRun.getInstance().createEmployee(name, Zipcode, Email, Department, Phonenumber));
+        }
+           
+    
+    }
+    @FXML
+    private void createCitizenUser(ActionEvent event){
+        String CPR = CreateCitizenCPRTextField.getText();
+        
+        if (CPR.isEmpty()) {
+            CreateCitizenWarningLabel.setText("Pls enter a CPR");
+            CreateCitizenWarningLabel.setVisible(true);
+            CreateCitizenPasswordLabel.setVisible(false);
+            
+        }
+        else if (CPR.length() == 10){
+            CreateCitizenPasswordLabel.setText(UIRun.getInstance().createCitizenUser(CPR));
+            CreateCitizenPasswordLabel.setVisible(true);
+            CreateCitizenWarningLabel.setVisible(false);
+        }
+        else if (CPR.length() != 10) {
+            CreateCitizenWarningLabel.setText("Pls enter a CPR thats 10 numbers long");
+            
+        }
+        
         
     }
-    
+    //Ikke done metode
+@FXML
+    private void createCase(ActionEvent event){
+        String caseDesc = CreateCaseCaseDescTextArea.getText();
+        String employeeID = CreateCaseEmployeeIDTextField.getText();
+        String citizenProfile = CreateCaseCPRTextField.getText();
+        
+           if (caseDesc.isEmpty() || employeeID.isEmpty()|| citizenProfile.isEmpty()) {
+               
+            }
+           else {
+               UIRun.getInstance().createCase(caseDesc, citizenProfile, Integer.parseInt(employeeID));
+           }
+    }    
 }
 

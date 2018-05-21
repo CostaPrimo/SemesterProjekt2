@@ -21,8 +21,8 @@ public interface IBusiness {
     String loadCitizenProfile(String CPRNumber);
     String loadCase(int caseID);
     String loadJournal(int journalID);
-    public void createCitizenUser(String CPRNumber);
-    public void createEmployee(String name, String zipCode, String email, String department, String phonenumber);
+    public String createCitizenUser(String CPRNumber);
+    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber);
     public void createCitizenProfile(String name, String email, String CPRNumber);
     public void createCase(String caseDescription, String citizenProfile, int caseResponsible);
     public void createJournal(String resume, int writer, int relatedCase);

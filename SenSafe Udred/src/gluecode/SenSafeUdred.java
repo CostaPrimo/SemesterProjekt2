@@ -49,7 +49,7 @@ public class SenSafeUdred {
         UI.injectBusiness(business);
         UI.startApplication(args);
         
-        System.out.println(business.loadAllCitizenUsers() + business.loadAllEmployee());
+        //System.out.println(business.loadAllCitizenUsers() + business.loadAllEmployee());
         
 //        business.createEmployee("Kim Christensen", "5000", "lul@email.dk", "Handikap Afdelingens", "42233223");
         //business.createCitizenUser("1010294023");
