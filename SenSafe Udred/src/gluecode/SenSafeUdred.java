@@ -37,7 +37,7 @@ public class SenSafeUdred {
         IPersistance persistance = new PersistanceFacade();
         IBusiness business = new BusinessFacade();
         IUI UI = new UIRun();
-        ICaseController caseController = new CaseController("temp","temp");
+        ICaseController caseController = new CaseController();
         ILogController logController = new LogController();
         IUserController userController = new UserController("temp","temp");
         

@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sensafe.udred.persistance;
 
 import java.sql.*;
-
 /**
  *
  * @author Jeppe Enevold
@@ -14,7 +8,6 @@ import java.sql.*;
 public class LogDatabase {
     
     public LogDatabase(){
-        
     }
     
     public void writeInfoToLD(Timestamp date, int actorID, int targetID, String action){
@@ -79,10 +72,10 @@ public class LogDatabase {
         
         try {
             Class.forName("org.postgresql.Driver");
-        } catch (java.lang.ClassNotFoundException e) {
+        } 
+        catch (java.lang.ClassNotFoundException e) {
             System.out.println(e);
         }
-
 
         String url = "jdbc:postgresql://horton.elephantsql.com:5432/cremkbgt";
         String username = "cremkbgt";
@@ -93,15 +86,10 @@ public class LogDatabase {
         try {
             Connection db = DriverManager.getConnection(url, username, password);
             st = db.createStatement();
-            
-            
-            
-        } catch (Exception e){
+        } 
+        catch (Exception e){
             System.out.println(e);
         }
-        
         return st;
-        
     }
-    
 }
