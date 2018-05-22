@@ -90,6 +90,11 @@ public class PersistanceFacade implements IPersistance {
         return userDatabase.loadAllEmployee();
     }
     
+    @Override
+    public String getLogs(int ID){
+        return logDatabase.getLogs(ID);
+    }
+    
     
         
 }

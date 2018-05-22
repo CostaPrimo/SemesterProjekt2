@@ -40,6 +40,36 @@ public class LogDatabase {
             }
         }
     }
+    public String getLogs(int ID){
+        Statement st = null;
+        ResultSet rs = null;
+        String output ="";
+        try {
+            st = OpenLDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT DISTINCT * FROM LogActivity WHERE actorID = ? OR targetID = ?");
+            PStatement.setInt(1, ID);
+            PStatement.setInt(2, ID);
+            rs = PStatement.executeQuery();
+            while (rs.next()) {
+                output += rs.getString(1) + ";";
+                output += rs.getString(2) + ";";
+                output += rs.getString(3) + ";";
+                output += rs.getString(4) + ";";
+                output += "\n";
+            }
+        } catch (Exception e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                rs.close();
+                st.getConnection().close();
+            } catch (Exception e) {
+            }
+        }
+        return output;
+    }
     
     public void deleteLog(){
         

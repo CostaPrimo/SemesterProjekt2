@@ -97,4 +97,8 @@ public class UIRun extends Application implements IUI {
     public boolean validateLogin(int ID, String Password){
         return business.validateLogin(ID, Password);
     }
+    
+    public String getLogs(int ID){
+        return business.getLogs(ID);
+    }
 }

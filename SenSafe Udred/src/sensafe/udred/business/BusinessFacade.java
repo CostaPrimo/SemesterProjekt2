@@ -126,4 +126,8 @@ public class BusinessFacade implements IBusiness {
         return persistance.loadAllEmployee();
     }
     
+    @Override
+    public String getLogs(int ID){
+        return persistance.getLogs(ID);
+    }
 }

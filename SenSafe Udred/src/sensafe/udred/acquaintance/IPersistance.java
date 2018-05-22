@@ -28,4 +28,5 @@ public interface IPersistance {
         public String findCitizenProfile(String CPRNumber);
         public String loadAllCitizenUsers();
         public String loadAllEmployee();
+        public String getLogs(int ID);
 }
