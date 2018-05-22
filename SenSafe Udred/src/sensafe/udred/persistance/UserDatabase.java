@@ -307,11 +307,6 @@ public class UserDatabase {
         
     }
     
-    public static void main(String[] args) {
-        UserDatabase ud = new UserDatabase();
-        ud.writeInfoToEmployee("autoTsssest", "3434", "email", "handi", "23232323", "password");
-    }
-    
     private static String encryptPassword(String password){
             //SOURCE FROM https://stackoverflow.com/a/32583766/5274680 - Minor changes. Decrypt not used.
         try {
@@ -343,19 +338,33 @@ public class UserDatabase {
         Statement st = null;
         ResultSet rs = null;
         boolean isCorrect = false;
+        
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("select userid, password from employee where userid = ? AND password = ? union select userid, password from citizenuser where userid = ? AND password = ? union select adminID, password from admin where adminID = ? AND password = ?");
-            PStatement.setInt(1, ID);
-            password = encryptPassword(password).replaceAll("\u0000", "");
-            PStatement.setString(2, password);
-            PStatement.setInt(3, ID);
-            PStatement.setString(4, password);
-            PStatement.setInt(5, ID);
-            PStatement.setString(6, password);
-            rs = PStatement.executeQuery();
-            if(rs.next()){
-                isCorrect = true;
+            if (Integer.toString(ID).length() == 4){
+                PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT userid, password FROM employee WHERE userid = ? AND password = ? UNION SELECT adminID, password FROM admin WHERE adminID = ? AND password = ?");
+                PStatement.setInt(1, ID);
+                password = encryptPassword(password).replaceAll("\u0000", "");
+                PStatement.setString(2, password);
+                PStatement.setInt(3, ID);
+                PStatement.setString(4, password);
+                rs = PStatement.executeQuery();
+                if(rs.next()){
+                    isCorrect = true;
+                }
+            }
+            else if (Integer.toString(ID).length() == 10){
+                PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT CPRNumber, password FROM citizenuser WHERE CPRNumber = ? AND password = ?");
+                PStatement.setInt(1, ID);
+                password = encryptPassword(password).replaceAll("\u0000", "");
+                PStatement.setString(2, password);
+                rs = PStatement.executeQuery();
+                if(rs.next()){
+                    isCorrect = true;
+                }
+            }
+            else{
+                
             }
             
         } catch (SQLException e) {
