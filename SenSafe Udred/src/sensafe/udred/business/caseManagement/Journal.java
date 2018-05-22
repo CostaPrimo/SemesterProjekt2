@@ -7,12 +7,12 @@ import sensafe.udred.business.UserManagement.Employee;
 public class Journal {
     
     private int journalID;
-    private String journalWriter;
+    private int journalWriter;
     private String resume;
     
-    public Journal(int ID, Employee writer, String resume){
+    public Journal(int ID, int employeeID, String resume){
         this.journalID = ID;
-        this.journalWriter = writer.getName();
+        this.journalWriter = employeeID;
         this.resume = resume;
     }
     
@@ -23,6 +23,7 @@ public class Journal {
     public void journalSave(){
         
     }
+    
     public int getJournalID(){
         return this.journalID;
     }

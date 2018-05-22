@@ -7,7 +7,6 @@ public class CitizenProfile {
     private String Name;
     private String Email;
     private String CPR;
-    
 
     public CitizenProfile(String Name, String Email, String CPR) {
         this.Name = Name;
@@ -32,8 +31,4 @@ public class CitizenProfile {
     public String toString() {
         return Name + ";" + Email + ";" + CPR;
     }
-
-    
-    
-    
 }

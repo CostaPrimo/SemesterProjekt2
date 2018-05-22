@@ -3,14 +3,12 @@ package sensafe.udred.business;
 import java.util.Date;
 import java.util.HashMap;
 import sensafe.udred.acquaintance.ILogController;
-
 /**
  *
  * @author Jeppe Enevold
  */
 public class LogController implements ILogController {
     private HashMap<String, Action> validActions;
-    
     
     public LogController(){
         validActions = new HashMap<String, Action>();
