@@ -410,19 +410,28 @@ public class GUIController implements Initializable {
         
         if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password)){
             //Logind Employee
-            if (userID.charAt(0) == '2' ){
+            if (userID.length() == 4 && userID.charAt(0) == '4' ){
                 LogInBorderPane.setVisible(false);
                 EmployeeBorderPane.setVisible(true);
             }
-            //Citizen log in check
-            else if(userID.charAt(0) == '1'){
+            //CitizenUser log in check
+            else if(userID.length() == 10){
                 //String CPR
-                LogInBorderPane.setVisible(false);
-                CitizenBorderPane.setVisible(true);
+               LogInBorderPane.setVisible(false);
+               CitizenBorderPane.setVisible(true);
                // UIRun.getInstance().loadCitizenProfile();
+               String[] citizenProfile = UIRun.getInstance().findCitizenProfile(userID).split(";");
+               String name = citizenProfile[0];
+               String email = citizenProfile[1];
+               String CPRNumber = citizenProfile[2];
+               CitizenCPRUnfilledLabel.setText(CPRNumber);
+               CitizenNameUnfilledLabel.setText(name);
+               CitizenEmailUnfilledLabel.setText(email);
+               
+               
             }
             //Logind Admin
-            else if (userID.charAt(0) == '5') {
+            else if (userID.length() == 4 && userID.charAt(0) == '5') {
                 LogInBorderPane.setVisible(false);
                 AdminFrontPageBorderPane.setVisible(true);
             }

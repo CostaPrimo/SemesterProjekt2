@@ -216,10 +216,6 @@ public class CaseDatabase {
         }
     }
 
-    public void findCitizenProfile(String CPRNumber) {
-
-    }
-
     public String showCaseOverview(String CPRNumber, String department) {
         StringBuilder output = new StringBuilder();
         Statement st = null;
@@ -275,4 +271,9 @@ public class CaseDatabase {
         }
         return st;
     }
+    
+//    public static void main(String[] args) {
+//        CaseDatabase CD = new CaseDatabase();
+//        System.out.println(CD.loadCitizenProfile("1010294023"));
+//    }
 }

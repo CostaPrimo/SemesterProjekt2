@@ -354,8 +354,9 @@ public class UserDatabase {
                 }
             }
             else if (Integer.toString(ID).length() == 10){
+                String CPRNumber = Integer.toString(ID);
                 PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT CPRNumber, password FROM citizenuser WHERE CPRNumber = ? AND password = ?");
-                PStatement.setInt(1, ID);
+                PStatement.setString(1, CPRNumber);
                 password = encryptPassword(password).replaceAll("\u0000", "");
                 PStatement.setString(2, password);
                 rs = PStatement.executeQuery();
@@ -381,4 +382,5 @@ public class UserDatabase {
         }
         return isCorrect;
     }
+    
 }
