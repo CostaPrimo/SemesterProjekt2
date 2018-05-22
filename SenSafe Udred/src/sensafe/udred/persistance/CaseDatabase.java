@@ -275,13 +275,4 @@ public class CaseDatabase {
         }
         return st;
     }
-
-    public static void main(String[] args) {
-        CaseDatabase cd = new CaseDatabase();
-        //cd.writeInfoToCaseTable(2001, "caseDescription", "CPRNumber", 6969);
-        //cd.writeInfoToCaseTable("TestDescription", "KIM", 6969);
-        //System.out.println(cd.showCaseOverview("2904489338", "Handikap Afdelingen"));
-        System.out.println(cd.loadCaseTable(3001));
-    }
-
 }
