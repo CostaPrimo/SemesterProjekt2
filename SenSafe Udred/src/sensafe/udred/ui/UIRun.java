@@ -98,6 +98,22 @@ public class UIRun extends Application implements IUI {
         return business.validateLogin(ID, Password);
     }
     
+    public String showCaseOverview(String CPRNumber, String department){
+        return business.showCaseOverview(CPRNumber, department);
+    }
+    
+    public String findCitizenProfile(String CPRNumber){
+        return business.findCitizenProfile(CPRNumber);
+    }
+    
+    public String loadAllCitizenUsers(){
+        return business.loadAllCitizenUsers();
+    }
+    
+    public String loadAllEmployee(){
+        return business.loadAllEmployee();
+    }
+    
     public String getLogs(int ID){
         return business.getLogs(ID);
     }
