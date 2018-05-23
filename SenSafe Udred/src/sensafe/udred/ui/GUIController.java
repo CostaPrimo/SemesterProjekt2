@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -111,7 +112,7 @@ public class GUIController implements Initializable {
     @FXML
     private Label CitizenCasesLabel;
     @FXML
-    private ListView<?> CitizenListView;
+    private ListView<String> CitizenListView;
     @FXML
     private Button CitizenOpenCaseButton;
     @FXML
@@ -188,10 +189,6 @@ public class GUIController implements Initializable {
     private VBox DeleteUserLeftVBox;
     @FXML
     private VBox DeleteUserMiddleVBox;
-    @FXML
-    private Label DeleteUserInsertUserIDLabel;
-    @FXML
-    private TextField DeleteUserInsertUserIDTextField;
     @FXML
     private Button DeleteUserDeleteUserButton;
     @FXML
@@ -299,6 +296,8 @@ public class GUIController implements Initializable {
     private Button CreateCaseCaseCreatedPopupButton;
     @FXML
     private StackPane CreateCaseStackPane;
+    @FXML
+    private ListView<String> DeleteUserListView;
 
     
     
@@ -325,6 +324,12 @@ public class GUIController implements Initializable {
         else if(event.getSource()==AdminFrontPageDeleteUserButton){
             AdminFrontPageBorderPane.setVisible(false);
             DeleteUserBorderPane.setVisible(true);
+            DeleteUserListView.getItems().addAll(UIRun.getInstance().loadAllEmployee().split("\n"));
+            
+            DeleteUserListView.getItems().addAll(UIRun.getInstance().loadAllCitizenUsers().split("\n"));
+            
+            
+            
         }
         else if (event.getSource() == AdminFrontPageLogOutButton){
             AdminFrontPageBorderPane.setVisible(false);
@@ -410,7 +415,7 @@ public class GUIController implements Initializable {
         
         if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password)){
             //Logind Employee
-            if (userID.length() == 4 && userID.charAt(0) == '4' ){
+            if (userID.length() == 4 && userID.charAt(0) == '2' ){
                 LogInBorderPane.setVisible(false);
                 EmployeeBorderPane.setVisible(true);
             }
@@ -428,6 +433,7 @@ public class GUIController implements Initializable {
                CitizenNameUnfilledLabel.setText(name);
                CitizenEmailUnfilledLabel.setText(email);
                
+               CitizenListView.getItems().addAll(UIRun.getInstance().showCaseOverviewForCitizen(CPRNumber).split("\n"));
                
             }
             //Logind Admin
@@ -504,5 +510,17 @@ public class GUIController implements Initializable {
         EmployeeBorderPane.setVisible(true);
     
     }
+    @FXML
+    private void deleteUser(ActionEvent event){
+        if (event.getSource() == DeleteUserDeleteUserButton) {
+            DeleteUserGridPane.setVisible(true);
+        }
+        if (event.getSource() == DeleteUserConfirmButton) {
+            DeleteUserGridPane.setVisible(false);
+            
+        }
+    
+    }
+    
 }
 

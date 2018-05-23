@@ -26,7 +26,7 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee WHERE userID = ?");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT userid, name, zipcode, email, department, phonenumber FROM Employee WHERE userID = ?");
             PStatement.setInt(1, ID);
             rs = PStatement.executeQuery();
             rs.next();
@@ -36,7 +36,7 @@ public class UserDatabase {
             output += rs.getString(4) + ";";
             output += rs.getString(5) + ";";
             output += rs.getString(6) + ";";
-            output += rs.getString(7) + ";";
+            //output += rs.getString(7) + ";";
             output+= "\n";
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -59,13 +59,13 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser WHERE userID = ?");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT cprnumber, userid FROM CitizenUser WHERE userID = ?");
             PStatement.setInt(1, ID);
             rs = PStatement.executeQuery();
             rs.next();
             output += rs.getString(1) + ";";
             output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
+            //output += rs.getString(3) + ";";
             output+= "\n";
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -89,13 +89,13 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM CitizenUser");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT cprnumber, userid FROM CitizenUser");
             rs = PStatement.executeQuery();
 //            rs.next();
             while(rs.next()){
-            output += rs.getString(1) + ";";
-            output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
+            output += rs.getString(1) + "; ";
+            output += rs.getString(2) + "; ";
+           // output += rs.getString(3) + ";";
             output+= "\n";
             }
         } catch (SQLException e) {
@@ -120,17 +120,17 @@ public class UserDatabase {
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Employee");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT userid, name, zipcode, email, department, phonenumber FROM Employee");
             rs = PStatement.executeQuery();
 //            rs.next();
             while (rs.next()){
-            output += rs.getString(1) + ";";
-            output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
-            output += rs.getString(4) + ";";
-            output += rs.getString(5) + ";";
-            output += rs.getString(6) + ";";
-            output += rs.getString(7) + ";";
+            output += rs.getString(1) + "; ";
+            output += rs.getString(2) + "; ";
+            output += rs.getString(3) + "; ";
+            output += rs.getString(4) + "; ";
+            output += rs.getString(5) + "; ";
+            output += rs.getString(6) + "; ";
+            //output += rs.getString(7) + ";";
             output+= "\n";
             }
         } catch (SQLException e) {

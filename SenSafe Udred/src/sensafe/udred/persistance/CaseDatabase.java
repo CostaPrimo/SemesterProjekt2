@@ -247,6 +247,38 @@ public class CaseDatabase {
             }
         }
     }
+    public String showCaseOverviewForCitizen(String CPRNumber) {
+        StringBuilder output = new StringBuilder();
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT(caseid,casedescription,citizen,caseresponsible) FROM casetable, employee WHERE citizen = ?");
+            PStatement.setString(1, CPRNumber);
+            
+            rs = PStatement.executeQuery();
+            while (rs.next()){
+                
+                output.append(rs.getString(1)).append(";");
+                output.append("\n");
+        }
+            if (output.length() != 0) {
+                return output.toString();
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception" + e);
+            return null;
+        } finally {
+            try {
+                st.close();
+                rs.close();
+                st.getConnection().close();
+            } catch (SQLException e) {
+            }
+        }
+    }
 
     private Statement OpenCDConnection() {
 

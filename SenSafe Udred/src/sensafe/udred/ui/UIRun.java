@@ -117,4 +117,8 @@ public class UIRun extends Application implements IUI {
     public String getLogs(int ID){
         return business.getLogs(ID);
     }
+    public String showCaseOverviewForCitizen(String CPRNumber){
+        return business.showCaseOverviewForCitizen(CPRNumber);
+    }
+    
 }

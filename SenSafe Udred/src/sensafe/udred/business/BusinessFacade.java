@@ -130,4 +130,9 @@ public class BusinessFacade implements IBusiness {
     public String getLogs(int ID){
         return persistance.getLogs(ID);
     }
+
+    @Override
+    public String showCaseOverviewForCitizen(String CPRNumber) {
+        return persistance.showCaseOverviewForCitizen(CPRNumber);
+    }
 }

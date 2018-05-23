@@ -94,6 +94,11 @@ public class PersistanceFacade implements IPersistance {
     public String getLogs(int ID){
         return logDatabase.getLogs(ID);
     }
+
+    @Override
+    public String showCaseOverviewForCitizen(String CPRNumber) {
+        return caseDatabase.showCaseOverviewForCitizen(CPRNumber);
+    }
     
     
         

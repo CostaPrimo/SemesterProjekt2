@@ -32,4 +32,5 @@ public interface IBusiness {
     public String loadAllCitizenUsers();
     public String loadAllEmployee();
     public String getLogs(int ID);
+    public String showCaseOverviewForCitizen(String CPRNumber);
 }
