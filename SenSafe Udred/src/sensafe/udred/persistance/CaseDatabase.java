@@ -253,7 +253,7 @@ public class CaseDatabase {
         ResultSet rs = null;
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT(caseid,casedescription,citizen,caseresponsible) FROM casetable, employee WHERE citizen = ?");
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT DISTINCT(caseid,casedescription,citizen,caseresponsible) FROM casetable, employee WHERE citizen = ?");
             PStatement.setString(1, CPRNumber);
             
             rs = PStatement.executeQuery();

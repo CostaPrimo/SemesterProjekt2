@@ -130,8 +130,6 @@ public class GUIController implements Initializable {
     @FXML
     private TextField FindCitizenWriteCPRTextField;
     @FXML
-    private Label FindCitizenAccessDeniedLabel;
-    @FXML
     private Label FindCitizenCPRNonexistentWarningLabel;
     @FXML
     private BorderPane CaseInformationBorderPane;
@@ -160,8 +158,6 @@ public class GUIController implements Initializable {
     @FXML
     private Label CaseInformationCaseIdUnfilledLabel;
     @FXML
-    private Label CaseInformationeEmployeeUnfilledLabel;
-    @FXML
     private Label CaseInformationRelativeUnfilledLabel;
     @FXML
     private Label CaseInformationMedicineUnfilledLabel;
@@ -174,7 +170,7 @@ public class GUIController implements Initializable {
     @FXML
     private Label CaseInformationJournalerLabel;
     @FXML
-    private ListView<?> CaseInformationJournalListView;
+    private ListView<String> CaseInformationJournalListView;
     @FXML
     private Button CaseInformationBackButton;
     @FXML
@@ -205,8 +201,6 @@ public class GUIController implements Initializable {
     private Label DeleteUserPasswordtextLabel;
     @FXML
     private Button DeleteUserConfirmButton;
-    @FXML
-    private VBox DeleteUserRightVBox;
     @FXML
     private BorderPane CreateEmployeeBorderPane;
     @FXML
@@ -298,6 +292,26 @@ public class GUIController implements Initializable {
     private StackPane CreateCaseStackPane;
     @FXML
     private ListView<String> DeleteUserListView;
+    @FXML
+    private Button FindCitizenButton;
+    @FXML
+    private Label CaseInformationEmployeeUnfilledLabel;
+    @FXML
+    private Label CaseInformationCitizenProfileUnfilledLabel;
+    @FXML
+    private BorderPane ShowLogsBorderPane;
+    @FXML
+    private Button ShowLogsBackButton;
+    @FXML
+    private TextField ShowLogIDTextField;
+    @FXML
+    private Button ShowLogsShowLogsButton;
+    @FXML
+    private ListView<String> ShowLogsListView;
+    @FXML
+    private Button AdminFrontPageShowLogs;
+    @FXML
+    private Label ShowLogsWarningLabel;
 
     
     
@@ -338,6 +352,10 @@ public class GUIController implements Initializable {
             LogInBorderPane.setVisible(true);
             
         }
+        else if (event.getSource() == AdminFrontPageShowLogs) {
+           AdminFrontPageBorderPane.setVisible(false);
+           ShowLogsBorderPane.setVisible(true);
+       }
        
     }
     @FXML
@@ -347,6 +365,18 @@ public class GUIController implements Initializable {
             //TODO
             //ADD LOAD CASE INFORMATION
             CaseInformationBorderPane.setVisible(true);
+            String[] caseOverview = CitizenListView.getSelectionModel().getSelectedItem().split(",");
+            System.out.println(caseOverview[0]+ " " + caseOverview[1] + " , " + caseOverview[2] + " , " + caseOverview[3] + " , ");
+            String caseID = caseOverview[0];
+            String caseDescription = caseOverview[1];
+            String citizenProfile = caseOverview[2];
+            String employee = caseOverview[3];
+            CaseInformationCaseIdUnfilledLabel.setText(caseID);
+            CaseInformationCaseDescriptionTextArea.setText(caseDescription);
+            CaseInformationEmployeeUnfilledLabel.setText(employee);
+            CaseInformationCitizenProfileUnfilledLabel.setText(citizenProfile);
+            //Ingen journaler? og hvordan fåes journalID? metoden skal nok ændres
+            CaseInformationJournalListView.getItems().add(UIRun.getInstance().loadJournal(0));
         }
         else if(event.getSource()==CitizenBackButton){
            
@@ -367,6 +397,7 @@ public class GUIController implements Initializable {
         else if(event.getSource()==EmployeeFindCitizenProfileButton){
             EmployeeBorderPane.setVisible(false);
             FindCitizenBorderPane.setVisible(true);
+            
         }
         else if(event.getSource()==EmployeeLogOutButton){
             //Make sure to swap something around in logic layer
@@ -406,12 +437,18 @@ public class GUIController implements Initializable {
             DeleteUserBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
         }
+        else if (event.getSource() == ShowLogsBackButton) {
+            ShowLogsBorderPane.setVisible(false);
+            AdminFrontPageBorderPane.setVisible(true);
+            ShowLogsListView.getItems().clear();
+        }
     }
     @FXML
     private void LogIn(ActionEvent event){
         String userID = LogInUserIDTextField.getText();
         String password = LogInPasswordField.getText();
-        
+        LogInUserIDTextField.clear();
+        LogInPasswordField.clear();
         
         if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password)){
             //Logind Employee
@@ -521,6 +558,52 @@ public class GUIController implements Initializable {
         }
     
     }
+    @FXML
+    private void findCitizen(ActionEvent event){
+        String CPR = ""; 
+        CPR = FindCitizenWriteCPRTextField.getText();
+        FindCitizenWriteCPRTextField.clear();
+        if (CPR.length() == 0) {
+            FindCitizenCPRNonexistentWarningLabel.setText("Vær venlig at indtast CPR");
+            FindCitizenCPRNonexistentWarningLabel.setVisible(true);
+        }
+        
+        else if (CPR.length() != 10){
+            FindCitizenCPRNonexistentWarningLabel.setText("CPR skal være 10 tal langt");
+            FindCitizenCPRNonexistentWarningLabel.setVisible(true);
+        
+        }
+        else{
+            FindCitizenCPRNonexistentWarningLabel.setVisible(false);
+            FindCitizenBorderPane.setVisible(false);
+            String[] citizenProfile = UIRun.getInstance().findCitizenProfile(CPR).split(";");
+            String name = citizenProfile[1];
+            String email = citizenProfile[2];
+            CitizenBorderPane.setVisible(true);
+            
+            CitizenCPRUnfilledLabel.setText(CPR);
+            CitizenNameUnfilledLabel.setText(name);
+            CitizenEmailUnfilledLabel.setText(email);
+            CitizenListView.getItems().addAll(UIRun.getInstance().showCaseOverviewForCitizen(CPR).split("\n"));
+        }
     
+    }
+    @FXML
+    private void showLogs(ActionEvent event) {
+        String logID = ShowLogIDTextField.getText();
+        ShowLogIDTextField.clear();
+        if (logID.length() == 0) {
+            ShowLogsWarningLabel.setText("Indtast ID");
+            ShowLogsWarningLabel.setVisible(true);
+        }
+        else if (UIRun.getInstance().getLogs(Integer.parseInt(logID)) == null) {
+            ShowLogsWarningLabel.setText("Der er ingen logs med dette ID");
+            ShowLogsWarningLabel.setVisible(true);
+        }
+        else {
+        ShowLogsListView.getItems().addAll(UIRun.getInstance().getLogs(Integer.parseInt(logID)).split("\n"));
+        ShowLogsWarningLabel.setVisible(false);
+        }
+    }
 }
 

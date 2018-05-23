@@ -23,7 +23,7 @@
 
 <AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
-      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox fx:id="logInCenterHBox" alignment="CENTER" centerShape="false" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -80,13 +80,18 @@
          <center>
             <VBox id="AdminFrontPageVBox" fx:id="AdminFrontPageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="AdminCreatEmployeeButton" fx:id="AdminFrontPageCreateEmployeeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Employee" />
-                  <Button id="AdminCreateCitizenButton" fx:id="AdminFrontPageCreateCitizenButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Citizen">
+                  <Button id="AdminCreatEmployeeButton" fx:id="AdminFrontPageCreateEmployeeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Bruger" />
+                  <Button id="AdminCreateCitizenButton" fx:id="AdminFrontPageCreateCitizenButton" alignment="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Opret Borger">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
                   <Button id="AdminDeleteUserButton" fx:id="AdminFrontPageDeleteUserButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Slet Bruger">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="AdminFrontPageShowLogs" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Vis Logs">
                      <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                      </VBox.margin>
@@ -102,7 +107,7 @@
             </Label>
          </top>
          <bottom>
-            <Button fx:id="AdminFrontPageLogOutButton" mnemonicParsing="false" onAction="#adminButtons" text="Log ud" BorderPane.alignment="CENTER" />
+            <Button fx:id="AdminFrontPageLogOutButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#adminButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
@@ -172,7 +177,7 @@
                   </HBox>
                   <VBox id="FrontpageCitizenCaseVBox" fx:id="CitzienRightVBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="300.0">
                      <children>
-                        <Label id="FrontpageCitizenCaseLabel" fx:id="CitizenCasesLabel" text="Cases:">
+                        <Label id="FrontpageCitizenCaseLabel" fx:id="CitizenCasesLabel" text="Sager">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -189,14 +194,14 @@
             </HBox>
          </center>
          <top>
-            <Label id="FrontPageCitizenTitel" fx:id="CitizenTitelLabel" text="SenSafeUdred Citizen User Profile" BorderPane.alignment="CENTER">
+            <Label id="FrontPageCitizenTitel" fx:id="CitizenTitelLabel" text="SenSafeUdred Borger Profile" BorderPane.alignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
          </top>
          <bottom>
-            <Button fx:id="CitizenBackButton" mnemonicParsing="false" onAction="#citizenButtons" text="Back" BorderPane.alignment="CENTER" />
+            <Button fx:id="CitizenBackButton" mnemonicParsing="false" onAction="#citizenButtons" text="Tilbage" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
       <BorderPane id="FindCitizenProfilBorderPane" fx:id="FindCitizenBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
@@ -215,12 +220,12 @@
                               <Insets left="200.0" right="200.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label id="FindCitizenProfileAccessDeniedLabel" fx:id="FindCitizenAccessDeniedLabel" text="Adgang Nægtet">
+                        <Button fx:id="FindCitizenButton" mnemonicParsing="false" onAction="#findCitizen" text="Søg">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets left="100.0" />
                            </VBox.margin>
-                        </Label>
-                        <Label id="FindCitizenProfileCPRWarningLabel" fx:id="FindCitizenCPRNonexistentWarningLabel" text="CPR eksistere ikke i databasen">
+                        </Button>
+                        <Label id="FindCitizenProfileCPRWarningLabel" fx:id="FindCitizenCPRNonexistentWarningLabel" text="CPR eksistere ikke i databasen" visible="false">
                            <VBox.margin>
                               <Insets bottom="180.0" top="10.0" />
                            </VBox.margin>
@@ -261,10 +266,10 @@
                            <children>
                               <Label fx:id="CaseInformationCaseInformationLabel" text="Case Information: " />
                               <Label fx:id="CaseInformationCaseIDLabel" text="CaseID: " />
-                              <Label fx:id="CaseInformationEmployeeLabel" text="Employee" />
-                              <Label fx:id="CaseInformationCitizenProfileLabel" text="CitizenProfile" />
-                              <Label fx:id="CaseInformationRelativeLabel" text="Relative(s): " />
-                              <Label fx:id="CaseInformationMedicineLabel" text="Medicine: " />
+                              <Label fx:id="CaseInformationEmployeeLabel" text="Sagsansvarlig:" />
+                              <Label fx:id="CaseInformationCitizenProfileLabel" text="BorgerCPR:" />
+                              <Label fx:id="CaseInformationRelativeLabel" text="Vedrørende:" />
+                              <Label fx:id="CaseInformationMedicineLabel" text="Medicin: " />
                            </children>
                         </VBox>
                         <VBox fx:id="CaseInformationMiddleVBox" alignment="CENTER" prefHeight="360.0" prefWidth="157.0">
@@ -274,8 +279,8 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Label>
-                              <Label fx:id="CaseInformationeEmployeeUnfilledLabel" text="Label" />
-                              <Label fx:id="CaseInformationCitizenProfileLabel" text="Label" />
+                              <Label fx:id="CaseInformationEmployeeUnfilledLabel" text="Label" />
+                              <Label fx:id="CaseInformationCitizenProfileUnfilledLabel" text="Label" />
                               <Label fx:id="CaseInformationRelativeUnfilledLabel" text="Label" />
                               <Label fx:id="CaseInformationMedicineUnfilledLabel" text="Label" />
                            </children>
@@ -284,7 +289,7 @@
                   </HBox>
                   <VBox fx:id="CaseInformationRightVBox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="579.0">
                      <children>
-                        <Label fx:id="CaseInformationCaseDescriptionLabel" text="Case description:" />
+                        <Label fx:id="CaseInformationCaseDescriptionLabel" text="Sags beskrivelse" />
                         <TextArea fx:id="CaseInformationCaseDescriptionTextArea" editable="false" prefHeight="126.0" prefWidth="343.0" />
                         <Label fx:id="CaseInformationJournalerLabel" text="Journaler:" />
                         <ListView fx:id="CaseInformationJournalListView" prefHeight="92.0" prefWidth="343.0" />
@@ -309,26 +314,26 @@
          <center>
             <HBox id="DeleteUserHBox" fx:id="DeleteUserCenterHBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="DeleteUserLeftVBox" prefHeight="360.0" prefWidth="193.0">
+                  <VBox fx:id="DeleteUserLeftVBox" prefHeight="335.0" prefWidth="300.0">
                      <children>
                         <Label text="Bruger: ">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="DeleteUserListView" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="DeleteUserListView" prefHeight="200.0" prefWidth="206.0" />
                         <Button id="DeleteUserButton" fx:id="DeleteUserDeleteUserButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteUser" text="Slet Bruger">
                            <VBox.margin>
                               <Insets bottom="70.0" left="107.0" />
                            </VBox.margin>
                         </Button>
                      </children></VBox>
-                  <VBox id="DeleteUserMiddleVBox" fx:id="DeleteUserMiddleVBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="223.0">
+                  <VBox id="DeleteUserMiddleVBox" fx:id="DeleteUserMiddleVBox" alignment="CENTER" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="335.0" prefWidth="269.0">
                      <children>
                         <GridPane id="SletBrugerLogInGrid" fx:id="DeleteUserGridPane" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" visible="false">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="116.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="104.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="112.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -337,7 +342,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label id="DeleteUserTextLabel" fx:id="DeleteUserInsertAdminLabel" prefHeight="17.0" prefWidth="131.0" text="Indtast Admin Login" />
+                              <Label id="DeleteUserTextLabel" fx:id="DeleteUserInsertAdminLabel" prefHeight="17.0" prefWidth="106.0" text="Indtast Admin Log ind" />
                               <PasswordField id="SletBrugerPasswordField" fx:id="DeleteUserPassWordPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField id="DeleteUserBrugerIDTextField" fx:id="DeleteUserUserIDTextField" GridPane.rowIndex="2" />
                               <Label id="DeleteUserBrugerIDLabel" fx:id="DeleteUserBrugerIDFilledLabel" text="BrugerID" GridPane.rowIndex="1" />
@@ -349,8 +354,10 @@
                            </VBox.margin>
                         </GridPane>
                      </children>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox fx:id="DeleteUserRightVBox" prefHeight="360.0" prefWidth="190.0" />
                </children>
             </HBox>
          </center>
@@ -509,8 +516,8 @@
                                        </VBox.margin>
                                     </Separator>
                                     <Label text="Borgerens CPR nummer" />
-                                    <Label text="Hvilken Employee styrer casen" />
-                                    <Label text="Indtast EmployeeID" />
+                                    <Label text="Hvilken ansat styrer casen" />
+                                    <Label text="Indtast BrugerID" />
                                     <Separator prefWidth="200.0" />
                                     <Label text="Er det klart hvad borgeren søger " />
                                     <Label text="om?" />
@@ -738,7 +745,7 @@
                                           <Insets />
                                        </VBox.margin>
                                     </Separator>
-                                    <Button fx:id="CreateCaseCreateCaseButton1" mnemonicParsing="false" onAction="#createCase" text="CreateCase">
+                                    <Button fx:id="CreateCaseCreateCaseButton1" mnemonicParsing="false" onAction="#createCase" text="Opret Sag">
                                        <VBox.margin>
                                           <Insets left="300.0" />
                                        </VBox.margin>
@@ -762,5 +769,28 @@
             </Pane>
          </children>
       </StackPane>
+      <BorderPane fx:id="ShowLogsBorderPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0">
+         <center>
+            <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="52.0" layoutY="28.0" text="ID" />
+                  <TextField fx:id="ShowLogIDTextField" layoutX="52.0" layoutY="45.0" promptText="ID" />
+                  <Button fx:id="ShowLogsShowLogsButton" layoutX="208.0" layoutY="45.0" mnemonicParsing="false" onAction="#showLogs" text="Vis Logs" />
+                  <ListView fx:id="ShowLogsListView" layoutX="52.0" layoutY="81.0" prefHeight="254.0" prefWidth="492.0" />
+                  <Label fx:id="ShowLogsWarningLabel" layoutX="298.0" layoutY="49.0" />
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Label text="Vis Logs" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <bottom>
+            <Button fx:id="ShowLogsBackButton" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="BOTTOM_RIGHT" />
+         </bottom>
+      </BorderPane>
    </children>
 </AnchorPane>
