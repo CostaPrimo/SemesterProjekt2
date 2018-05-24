@@ -100,7 +100,10 @@ public class PersistanceFacade implements IPersistance {
         return caseDatabase.showCaseOverviewForCitizen(CPRNumber);
     }
     
-    
+    @Override
+    public void changeDepartment(int userID, String newDepartment){
+        userDatabase.changeDepartment(userID, newDepartment);
+    }
         
 }
 

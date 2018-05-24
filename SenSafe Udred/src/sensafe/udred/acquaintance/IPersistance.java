@@ -30,4 +30,5 @@ public interface IPersistance {
         public String loadAllEmployee();
         public String getLogs(int ID);
         public String showCaseOverviewForCitizen(String CPRNumber);
+        public void changeDepartment(int userID, String newDepartment);
 }

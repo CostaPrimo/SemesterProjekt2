@@ -278,6 +278,30 @@ public class UserDatabase {
         }
     }
     
+    public void changeDepartment(int userID, String newDepartment){
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = OpenUDConnection();
+            PreparedStatement PStatement = st.getConnection().prepareStatement("UPDATE employee SET department = ? WHERE userid = ?");
+            PStatement.setString(1, newDepartment);
+            PStatement.setInt(2, userID);
+            rs = PStatement.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Exception" + e);
+        }
+        finally{
+            try {
+                st.close();
+                if(rs!=null){
+                rs.close();
+                }
+                st.getConnection().close(); 
+            } catch (SQLException e) {
+            }
+        }
+    }
+    
     private Statement OpenUDConnection(){
         
         try {
@@ -382,5 +406,8 @@ public class UserDatabase {
         }
         return isCorrect;
     }
-    
+    public static void main(String[] args) {
+        UserDatabase ud = new UserDatabase();
+        ud.changeDepartment(2013, "Testmetode");
+    }
 }

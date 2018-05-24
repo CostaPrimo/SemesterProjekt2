@@ -135,4 +135,9 @@ public class BusinessFacade implements IBusiness {
     public String showCaseOverviewForCitizen(String CPRNumber) {
         return persistance.showCaseOverviewForCitizen(CPRNumber);
     }
+    
+    @Override
+    public void changeDepartment(int userID, String newDepartment){
+        persistance.changeDepartment(userID, newDepartment);
+    }
 }

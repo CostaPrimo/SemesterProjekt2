@@ -53,7 +53,7 @@ public class SenSafeUdred {
         //System.out.println(business.loadCitizenProfile("2904489338"));
         //System.out.println(business.loadCase(3001));
         //System.out.println(business.loadJournal(4002));
-                
+        //business.changeDepartment(2013, "nyDepartmentTest");
         //-------------------------------------------------------------------------------------------------------------------          
     }
 }
