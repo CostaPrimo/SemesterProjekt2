@@ -110,7 +110,7 @@
             <Button fx:id="AdminFrontPageLogOutButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#adminButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
-      <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <padding>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
@@ -769,7 +769,7 @@
             </Pane>
          </children>
       </StackPane>
-      <BorderPane fx:id="ShowLogsBorderPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane fx:id="ShowLogsBorderPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false">
          <center>
             <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>

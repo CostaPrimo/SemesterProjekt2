@@ -527,14 +527,33 @@ public class GUIController implements Initializable {
         String caseDesc = CreateCaseCaseDescTextArea1.getText();
         String employeeID = CreateCaseEmployeeIDTextField1.getText();
         String citizenProfile = CreateCaseCPRTextField1.getText();
+        CreateCaseCaseDescTextArea1.clear();
+        CreateCaseEmployeeIDTextField1.clear();
+        CreateCaseCPRTextField1.clear();
+        
         
            if (caseDesc.isEmpty() || employeeID.isEmpty()|| citizenProfile.isEmpty()) {
                CreateCaseCaseCreatedPopupLabel.setText("Udfyld venligst alle felter");
                CreateCaseCaseCreatedPopupPane.setVisible(true);
             }
+           else if (citizenProfile.length() != 10) {
+                CreateCaseCaseCreatedPopupLabel.setText("CPR skal være 10 langt");
+                CreateCaseCaseCreatedPopupPane.setVisible(true);
+        }
+           else if (UIRun.getInstance().loadEmployee(Integer.parseInt(employeeID)) == null) {
+               CreateCaseCaseCreatedPopupLabel.setText("Employee findes ikke i databasen");
+               CreateCaseCaseCreatedPopupPane.setVisible(true);
+            
+        }
+           else if (UIRun.getInstance().loadCitizenProfile(citizenProfile) == null) {
+            CreateCaseCaseCreatedPopupLabel.setText("CPR findes ikke i databasen");
+               CreateCaseCaseCreatedPopupPane.setVisible(true);
+               
+        }
            else {
                
                UIRun.getInstance().createCase(caseDesc, citizenProfile, Integer.parseInt(employeeID));
+               
                CreateCaseCaseCreatedPopupLabel.setText("Sagen er oprettet");
                CreateCaseCaseCreatedPopupPane.setVisible(true);
            }
