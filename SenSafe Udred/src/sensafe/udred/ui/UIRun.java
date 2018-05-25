@@ -120,5 +120,7 @@ public class UIRun extends Application implements IUI {
     public String showCaseOverviewForCitizen(String CPRNumber){
         return business.showCaseOverviewForCitizen(CPRNumber);
     }
-    
+    public void changeDepartment(int userID, String newDepartment){
+        business.changeDepartment(userID, newDepartment);
+    }
 }

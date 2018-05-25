@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
@@ -76,7 +77,7 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
       </BorderPane>
-      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="AdminFrontpageBorderPane" fx:id="AdminFrontPageBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <center>
             <VBox id="AdminFrontPageVBox" fx:id="AdminFrontPageVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
@@ -92,6 +93,11 @@
                      </VBox.margin>
                   </Button>
                   <Button fx:id="AdminFrontPageShowLogs" mnemonicParsing="false" onAction="#adminButtons" prefHeight="25.0" prefWidth="115.0" text="Vis Logs">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="AdminFrontPageChangeDepartmentButton" mnemonicParsing="false" onAction="#adminButtons" prefWidth="115.0" text="Ændrer Afdeling">
                      <VBox.margin>
                         <Insets bottom="50.0" top="10.0" />
                      </VBox.margin>
@@ -110,7 +116,7 @@
             <Button fx:id="AdminFrontPageLogOutButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#adminButtons" text="Log ud" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
-      <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+      <BorderPane id="ForsideEmployee" fx:id="EmployeeBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <padding>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </padding>
@@ -790,6 +796,29 @@
          </top>
          <bottom>
             <Button fx:id="ShowLogsBackButton" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="BOTTOM_RIGHT" />
+         </bottom>
+      </BorderPane>
+      <BorderPane fx:id="ChangeDepartmentBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Label text="Change Department" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <Pane centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="ChangeDepartmentUserIDTextField" layoutX="78.0" layoutY="92.0" promptText="BrugerID" />
+                  <ChoiceBox fx:id="ChangeDepartmentChoiceBox" layoutX="280.0" layoutY="92.0" prefWidth="150.0" />
+                  <Button fx:id="ChangeDepartmentChangeDepartmentButton" layoutX="430.0" layoutY="156.0" mnemonicParsing="false" onAction="#changeDepartment" text="Ændrer afdeling" />
+                  <Label fx:id="ChangeDepartmentWarningLabel" layoutX="167.0" layoutY="160.0" text="BrugerID findes ikke i databasen" visible="false" />
+                  <Label fx:id="ChangeDepartmentConfirmationLabel" layoutX="238.0" layoutY="139.0" text="Afdeling ændret" visible="false" />
+               </children>
+            </Pane>
+         </center>
+         <bottom>
+            <Button fx:id="ChangeDepartmentBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="BOTTOM_RIGHT" />
          </bottom>
       </BorderPane>
    </children>

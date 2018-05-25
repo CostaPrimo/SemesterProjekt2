@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
@@ -312,6 +313,22 @@ public class GUIController implements Initializable {
     private Button AdminFrontPageShowLogs;
     @FXML
     private Label ShowLogsWarningLabel;
+    @FXML
+    private BorderPane ChangeDepartmentBorderPane;
+    @FXML
+    private Button ChangeDepartmentBackButton;
+    @FXML
+    private TextField ChangeDepartmentUserIDTextField;
+    @FXML
+    private ChoiceBox<String> ChangeDepartmentChoiceBox;
+    @FXML
+    private Button ChangeDepartmentChangeDepartmentButton;
+    @FXML
+    private Button AdminFrontPageChangeDepartmentButton;
+    @FXML
+    private Label ChangeDepartmentWarningLabel;
+    @FXML
+    private Label ChangeDepartmentConfirmationLabel;
 
     
     
@@ -355,6 +372,12 @@ public class GUIController implements Initializable {
         else if (event.getSource() == AdminFrontPageShowLogs) {
            AdminFrontPageBorderPane.setVisible(false);
            ShowLogsBorderPane.setVisible(true);
+       }
+        else if (event.getSource() == AdminFrontPageChangeDepartmentButton) {
+           AdminFrontPageBorderPane.setVisible(false);
+           ChangeDepartmentBorderPane.setVisible(true);
+           ChangeDepartmentChoiceBox.getItems().addAll("Handicap Afdelingen", "Børne- og Familieafdelingen", "Socialafdelingen", "Sundheds- og Omsorgsafdelingen", "Ikke Aktiv");
+           
        }
        
     }
@@ -442,7 +465,13 @@ public class GUIController implements Initializable {
             AdminFrontPageBorderPane.setVisible(true);
             ShowLogsListView.getItems().clear();
         }
+        else if (event.getSource() == ChangeDepartmentBackButton)
+            ChangeDepartmentBorderPane.setVisible(false);
+            AdminFrontPageBorderPane.setVisible(true);
+            ChangeDepartmentConfirmationLabel.setVisible(false);
+            ChangeDepartmentWarningLabel.setVisible(false);
     }
+    
     @FXML
     private void LogIn(ActionEvent event){
         String userID = LogInUserIDTextField.getText();
@@ -624,5 +653,20 @@ public class GUIController implements Initializable {
         ShowLogsWarningLabel.setVisible(false);
         }
     }
+    @FXML
+    private void changeDepartment(ActionEvent event){
+        String userID = ChangeDepartmentUserIDTextField.getText();
+        String department = ChangeDepartmentChoiceBox.getSelectionModel().getSelectedItem();
+        
+        if (UIRun.getInstance().loadEmployee(Integer.parseInt(userID)) == null) {
+            ChangeDepartmentWarningLabel.setVisible(true);
+        }
+        else{
+            UIRun.getInstance().changeDepartment(Integer.parseInt(userID), department);
+            ChangeDepartmentConfirmationLabel.setVisible(true);
+        }
+    
+    }
+    
 }
 
