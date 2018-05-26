@@ -44,9 +44,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -73,9 +73,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -103,9 +103,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -138,9 +138,9 @@ public class UserDatabase {
         
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -185,9 +185,9 @@ public class UserDatabase {
         }
         finally{
             try{
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             }
             catch(Exception e){
             }
@@ -211,9 +211,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -228,9 +228,9 @@ public class UserDatabase {
         }
         finally{
             try{
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             }
             catch(Exception e){
             }
@@ -254,9 +254,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -278,9 +278,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -305,9 +305,9 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close(); 
             } catch (SQLException e) {
             }
         }
@@ -327,11 +327,11 @@ public class UserDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 if(rs!=null){
                 rs.close();
                 }
-                st.getConnection().close(); 
             } catch (SQLException e) {
             }
         }
@@ -433,9 +433,9 @@ public class UserDatabase {
         
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }

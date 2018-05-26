@@ -41,9 +41,9 @@ public class CaseDatabase {
             System.out.println("No case found");
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -69,9 +69,9 @@ public class CaseDatabase {
             return null;
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -99,9 +99,9 @@ public class CaseDatabase {
             return null;
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -122,9 +122,9 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -164,9 +164,9 @@ public class CaseDatabase {
         }
         finally {
             try{
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             }
             catch(Exception e){
             }
@@ -188,9 +188,9 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -208,9 +208,9 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -228,9 +228,9 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -260,9 +260,9 @@ public class CaseDatabase {
             return null;
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }
@@ -292,9 +292,9 @@ public class CaseDatabase {
             return null;
         } finally {
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (SQLException e) {
             }
         }

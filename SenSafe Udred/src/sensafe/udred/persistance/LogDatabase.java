@@ -26,9 +26,9 @@ public class LogDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
@@ -55,9 +55,9 @@ public class LogDatabase {
         }
         finally{
             try {
+                st.getConnection().close();
                 st.close();
                 rs.close();
-                st.getConnection().close();
             } catch (Exception e) {
             }
         }
