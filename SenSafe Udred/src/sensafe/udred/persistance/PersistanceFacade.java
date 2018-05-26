@@ -14,8 +14,8 @@ public class PersistanceFacade implements IPersistance {
     private UserDatabase userDatabase = new UserDatabase();
 
     @Override
-    public void createCitizenUser(String CPR, String password){
-        userDatabase.writeInfoToCitizenUser(CPR, password);
+    public String createCitizenUser(String CPR, String password){
+        return userDatabase.writeInfoToCitizenUser(CPR, password);
     }
 
     @Override
@@ -28,8 +28,8 @@ public class PersistanceFacade implements IPersistance {
     }
 
     @Override
-    public String loadCitizenUser(int ID) {
-        return userDatabase.loadCitizenUsers(ID);
+    public String loadCitizenUser(String CPR) {
+        return userDatabase.loadCitizenUsers(CPR);
     }
     
     @Override
@@ -47,8 +47,8 @@ public class PersistanceFacade implements IPersistance {
     }
 
     @Override
-    public void createEmployee(String name, String zipCode, String email, String department, String phonenumber, String password) {
-        userDatabase.writeInfoToEmployee(name, zipCode, email, department, phonenumber, password);
+    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber, String password) {
+        return userDatabase.writeInfoToEmployee(name, zipCode, email, department, phonenumber, password);
     }
     
     @Override
@@ -57,8 +57,8 @@ public class PersistanceFacade implements IPersistance {
     }
     
     @Override
-    public void createCase(String caseDescription, String citizenProfile, int caseResponsible){
-        caseDatabase.writeInfoToCaseTable(caseDescription, citizenProfile, caseResponsible);
+    public String createCase(String caseDescription, String citizenProfile, int caseResponsible){
+        return caseDatabase.writeInfoToCaseTable(caseDescription, citizenProfile, caseResponsible);
     }
     
     @Override

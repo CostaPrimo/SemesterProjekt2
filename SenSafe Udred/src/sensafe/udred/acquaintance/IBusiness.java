@@ -16,15 +16,15 @@ public interface IBusiness {
     void injectCaseController(ICaseController caseController);
     
     void createLog(int ActorID, int TargetID, String action);
-    String loadCitizenUser(int ID);
+    String loadCitizenUser(String CPR);
     String loadEmployee(int ID);
     String loadCitizenProfile(String CPRNumber);
     String loadCase(int caseID);
     String loadJournal(int journalID);
-    public String createCitizenUser(String CPRNumber);
-    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber);
+    public String[] createCitizenUser(String CPRNumber);
+    public String[] createEmployee(String name, String zipCode, String email, String department, String phonenumber);
     public void createCitizenProfile(String name, String email, String CPRNumber);
-    public void createCase(String caseDescription, String citizenProfile, int caseResponsible);
+    public String createCase(String caseDescription, String citizenProfile, int caseResponsible);
     public void createJournal(String resume, int writer, int relatedCase);
     public boolean validateLogin(int ID, String Password);
     public String showCaseOverview(String CPRNumber, String department);

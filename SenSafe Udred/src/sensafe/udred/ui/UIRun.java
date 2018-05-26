@@ -53,8 +53,8 @@ public class UIRun extends Application implements IUI {
         business.createLog(actorID, targetID, action);
     }
     
-    public String loadCitizenUser(int ID){
-        return business.loadCitizenUser(ID);
+    public String loadCitizenUser(String CPR){
+        return business.loadCitizenUser(CPR);
     }
     
     public String loadEmployee(int ID){
@@ -73,12 +73,12 @@ public class UIRun extends Application implements IUI {
         return business.loadJournal(journalID);
     }
     
-    public String createCitizenUser(String CPR){
+    public String[] createCitizenUser(String CPR){
         return business.createCitizenUser(CPR);
         
     }
     
-    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber){
+    public String[] createEmployee(String name, String zipCode, String email, String department, String phonenumber){
        return business.createEmployee(name, zipCode, email, department, phonenumber);
     }
     
@@ -86,8 +86,8 @@ public class UIRun extends Application implements IUI {
         business.createCitizenProfile(name, email, CPRNumber);
     }
     
-    public void createCase(String caseDescription, String citizenProfile, int caseResponsible){
-        business.createCase(caseDescription, citizenProfile, caseResponsible);
+    public String createCase(String caseDescription, String citizenProfile, int caseResponsible){
+        return business.createCase(caseDescription, citizenProfile, caseResponsible);
     }
     
     public void createJournal(String resume, int writer, int relatedCase){

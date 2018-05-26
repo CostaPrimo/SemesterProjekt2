@@ -10,7 +10,7 @@ package sensafe.udred.business;
  * @author Jeppe Enevold
  */
 public enum Action {
-    CREATE("create"), DELETE("delete"), EDIT("edit"), LOGIN("login"), VIEW("view"), UNKNOWN("?");
+    CREATE("create"), DELETE("delete"), EDIT("edit"), LOGIN("login"), LOGOUT("logout"), SHOWLOGS("showlogs"), VIEW("view"), UNKNOWN("?");
     
     private String actionDone;
     

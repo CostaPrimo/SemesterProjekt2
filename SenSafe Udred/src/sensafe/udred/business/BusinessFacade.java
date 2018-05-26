@@ -43,18 +43,20 @@ public class BusinessFacade implements IBusiness {
     
     //-------------------------------------------------------------------------------------------------------------------    
     @Override
-    public String createCitizenUser(String CPR){
+    public String[] createCitizenUser(String CPR){
         String[]temp = userController.createCitizenUser(CPR).split(";");
-        persistance.createCitizenUser(CPR, temp[1]);
+        String userID =persistance.createCitizenUser(CPR, temp[1]);
+        String[]returnValue ={temp[1],userID};
         System.out.println(temp[1]); //This needs to be printed out on GUI
-        return temp[1];
+        return returnValue;
     }
     @Override
-    public String createEmployee(String name, String zipCode, String email, String department, String phonenumber){
+    public String[] createEmployee(String name, String zipCode, String email, String department, String phonenumber){
         String[]temp = userController.createEmployee(name, zipCode, email, department, phonenumber).split(";");
-        persistance.createEmployee(temp[0],temp[1],temp[2],temp[3],temp[4], temp[5]);
         System.out.println(temp[5]); //This needs to be printed out on GUI
-        return temp[5];
+        String userID = persistance.createEmployee(temp[0],temp[1],temp[2],temp[3],temp[4], temp[5]);
+        String[]returnValue ={temp[5], userID};
+        return returnValue;
     }
     
     @Override
@@ -67,8 +69,8 @@ public class BusinessFacade implements IBusiness {
         persistance.createLog(logController.log(ActorID, TargetID, action), ActorID, TargetID, logController.verifyAction(action));
     }
     @Override
-    public void createCase(String caseDescription, String citizenProfile, int caseResponsible){
-        persistance.createCase(caseDescription, citizenProfile, caseResponsible);
+    public String createCase(String caseDescription, String citizenProfile, int caseResponsible){
+        return persistance.createCase(caseDescription, citizenProfile, caseResponsible);
     }
     @Override
     public void createJournal(String resume, int writer, int relatedCase){
@@ -76,8 +78,8 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public String loadCitizenUser(int ID){
-        return persistance.loadCitizenUser(ID);
+    public String loadCitizenUser(String CPR){
+        return persistance.loadCitizenUser(CPR);
     
     }
     

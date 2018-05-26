@@ -130,7 +130,8 @@ public class CaseDatabase {
         }
     }
 
-    public void writeInfoToCaseTable(String caseDescription, String citizenProfile, int caseResponsible) {
+    public String writeInfoToCaseTable(String caseDescription, String citizenProfile, int caseResponsible) {
+        String id = "";
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -145,13 +146,32 @@ public class CaseDatabase {
         } finally {
             try {
                 st.close();
-              //  rs.close();
+                //rs.close();
                 st.getConnection().close();
                 
                 
             } catch (SQLException e) {
             }
         }
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement2 = st.getConnection().prepareStatement("SELECT MAX(caseid) AS caseID FROM caseTable");
+            rs = PStatement2.executeQuery();
+            rs.next();
+            id += rs.getString(1);    
+        }
+        catch(Exception e){
+        }
+        finally {
+            try{
+                st.close();
+                rs.close();
+                st.getConnection().close();
+            }
+            catch(Exception e){
+            }
+        }
+        return id;
     }
 
     public void writeInfoToJournal(String resume, int writer, int relatedCase) {

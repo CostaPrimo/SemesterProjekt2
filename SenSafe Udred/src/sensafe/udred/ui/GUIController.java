@@ -331,7 +331,7 @@ public class GUIController implements Initializable {
     private Label ChangeDepartmentConfirmationLabel;
 
     
-    
+    private int userReference;
     
     /**
      * Initializes the controller class.
@@ -339,6 +339,7 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ChangeDepartmentChoiceBox.getItems().addAll("Handicap Afdelingen", "Børne- og Familieafdelingen", "Socialafdelingen", "Sundheds- og Omsorgsafdelingen", "Ikke Aktiv");
     }    
     
     
@@ -355,18 +356,15 @@ public class GUIController implements Initializable {
         else if(event.getSource()==AdminFrontPageDeleteUserButton){
             AdminFrontPageBorderPane.setVisible(false);
             DeleteUserBorderPane.setVisible(true);
+            DeleteUserListView.getItems().clear();
             DeleteUserListView.getItems().addAll(UIRun.getInstance().loadAllEmployee().split("\n"));
-            
             DeleteUserListView.getItems().addAll(UIRun.getInstance().loadAllCitizenUsers().split("\n"));
-            
-            
-            
         }
         else if (event.getSource() == AdminFrontPageLogOutButton){
+            UIRun.getInstance().createLog(userReference, userReference, "logout");
             AdminFrontPageBorderPane.setVisible(false);
-            //Make sure to swap something around in logic layer
-            //ActiveUser == null
             LogInBorderPane.setVisible(true);
+            userReference = 0;
             
         }
         else if (event.getSource() == AdminFrontPageShowLogs) {
@@ -376,8 +374,7 @@ public class GUIController implements Initializable {
         else if (event.getSource() == AdminFrontPageChangeDepartmentButton) {
            AdminFrontPageBorderPane.setVisible(false);
            ChangeDepartmentBorderPane.setVisible(true);
-           ChangeDepartmentChoiceBox.getItems().addAll("Handicap Afdelingen", "Børne- og Familieafdelingen", "Socialafdelingen", "Sundheds- og Omsorgsafdelingen", "Ikke Aktiv");
-           
+
        }
        
     }
@@ -385,8 +382,6 @@ public class GUIController implements Initializable {
     private void citizenButtons(ActionEvent event){
         if(event.getSource()==CitizenOpenCaseButton){
             CitizenBorderPane.setVisible(false);
-            //TODO
-            //ADD LOAD CASE INFORMATION
             CaseInformationBorderPane.setVisible(true);
             String[] caseOverview = CitizenListView.getSelectionModel().getSelectedItem().split(",");
             System.out.println(caseOverview[0]+ " " + caseOverview[1] + " , " + caseOverview[2] + " , " + caseOverview[3] + " , ");
@@ -400,22 +395,28 @@ public class GUIController implements Initializable {
             CaseInformationCitizenProfileUnfilledLabel.setText(citizenProfile);
             //Ingen journaler? og hvordan fåes journalID? metoden skal nok ændres
             CaseInformationJournalListView.getItems().add(UIRun.getInstance().loadJournal(0));
+            UIRun.getInstance().createLog(userReference, Integer.parseInt(""+caseID.charAt(1)+caseID.charAt(2)+caseID.charAt(3)+caseID.charAt(4)), "view");
         }
         else if(event.getSource()==CitizenBackButton){
-           
-            CitizenBorderPane.setVisible(false);
-            //Make sure to swap something around in logic layer
-            //ActiveUser == null            
-            LogInBorderPane.setVisible(true);
+            String tempID = userReference+"";
+            if(tempID.charAt(0)=='1'){
+                CitizenBorderPane.setVisible(false);
+                LogInBorderPane.setVisible(true);
+                UIRun.getInstance().createLog(userReference, userReference, "logout");
+                userReference = 0;
+            }
+            else{
+                CitizenBorderPane.setVisible(false);
+                EmployeeBorderPane.setVisible(true);
+            }
         }
     }
     @FXML
     private void employeeButtons(ActionEvent event){
         if(event.getSource()==EmployeeCreateCaseButton){
             EmployeeBorderPane.setVisible(false);
-            
             CreateCaseStackPane.setVisible(true);
-            CreateCaseScrollPane1.setVisible(true);
+            //CreateCaseScrollPane1.setVisible(true);
         }
         else if(event.getSource()==EmployeeFindCitizenProfileButton){
             EmployeeBorderPane.setVisible(false);
@@ -423,40 +424,40 @@ public class GUIController implements Initializable {
             
         }
         else if(event.getSource()==EmployeeLogOutButton){
-            //Make sure to swap something around in logic layer
-            //ActiveUser == null
+            UIRun.getInstance().createLog(userReference, userReference, "logout");
             EmployeeBorderPane.setVisible(false);
             LogInBorderPane.setVisible(true);
+            userReference = 0;
         }
     }
     @FXML
     private void goBack(ActionEvent event){
-        if(event.getSource()== CreateEmployeeBackButton){
+        if(event.getSource() == CreateEmployeeBackButton){
             CreateEmployeeBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
-            //UIRun.getInstance().createLog(1100, 1220, "create");
-            
         }
-        else if(event.getSource()== CreateCitizenBackButton){
+        
+        else if(event.getSource() == CreateCitizenBackButton){
             CreateCitizenBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
         }
-      
-        else if(event.getSource()==CreateCaseBackButton1){
+        
+        else if(event.getSource() == CreateCaseBackButton1){
             CreateCaseStackPane.setVisible(false);
+            //CreateCaseScrollPane1.setVisible(false);
             EmployeeBorderPane.setVisible(true);
         }
-        else if(event.getSource()==CaseInformationBackButton){
+        
+        else if(event.getSource() == CaseInformationBackButton){
             CaseInformationBorderPane.setVisible(false);
             CitizenBorderPane.setVisible(true);
-        
-            
         }
-        else if(event.getSource()==FindCitizenGoBackButton){
+        
+        else if(event.getSource() == FindCitizenGoBackButton){
             FindCitizenBorderPane.setVisible(false);
             EmployeeBorderPane.setVisible(true);
         }
-        else if(event.getSource()==DeleteUserBackButton){
+        else if(event.getSource() == DeleteUserBackButton){
             DeleteUserBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
         }
@@ -465,11 +466,12 @@ public class GUIController implements Initializable {
             AdminFrontPageBorderPane.setVisible(true);
             ShowLogsListView.getItems().clear();
         }
-        else if (event.getSource() == ChangeDepartmentBackButton)
+        else if (event.getSource() == ChangeDepartmentBackButton){
             ChangeDepartmentBorderPane.setVisible(false);
             AdminFrontPageBorderPane.setVisible(true);
             ChangeDepartmentConfirmationLabel.setVisible(false);
             ChangeDepartmentWarningLabel.setVisible(false);
+        }
     }
     
     @FXML
@@ -484,6 +486,8 @@ public class GUIController implements Initializable {
             if (userID.length() == 4 && userID.charAt(0) == '2' ){
                 LogInBorderPane.setVisible(false);
                 EmployeeBorderPane.setVisible(true);
+                userReference = Integer.parseInt(userID);
+                UIRun.getInstance().createLog(userReference, userReference, "login");
             }
             //CitizenUser log in check
             else if(userID.length() == 10){
@@ -498,14 +502,21 @@ public class GUIController implements Initializable {
                CitizenCPRUnfilledLabel.setText(CPRNumber);
                CitizenNameUnfilledLabel.setText(name);
                CitizenEmailUnfilledLabel.setText(email);
-               
+               CitizenListView.getItems().clear();
                CitizenListView.getItems().addAll(UIRun.getInstance().showCaseOverviewForCitizen(CPRNumber).split("\n"));
+               
+               String[]getUserID = UIRun.getInstance().loadCitizenUser(CPRNumber).split(";");
+               userReference = Integer.parseInt(getUserID[1]);
+               UIRun.getInstance().createLog(userReference, userReference, "login");
+               
                
             }
             //Logind Admin
             else if (userID.length() == 4 && userID.charAt(0) == '5') {
                 LogInBorderPane.setVisible(false);
                 AdminFrontPageBorderPane.setVisible(true);
+                userReference = Integer.parseInt(userID);
+                UIRun.getInstance().createLog(userReference, userReference, "login");
             }
         }   
     }
@@ -523,28 +534,30 @@ public class GUIController implements Initializable {
         }
         else{
             CreateEmployeeWarningLabel.setVisible(false);
-            CreateEmployeePasswordLabel.setText(UIRun.getInstance().createEmployee(name, Zipcode, Email, Department, Phonenumber));
+            String[] infoArray = UIRun.getInstance().createEmployee(name, Zipcode, Email, Department, Phonenumber);
+            CreateEmployeePasswordLabel.setText(infoArray[0]);
+            UIRun.getInstance().createLog(userReference, Integer.parseInt(infoArray[1]), "create");
         }
-           
-    
     }
     @FXML
     private void createCitizenUser(ActionEvent event){
         String CPR = CreateCitizenCPRTextField.getText();
         
         if (CPR.isEmpty()) {
-            CreateCitizenWarningLabel.setText("Pls enter a CPR");
+            CreateCitizenWarningLabel.setText("Indtast CPR");
             CreateCitizenWarningLabel.setVisible(true);
             CreateCitizenPasswordLabel.setVisible(false);
             
         }
         else if (CPR.length() == 10){
-            CreateCitizenPasswordLabel.setText(UIRun.getInstance().createCitizenUser(CPR));
+            String[] infoArray = UIRun.getInstance().createCitizenUser(CPR);
+            CreateCitizenPasswordLabel.setText(infoArray[0]);
             CreateCitizenPasswordLabel.setVisible(true);
             CreateCitizenWarningLabel.setVisible(false);
+            UIRun.getInstance().createLog(userReference, Integer.parseInt(infoArray[1]), "create");
         }
         else if (CPR.length() != 10) {
-            CreateCitizenWarningLabel.setText("Pls enter a CPR thats 10 numbers long");
+            CreateCitizenWarningLabel.setText("Indtast CPR med 10 tegn");
             
         }
         
@@ -580,9 +593,8 @@ public class GUIController implements Initializable {
                
         }
            else {
-               
-               UIRun.getInstance().createCase(caseDesc, citizenProfile, Integer.parseInt(employeeID));
-               
+               String caseId = UIRun.getInstance().createCase(caseDesc, citizenProfile, Integer.parseInt(employeeID));
+               UIRun.getInstance().createLog(userReference, Integer.parseInt(caseId), "create");
                CreateCaseCaseCreatedPopupLabel.setText("Sagen er oprettet");
                CreateCaseCaseCreatedPopupPane.setVisible(true);
            }
@@ -632,7 +644,11 @@ public class GUIController implements Initializable {
             CitizenCPRUnfilledLabel.setText(CPR);
             CitizenNameUnfilledLabel.setText(name);
             CitizenEmailUnfilledLabel.setText(email);
+            CitizenListView.getItems().clear();
             CitizenListView.getItems().addAll(UIRun.getInstance().showCaseOverviewForCitizen(CPR).split("\n"));
+            String[] getUserID = UIRun.getInstance().loadCitizenUser(CPR).split(";");
+            UIRun.getInstance().createLog(userReference, Integer.parseInt(getUserID[1]), "view");
+            
         }
     
     }
@@ -649,8 +665,10 @@ public class GUIController implements Initializable {
             ShowLogsWarningLabel.setVisible(true);
         }
         else {
+        ShowLogsListView.getItems().clear();
         ShowLogsListView.getItems().addAll(UIRun.getInstance().getLogs(Integer.parseInt(logID)).split("\n"));
         ShowLogsWarningLabel.setVisible(false);
+        UIRun.getInstance().createLog(userReference, Integer.parseInt(logID), "showlogs");
         }
     }
     @FXML
@@ -664,6 +682,7 @@ public class GUIController implements Initializable {
         else{
             UIRun.getInstance().changeDepartment(Integer.parseInt(userID), department);
             ChangeDepartmentConfirmationLabel.setVisible(true);
+            UIRun.getInstance().createLog(userReference, Integer.parseInt(userID), "edit");
         }
     
     }

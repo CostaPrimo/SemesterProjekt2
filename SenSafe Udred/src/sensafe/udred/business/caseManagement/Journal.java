@@ -1,5 +1,4 @@
 package sensafe.udred.business.caseManagement;
-import sensafe.udred.business.UserManagement.Employee;
 /**
  *
  * @author Nikolaj Frank-Jensen

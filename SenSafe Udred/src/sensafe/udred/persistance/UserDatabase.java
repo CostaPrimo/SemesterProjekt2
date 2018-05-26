@@ -53,14 +53,14 @@ public class UserDatabase {
         return output;
     }
     
-    public String loadCitizenUsers(int ID){
+    public String loadCitizenUsers(String CPR){
         Statement st = null;
         ResultSet rs = null;
         String output = "";
         try {
             st = OpenUDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT cprnumber, userid FROM CitizenUser WHERE userID = ?");
-            PStatement.setInt(1, ID);
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT cprnumber, userid FROM CitizenUser WHERE CPRNumber = ?");
+            PStatement.setString(1, CPR);
             rs = PStatement.executeQuery();
             rs.next();
             output += rs.getString(1) + ";";
@@ -71,7 +71,6 @@ public class UserDatabase {
             System.out.println(e.toString());
             return null;
         }
-        
         finally{
             try {
                 st.close();
@@ -93,8 +92,8 @@ public class UserDatabase {
             rs = PStatement.executeQuery();
 //            rs.next();
             while(rs.next()){
-            output += rs.getString(1) + "; ";
             output += rs.getString(2) + "; ";
+            output += rs.getString(1) + "; ";
            // output += rs.getString(3) + ";";
             output+= "\n";
             }
@@ -102,7 +101,6 @@ public class UserDatabase {
             System.out.println(e.toString());
             return null;
         }
-        
         finally{
             try {
                 st.close();
@@ -149,8 +147,8 @@ public class UserDatabase {
         return output;
     }
     
-    public void writeInfoToEmployee(String name, String zipCode, String email, String department, String phoneNumber, String password){
-        
+    public String writeInfoToEmployee(String name, String zipCode, String email, String department, String phoneNumber, String password){
+        String id = "";
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -163,9 +161,9 @@ public class UserDatabase {
             PStatement.setString(5, phoneNumber);
             password = encryptPassword(password).replaceAll("\u0000","");
             PStatement.setString(6, password);
-            
             rs = PStatement.executeQuery();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.out.println("Exception" + e);
         }
         finally{
@@ -176,10 +174,29 @@ public class UserDatabase {
             } catch (Exception e) {
             }
         }
+        try{
+            st = OpenUDConnection();
+            PreparedStatement PStatement2 = st.getConnection().prepareStatement("SELECT MAX(userid) AS userID FROM Employee");
+            rs = PStatement2.executeQuery();
+            rs.next();
+            id += rs.getString(1);
+        }
+        catch(Exception e){
+        }
+        finally{
+            try{
+                st.close();
+                rs.close();
+                st.getConnection().close();
+            }
+            catch(Exception e){
+            }
+        }
+        return id;        
     }
     
-    public void writeInfoToCitizenUser(String CPRNumber, String password){
-        
+    public String writeInfoToCitizenUser(String CPRNumber, String password){
+        String id = "";
         Statement st = null;
         ResultSet rs = null;
         try {
@@ -200,7 +217,25 @@ public class UserDatabase {
             } catch (Exception e) {
             }
         }
-        
+        try{
+            st = OpenUDConnection();
+            PreparedStatement PStatement2 = st.getConnection().prepareStatement("SELECT MAX(userid) AS userID FROM citizenuser");
+            rs = PStatement2.executeQuery();
+            rs.next();
+            id += rs.getString(1);
+        }
+        catch(Exception e){
+        }
+        finally{
+            try{
+                st.close();
+                rs.close();
+                st.getConnection().close();
+            }
+            catch(Exception e){
+            }
+        }
+        return id;        
     }
     
     public void writeInfoToAdmin(int adminID, String password){ //Created for making the first admin. Pass is: adminPass
@@ -408,6 +443,7 @@ public class UserDatabase {
     }
     public static void main(String[] args) {
         UserDatabase ud = new UserDatabase();
-        ud.changeDepartment(2013, "Testmetode");
+        System.out.println(ud.writeInfoToEmployee("Jonh", "2000", "test@test.dk", "testDepartment", "21428416", "testword"));
+                
     }
 }
