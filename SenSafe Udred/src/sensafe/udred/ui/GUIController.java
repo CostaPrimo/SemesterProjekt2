@@ -330,9 +330,25 @@ public class GUIController implements Initializable {
     @FXML
     private Label ChangeDepartmentConfirmationLabel;
 
+    @FXML
+    private BorderPane CreateJournalBorderPane;
+    @FXML
+    private Button CreateJournalBackButton;
+    @FXML
+    private TextField CreateJournalUserIDTextField;
+    @FXML
+    private TextField CreateJournalCaseIDTextField;
+    @FXML
+    private Button CreateJournalCreateJournalButton;
+    @FXML
+    private Button CaseInformationOpenJournalButton;
+    @FXML
+    private Button CaseInformationCreateJournalButton;
+    
     
     private int userReference;
-    
+    @FXML
+    private TextArea CreateJournalResumeTextArea;
     /**
      * Initializes the controller class.
      */
@@ -380,15 +396,17 @@ public class GUIController implements Initializable {
     }
     @FXML
     private void citizenButtons(ActionEvent event){
+       
+        
         if(event.getSource()==CitizenOpenCaseButton){
             CitizenBorderPane.setVisible(false);
             CaseInformationBorderPane.setVisible(true);
-            String[] caseOverview = CitizenListView.getSelectionModel().getSelectedItem().split(",");
-            System.out.println(caseOverview[0]+ " " + caseOverview[1] + " , " + caseOverview[2] + " , " + caseOverview[3] + " , ");
-            String caseID = caseOverview[0];
-            String caseDescription = caseOverview[1];
-            String citizenProfile = caseOverview[2];
-            String employee = caseOverview[3];
+           String[] caseOverview = CitizenListView.getSelectionModel().getSelectedItem().split(",");
+        System.out.println(caseOverview[0]+ " " + caseOverview[1] + " , " + caseOverview[2] + " , " + caseOverview[3] + " , ");
+        String caseID = caseOverview[0];
+        String caseDescription = caseOverview[1];
+        String citizenProfile = caseOverview[2];
+        String employee = caseOverview[3];
             CaseInformationCaseIdUnfilledLabel.setText(caseID);
             CaseInformationCaseDescriptionTextArea.setText(caseDescription);
             CaseInformationEmployeeUnfilledLabel.setText(employee);
@@ -397,6 +415,30 @@ public class GUIController implements Initializable {
             CaseInformationJournalListView.getItems().add(UIRun.getInstance().loadJournal(0));
             UIRun.getInstance().createLog(userReference, Integer.parseInt(""+caseID.charAt(1)+caseID.charAt(2)+caseID.charAt(3)+caseID.charAt(4)), "view");
         }
+        //Her er metoden der bliver brugt når logs bliver genereret
+        else if(event.getSource() == CaseInformationCreateJournalButton){
+        CaseInformationBorderPane.setVisible(false);
+        CreateJournalBorderPane.setVisible(true);        
+        }
+        else if (event.getSource() == CreateJournalCreateJournalButton) {
+           String journalDescription = CreateJournalResumeTextArea.getText();
+           String writer = CreateJournalUserIDTextField.getText();
+           String caseID = CaseInformationCaseIdUnfilledLabel.getText();
+           String[] caseIDtest = caseID.split("\\(");
+           String realcaseID = caseIDtest[1];
+            System.out.println(realcaseID);
+            if (journalDescription.isEmpty() || writer.isEmpty() || caseID.isEmpty()) {
+                System.out.println("Nogen felter er tomme");
+                System.out.println(caseID);
+            }
+            else if (!writer.matches("[0-9]+")) {
+                System.out.println("Udyld kun forfatter med tal");
+            }
+            else {
+           UIRun.getInstance().createJournal(journalDescription, Integer.parseInt(writer), Integer.parseInt(realcaseID));
+            }
+        }
+            
         else if(event.getSource()==CitizenBackButton){
             String tempID = userReference+"";
             if(tempID.charAt(0)=='1'){
@@ -404,6 +446,7 @@ public class GUIController implements Initializable {
                 LogInBorderPane.setVisible(true);
                 UIRun.getInstance().createLog(userReference, userReference, "logout");
                 userReference = 0;
+                
             }
             else{
                 CitizenBorderPane.setVisible(false);
@@ -471,6 +514,10 @@ public class GUIController implements Initializable {
             AdminFrontPageBorderPane.setVisible(true);
             ChangeDepartmentConfirmationLabel.setVisible(false);
             ChangeDepartmentWarningLabel.setVisible(false);
+        }
+        else if (event.getSource() == CreateJournalBackButton){
+        CreateJournalBorderPane.setVisible(false);
+        CaseInformationBorderPane.setVisible(true);
         }
     }
     
@@ -686,6 +733,21 @@ public class GUIController implements Initializable {
         }
     
     }
-    
+//    @FXML
+//    private void createJournal(ActionEvent event){
+//        int caseID = UIRun.getInstance().
+//        
+//        if (event.getSource() == CaseInformationCreateJournalButton) {
+//            CaseInformationBorderPane.setVisible(false);
+//            CreateJournalBorderPane.setVisible(true);
+//            }
+//        
+//        
+//        else{
+//            UIRun.getInstance().createJournal(resume, userReference, userReference);
+//        }
+//        
+//        
+//    }
 }
 

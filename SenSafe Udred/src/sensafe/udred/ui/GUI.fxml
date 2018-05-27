@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -27,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
+<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
       <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -262,7 +257,7 @@
       </BorderPane>
       <BorderPane id="CaseInformationBorderPane" fx:id="CaseInformationBorderPane" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <top>
-            <Label id="CaseInformationTitelLabel" fx:id="CaseInformationTitelLabel" alignment="CENTER" text="SenSafe Udred" BorderPane.alignment="CENTER">
+            <Label id="CaseInformationTitelLabel" fx:id="CaseInformationTitelLabel" alignment="CENTER" text="SenSafe Udred SagsOplysninger" BorderPane.alignment="CENTER">
                <font>
                   <Font size="26.0" />
                </font>
@@ -298,21 +293,27 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <VBox fx:id="CaseInformationRightVBox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="579.0">
+                  <VBox fx:id="CaseInformationRightVBox" alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="579.0">
                      <children>
-                        <Label fx:id="CaseInformationCaseDescriptionLabel" text="Sags beskrivelse" />
-                        <TextArea fx:id="CaseInformationCaseDescriptionTextArea" editable="false" prefHeight="126.0" prefWidth="343.0" />
-                        <Label fx:id="CaseInformationJournalerLabel" text="Journaler:" />
-                        <ListView fx:id="CaseInformationJournalListView" prefHeight="92.0" prefWidth="343.0" />
-                        <Button fx:id="CaseInformationBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#goBack" text="Tilbage">
+                        <Label fx:id="CaseInformationCaseDescriptionLabel" nodeOrientation="LEFT_TO_RIGHT" text="Sags beskrivelse">
                            <VBox.margin>
-                              <Insets left="250.0" />
-                           </VBox.margin>
-                        </Button>
+                              <Insets right="255.0" />
+                           </VBox.margin></Label>
+                        <TextArea fx:id="CaseInformationCaseDescriptionTextArea" editable="false" prefHeight="126.0" prefWidth="343.0" />
+                        <Label fx:id="CaseInformationJournalerLabel" text="Journaler:">
+                           <VBox.margin>
+                              <Insets right="289.0" />
+                           </VBox.margin></Label>
+                        <ListView fx:id="CaseInformationJournalListView" prefHeight="92.0" prefWidth="343.0" />
+                        <Button fx:id="CaseInformationOpenJournalButton" mnemonicParsing="false" text="Åben Journal" />
+                        <Button fx:id="CaseInformationCreateJournalButton" mnemonicParsing="false" onAction="#citizenButtons" text="Opret Journal" />
                      </children></VBox>
                </children>
             </HBox>
          </center>
+         <bottom>
+            <Button fx:id="CaseInformationBackButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
+         </bottom>
       </BorderPane>
       <BorderPane id="DeleteUserBorderPane" fx:id="DeleteUserBorderPane" centerShape="false" layoutX="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
          <top>
@@ -824,6 +825,57 @@
          </center>
          <bottom>
             <Button fx:id="ChangeDepartmentBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="BOTTOM_RIGHT" />
+         </bottom>
+      </BorderPane>
+      <BorderPane fx:id="CreateJournalBorderPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="498.0">
+                     <children>
+                        <Label text="Forfatter: ">
+                           <VBox.margin>
+                              <Insets top="28.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Resume:">
+                           <VBox.margin>
+                              <Insets top="7.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="565.0">
+                     <children>
+                        <TextField fx:id="CreateJournalUserIDTextField" promptText="BrugerID">
+                           <VBox.margin>
+                              <Insets right="200.0" top="25.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextArea fx:id="CreateJournalResumeTextArea" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets right="100.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <Button fx:id="CreateJournalCreateJournalButton" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#citizenButtons" text="Opret Journal">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center>
+         <top>
+            <Label text="Opret journal" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <bottom>
+            <Button fx:id="CreateJournalBackButton" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="CENTER" />
          </bottom>
       </BorderPane>
    </children>

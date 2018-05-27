@@ -188,6 +188,7 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
+                
                 st.getConnection().close();
                 st.close();
                 rs.close();
