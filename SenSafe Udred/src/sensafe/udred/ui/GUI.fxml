@@ -63,6 +63,7 @@
                               <Insets bottom="10.0" top="25.0" />
                            </VBox.margin>
                         </Button>
+                        <Label fx:id="LogInWarningLabel" visible="false" />
                      </children>
                      <HBox.margin>
                         <Insets />
@@ -279,8 +280,6 @@
                               <Label fx:id="CaseInformationCaseIDLabel" text="SagsID: " />
                               <Label fx:id="CaseInformationEmployeeLabel" text="Sagsansvarlig:" />
                               <Label fx:id="CaseInformationCitizenProfileLabel" text="BorgerCPR:" />
-                              <Label fx:id="CaseInformationRelativeLabel" text="Vedrørende:" />
-                              <Label fx:id="CaseInformationMedicineLabel" text="Medicin: " />
                            </children>
                         </VBox>
                         <VBox fx:id="CaseInformationMiddleVBox" alignment="CENTER" prefHeight="360.0" prefWidth="157.0">
@@ -292,8 +291,6 @@
                               </Label>
                               <Label fx:id="CaseInformationEmployeeUnfilledLabel" text="Label" />
                               <Label fx:id="CaseInformationCitizenProfileUnfilledLabel" text="Label" />
-                              <Label fx:id="CaseInformationRelativeUnfilledLabel" text="Label" />
-                              <Label fx:id="CaseInformationMedicineUnfilledLabel" text="Label" />
                            </children>
                         </VBox>
                      </children>
@@ -845,28 +842,18 @@
                <children>
                   <VBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="498.0">
                      <children>
-                        <Label text="Forfatter: ">
-                           <VBox.margin>
-                              <Insets top="28.0" />
-                           </VBox.margin>
-                        </Label>
                         <Label text="Resume:">
                            <VBox.margin>
-                              <Insets top="7.0" />
+                              <Insets top="60.0" />
                            </VBox.margin>
                         </Label>
                      </children>
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="400.0" prefWidth="565.0">
                      <children>
-                        <TextField fx:id="CreateJournalUserIDTextField" promptText="BrugerID">
-                           <VBox.margin>
-                              <Insets right="200.0" top="25.0" />
-                           </VBox.margin>
-                        </TextField>
                         <TextArea fx:id="CreateJournalResumeTextArea" prefHeight="200.0" prefWidth="200.0">
                            <VBox.margin>
-                              <Insets right="100.0" />
+                              <Insets right="100.0" top="60.0" />
                            </VBox.margin>
                         </TextArea>
                         <Button fx:id="CreateJournalCreateJournalButton" alignment="CENTER_RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#citizenButtons" text="Opret Journal">

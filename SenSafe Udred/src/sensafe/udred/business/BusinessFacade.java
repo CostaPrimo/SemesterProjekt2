@@ -104,7 +104,7 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public boolean validateLogin(int ID, String password){
+    public boolean validateLogin(Long ID, String password){
         return persistance.validateLogin(ID, password);
     }
     

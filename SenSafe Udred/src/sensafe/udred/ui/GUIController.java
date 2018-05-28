@@ -152,17 +152,9 @@ public class GUIController implements Initializable {
     @FXML
     private Label CaseInformationCitizenProfileLabel;
     @FXML
-    private Label CaseInformationRelativeLabel;
-    @FXML
-    private Label CaseInformationMedicineLabel;
-    @FXML
     private VBox CaseInformationMiddleVBox;
     @FXML
     private Label CaseInformationCaseIdUnfilledLabel;
-    @FXML
-    private Label CaseInformationRelativeUnfilledLabel;
-    @FXML
-    private Label CaseInformationMedicineUnfilledLabel;
     @FXML
     private VBox CaseInformationRightVBox;
     @FXML
@@ -343,7 +335,7 @@ public class GUIController implements Initializable {
     private Button CaseInformationCreateJournalButton;
     
     
-    private int userReference;
+    
     @FXML
     private TextArea CreateJournalResumeTextArea;
     @FXML
@@ -366,6 +358,10 @@ public class GUIController implements Initializable {
     private Label CreateJournalWarningLabel;
     @FXML
     private ChoiceBox<String> CreateEmployeeDepartmentChoiceBox;
+    @FXML
+    private Label LogInWarningLabel;
+    
+    private int userReference;
     /**
      * Initializes the controller class.
      */
@@ -420,16 +416,18 @@ public class GUIController implements Initializable {
             CitizenBorderPane.setVisible(false);
             CaseInformationBorderPane.setVisible(true);
            String[] caseOverview = CitizenListView.getSelectionModel().getSelectedItem().split(",");
-        System.out.println(caseOverview[0]+ " " + caseOverview[1] + " , " + caseOverview[2] + " , " + caseOverview[3] + " , ");
+       
         String caseIDTest = caseOverview[0];
         String[] caseIDBeforeSplit = caseIDTest.split("\\(");
         String caseID = caseIDBeforeSplit[1];
         String caseDescription = caseOverview[1];
         String citizenProfile = caseOverview[2];
         String employee = caseOverview[3];
+        String[] employee1 = employee.split("\\)");
+        
             CaseInformationCaseIdUnfilledLabel.setText(caseID);
             CaseInformationCaseDescriptionTextArea.setText(caseDescription);
-            CaseInformationEmployeeUnfilledLabel.setText(employee);
+            CaseInformationEmployeeUnfilledLabel.setText(employee1[0]);
             CaseInformationCitizenProfileUnfilledLabel.setText(citizenProfile);
             
             CaseInformationJournalListView.getItems().addAll(UIRun.getInstance().loadallJournal(Integer.parseInt(caseID)).split("\n"));
@@ -445,23 +443,25 @@ public class GUIController implements Initializable {
         else if (event.getSource() == CreateJournalCreateJournalButton) {
             CreateJournalWarningLabel.setVisible(false);
            String journalDescription = CreateJournalResumeTextArea.getText();
-           String writer = CreateJournalUserIDTextField.getText();
+           int writer = userReference; 
            String caseID = CaseInformationCaseIdUnfilledLabel.getText();
            String[] caseIDtest = caseID.split("\\(");
             System.out.println(caseIDtest[0]);
            String realcaseID = caseIDtest[0];
             System.out.println(realcaseID);
-            if (journalDescription.isEmpty() || writer.isEmpty() || caseID.isEmpty()) {
+            if (journalDescription.isEmpty()  || caseID.isEmpty()) {
                 
                 CreateJournalWarningLabel.setText("Udfyld alle felter");
                 CreateJournalWarningLabel.setVisible(true);
             }
-            else if (!writer.matches("[0-9]+")) {
-                CreateJournalWarningLabel.setText("Udfyld kun forfatter med tal");
+            if (journalDescription.trim().isEmpty()){
+                CreateJournalWarningLabel.setText("Udfyld alle felter");
                 CreateJournalWarningLabel.setVisible(true);
+            
             }
+            
             else {
-                int tempID = Integer.parseInt(UIRun.getInstance().createJournal(journalDescription, Integer.parseInt(writer), Integer.parseInt(realcaseID)));
+                int tempID = Integer.parseInt(UIRun.getInstance().createJournal(journalDescription, writer, Integer.parseInt(realcaseID)));
                 UIRun.getInstance().createLog(userReference, tempID, "create"); 
                 CreateJournalResumeTextArea.setText("");
                 CreateJournalUserIDTextField.setText("");
@@ -576,7 +576,26 @@ public class GUIController implements Initializable {
         LogInUserIDTextField.clear();
         LogInPasswordField.clear();
         
-        if(UIRun.getInstance().validateLogin(Integer.parseInt(userID), password)){
+        
+        
+        if (userID.isEmpty() || password.isEmpty()){
+                LogInWarningLabel.setText("Indtast email/BrugerID");
+                LogInWarningLabel.setVisible(true);
+            }
+        if (userID.trim().isEmpty() || password.trim().isEmpty()){
+                LogInWarningLabel.setText("Indtast email/BrugerID uden mellemrum");
+                LogInWarningLabel.setVisible(true);
+            }
+        else if(!userID.matches("[0-9]+") || userID.length() != 4 && userID.length() != 10){
+                LogInWarningLabel.setText("Indtast brugerID med tal, og 4 tegn langt");
+                LogInWarningLabel.setVisible(true);
+        
+        }
+        
+        else if(UIRun.getInstance().validateLogin(Long.parseLong(userID), password)){
+            LogInWarningLabel.setVisible(false);
+            
+            
             //Logind Employee
             if (userID.length() == 4 && userID.charAt(0) == '2' ){
                 LogInBorderPane.setVisible(false);
@@ -615,6 +634,7 @@ public class GUIController implements Initializable {
                 UIRun.getInstance().createLog(userReference, userReference, "login");
             }
         }   
+        
     }
     @FXML
     private void createEmployee(ActionEvent event) {
@@ -630,15 +650,21 @@ public class GUIController implements Initializable {
             CreateEmployeePasswordLabel.setText("");
             
         }
+        else if(name.trim().isEmpty() || Email.trim().isEmpty()){
+            CreateEmployeeWarningLabel.setText("Udfyld navn eller/og email");
+            CreateEmployeeWarningLabel.setVisible(true);
+            CreateEmployeePasswordLabel.setText("");
+        }
         else if(!Zipcode.matches("[0-9]+") || Zipcode.length() != 4){
         CreateEmployeeWarningLabel.setVisible(true);
         CreateEmployeeWarningLabel.setText("Zipcode skal være lavet af tal, og 4 tal langt");
         
         }
-        else if (!Phonenumber.matches("[0-9]+") || Phonenumber.length() == 8) {
+        else if (!Phonenumber.matches("[0-9]+") || Phonenumber.length() != 8) {
             CreateEmployeeWarningLabel.setVisible(true);
             CreateEmployeeWarningLabel.setText("Telefon nummer skal være lavet af tal, og 8 tal langt");
         }
+       
         else{
             CreateEmployeeWarningLabel.setVisible(false);
             String[] infoArray = UIRun.getInstance().createEmployee(name, Zipcode, Email, Department, Phonenumber);
@@ -656,10 +682,14 @@ public class GUIController implements Initializable {
             CreateCitizenPasswordLabel.setVisible(false);
             
         }
-        else if(!CPR.contains("[0-9]+")){
+        else if(!CPR.matches("[0-9]+")){
         CreateCitizenWarningLabel.setText( "Skriv CPR kun med tal");
         CreateCitizenWarningLabel.setVisible(true);
         CreateCitizenPasswordLabel.setVisible(false);
+        }
+        else if (CPR.length() != 10) {
+            CreateCitizenWarningLabel.setText("Indtast CPR med 10 tegn");
+            CreateCitizenWarningLabel.setVisible(true);
         }
         else if (CPR.length() == 10){
             String[] infoArray = UIRun.getInstance().createCitizenUser(CPR);
@@ -668,10 +698,7 @@ public class GUIController implements Initializable {
             CreateCitizenWarningLabel.setVisible(false);
             UIRun.getInstance().createLog(userReference, Integer.parseInt(infoArray[1]), "create");
         }
-        else if (CPR.length() != 10) {
-            CreateCitizenWarningLabel.setText("Indtast CPR med 10 tegn");
-            
-        }
+        
         
         
     }
@@ -693,7 +720,7 @@ public class GUIController implements Initializable {
                 CreateCaseCaseCreatedPopupPane.setVisible(true);
         }
            else if (!employeeID.matches("[0-9]+")){
-               CreateCaseCaseCreatedPopupLabel.setText("CPR skal være lavet af tal");
+               CreateCaseCaseCreatedPopupLabel.setText("BrugerID skal være lavet af tal");
                CreateCaseCaseCreatedPopupPane.setVisible(true);
            }
            else if (UIRun.getInstance().loadEmployee(Integer.parseInt(employeeID)) == null) {

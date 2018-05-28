@@ -94,7 +94,7 @@ public class UIRun extends Application implements IUI {
         return business.createJournal(resume, writer, relatedCase);
     }
     
-    public boolean validateLogin(int ID, String Password){
+    public boolean validateLogin(Long ID, String Password){
         return business.validateLogin(ID, Password);
     }
     

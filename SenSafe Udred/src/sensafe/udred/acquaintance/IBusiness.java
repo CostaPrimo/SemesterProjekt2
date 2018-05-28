@@ -26,7 +26,7 @@ public interface IBusiness {
     public void createCitizenProfile(String name, String email, String CPRNumber);
     public String createCase(String caseDescription, String citizenProfile, int caseResponsible);
     public String createJournal(String resume, int writer, int relatedCase);
-    public boolean validateLogin(int ID, String Password);
+    public boolean validateLogin(Long ID, String Password);
     public String showCaseOverview(String CPRNumber, String department);
     public String findCitizenProfile(String CPRNumber);
     public String loadAllCitizenUsers();

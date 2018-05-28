@@ -23,7 +23,7 @@ public interface IPersistance {
         public String loadCitizenProfile(String CPR);
         public String loadCase(int caseID);
         public String loadallJournal(int caseID);
-        public boolean validateLogin(int ID, String password);
+        public boolean validateLogin(Long ID, String password);
         public String showCaseOverview(String CPRNumber, String department);
         public String findCitizenProfile(String CPRNumber);
         public String loadAllCitizenUsers();

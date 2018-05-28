@@ -66,7 +66,7 @@ public class PersistanceFacade implements IPersistance {
        return caseDatabase.writeInfoToJournal(resume, writer, relatedCase);
     }
     @Override
-    public boolean validateLogin(int ID, String password){
+    public boolean validateLogin(Long ID, String password){
         return userDatabase.validateLogin(ID, password);
     }
 

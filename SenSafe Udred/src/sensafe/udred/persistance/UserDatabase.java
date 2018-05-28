@@ -393,27 +393,29 @@ public class UserDatabase {
         }
     }
     
-    public boolean validateLogin(int ID, String password){
+    public boolean validateLogin(long ID, String password){
         Statement st = null;
         ResultSet rs = null;
         boolean isCorrect = false;
         
         try {
             st = OpenUDConnection();
-            if (Integer.toString(ID).length() == 4){
+            if (Long.toString(ID).length() == 4){
                 PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT userid, password FROM employee WHERE userid = ? AND password = ? UNION SELECT adminID, password FROM admin WHERE adminID = ? AND password = ?");
-                PStatement.setInt(1, ID);
+                PStatement.setLong(1, ID);
                 password = encryptPassword(password).replaceAll("\u0000", "");
                 PStatement.setString(2, password);
-                PStatement.setInt(3, ID);
+                PStatement.setLong(3, ID);
                 PStatement.setString(4, password);
                 rs = PStatement.executeQuery();
                 if(rs.next()){
                     isCorrect = true;
                 }
             }
-            else if (Integer.toString(ID).length() == 10){
-                String CPRNumber = Integer.toString(ID);
+            else if (Long.toString(ID).length() == 10){
+                String CPRNumber = Long.toString(ID);
+                System.out.println(ID);
+                System.out.println(password);
                 PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT CPRNumber, password FROM citizenuser WHERE CPRNumber = ? AND password = ?");
                 PStatement.setString(1, CPRNumber);
                 password = encryptPassword(password).replaceAll("\u0000", "");
