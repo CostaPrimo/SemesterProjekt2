@@ -232,8 +232,6 @@ public class GUIController implements Initializable {
     @FXML
     private TextField CreateEmployeeZipcodeTextField;
     @FXML
-    private TextField CreateEmployeeDepartmentTextField;
-    @FXML
     private TextField CreateEmployeePhoneNumberTextField;
     @FXML
     private Button CreateEmployeeCreateEmployeeButton;
@@ -364,6 +362,10 @@ public class GUIController implements Initializable {
     private Label CaseInformationJournalWarningLabel;
     @FXML
     private Label CreateJournalSuccesPopUpLabel;
+    @FXML
+    private Label CreateJournalWarningLabel;
+    @FXML
+    private ChoiceBox<String> CreateEmployeeDepartmentChoiceBox;
     /**
      * Initializes the controller class.
      */
@@ -371,6 +373,7 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ChangeDepartmentChoiceBox.getItems().addAll("Handicap Afdelingen", "Børne- og Familieafdelingen", "Socialafdelingen", "Sundheds- og Omsorgsafdelingen", "Ikke Aktiv");
+        CreateEmployeeDepartmentChoiceBox.getItems().addAll("Handicap Afdelingen", "Børne- og Familieafdelingen", "Socialafdelingen", "Sundheds- og Omsorgsafdelingen", "Ikke Aktiv");
     }    
     
     
@@ -440,6 +443,7 @@ public class GUIController implements Initializable {
         }
         //her oprettes journal
         else if (event.getSource() == CreateJournalCreateJournalButton) {
+            CreateJournalWarningLabel.setVisible(false);
            String journalDescription = CreateJournalResumeTextArea.getText();
            String writer = CreateJournalUserIDTextField.getText();
            String caseID = CaseInformationCaseIdUnfilledLabel.getText();
@@ -448,11 +452,13 @@ public class GUIController implements Initializable {
            String realcaseID = caseIDtest[0];
             System.out.println(realcaseID);
             if (journalDescription.isEmpty() || writer.isEmpty() || caseID.isEmpty()) {
-                System.out.println("Nogen felter er tomme");
-                System.out.println(caseID);
+                
+                CreateJournalWarningLabel.setText("Udfyld alle felter");
+                CreateJournalWarningLabel.setVisible(true);
             }
             else if (!writer.matches("[0-9]+")) {
-                System.out.println("Udyld kun forfatter med tal");
+                CreateJournalWarningLabel.setText("Udfyld kun forfatter med tal");
+                CreateJournalWarningLabel.setVisible(true);
             }
             else {
                 int tempID = Integer.parseInt(UIRun.getInstance().createJournal(journalDescription, Integer.parseInt(writer), Integer.parseInt(realcaseID)));
@@ -460,6 +466,7 @@ public class GUIController implements Initializable {
                 CreateJournalResumeTextArea.setText("");
                 CreateJournalUserIDTextField.setText("");
                 CreateJournalSuccesPopUpLabel.setVisible(true);
+                CreateJournalWarningLabel.setVisible(false);
             }
         }
         
@@ -485,7 +492,10 @@ public class GUIController implements Initializable {
         if(event.getSource()==EmployeeCreateCaseButton){
             EmployeeBorderPane.setVisible(false);
             CreateCaseStackPane.setVisible(true);
-            //CreateCaseScrollPane1.setVisible(true);
+            CreateCaseCaseDescTextArea1.clear();
+            CreateCaseEmployeeIDTextField1.clear();
+            CreateCaseCPRTextField1.clear();
+            
         }
         else if(event.getSource()==EmployeeFindCitizenProfileButton){
             EmployeeBorderPane.setVisible(false);
@@ -611,12 +621,23 @@ public class GUIController implements Initializable {
         String name = CreateEmployeeNameTextField.getText();
         String Email = CreateEmployeeEmailTextField.getText();
         String Zipcode = CreateEmployeeZipcodeTextField.getText();
-        String Department = CreateEmployeeDepartmentLabel.getText();
+        String Department = CreateEmployeeDepartmentChoiceBox.getSelectionModel().getSelectedItem();
         String Phonenumber = CreateEmployeePhoneNumberTextField.getText();
         
         if(name.isEmpty() || Email.isEmpty() || Zipcode.isEmpty() || Department.isEmpty() || Phonenumber.isEmpty()){
+            CreateEmployeeWarningLabel.setText("Udfyld alle felter");
             CreateEmployeeWarningLabel.setVisible(true);
             CreateEmployeePasswordLabel.setText("");
+            
+        }
+        else if(!Zipcode.matches("[0-9]+") || Zipcode.length() != 4){
+        CreateEmployeeWarningLabel.setVisible(true);
+        CreateEmployeeWarningLabel.setText("Zipcode skal være lavet af tal, og 4 tal langt");
+        
+        }
+        else if (!Phonenumber.matches("[0-9]+") || Phonenumber.length() == 8) {
+            CreateEmployeeWarningLabel.setVisible(true);
+            CreateEmployeeWarningLabel.setText("Telefon nummer skal være lavet af tal, og 8 tal langt");
         }
         else{
             CreateEmployeeWarningLabel.setVisible(false);
@@ -660,9 +681,7 @@ public class GUIController implements Initializable {
         String caseDesc = CreateCaseCaseDescTextArea1.getText();
         String employeeID = CreateCaseEmployeeIDTextField1.getText();
         String citizenProfile = CreateCaseCPRTextField1.getText();
-        CreateCaseCaseDescTextArea1.clear();
-        CreateCaseEmployeeIDTextField1.clear();
-        CreateCaseCPRTextField1.clear();
+        
         
         
            if (caseDesc.isEmpty() || employeeID.isEmpty()|| citizenProfile.isEmpty()) {
@@ -670,9 +689,13 @@ public class GUIController implements Initializable {
                CreateCaseCaseCreatedPopupPane.setVisible(true);
             }
            else if (citizenProfile.length() != 10) {
-                CreateCaseCaseCreatedPopupLabel.setText("CPR skal være 10 langt");
+                CreateCaseCaseCreatedPopupLabel.setText("CPR skal være 10 tal langt");
                 CreateCaseCaseCreatedPopupPane.setVisible(true);
         }
+           else if (!employeeID.matches("[0-9]+")){
+               CreateCaseCaseCreatedPopupLabel.setText("CPR skal være lavet af tal");
+               CreateCaseCaseCreatedPopupPane.setVisible(true);
+           }
            else if (UIRun.getInstance().loadEmployee(Integer.parseInt(employeeID)) == null) {
                CreateCaseCaseCreatedPopupLabel.setText("Employee findes ikke i databasen");
                CreateCaseCaseCreatedPopupPane.setVisible(true);
@@ -692,11 +715,15 @@ public class GUIController implements Initializable {
     }  
     @FXML
     private void createCasePopupButton(ActionEvent event){
+        if (!CreateCaseCaseCreatedPopupLabel.getText().equalsIgnoreCase("Sagen er oprettet")) {
+         CreateCaseCaseCreatedPopupPane.setVisible(false);
+        }
+        else{
         CreateCaseCaseCreatedPopupPane.setVisible(false);
         CreateCaseScrollPane1.setVisible(false);
         CreateCaseStackPane.setVisible(false);
         EmployeeBorderPane.setVisible(true);
-    
+        }
     }
     @FXML
     private void deleteUser(ActionEvent event){
@@ -723,6 +750,15 @@ public class GUIController implements Initializable {
             FindCitizenCPRNonexistentWarningLabel.setText("CPR skal være 10 tal langt");
             FindCitizenCPRNonexistentWarningLabel.setVisible(true);
         
+        }
+        else if (!CPR.matches("[0-9]+")){
+            FindCitizenCPRNonexistentWarningLabel.setText("CPR skal være lavet af tal");
+            FindCitizenCPRNonexistentWarningLabel.setVisible(true);
+        
+        }
+        else if(UIRun.getInstance().findCitizenProfile(CPR) == null){
+            FindCitizenCPRNonexistentWarningLabel.setText("CPR findes ikke i databasen");
+            FindCitizenCPRNonexistentWarningLabel.setVisible(true);
         }
         else{
             FindCitizenCPRNonexistentWarningLabel.setVisible(false);
@@ -751,11 +787,22 @@ public class GUIController implements Initializable {
             ShowLogsWarningLabel.setText("Indtast ID");
             ShowLogsWarningLabel.setVisible(true);
         }
-        else if (UIRun.getInstance().getLogs(Integer.parseInt(logID)) == null) {
+        else if (!logID.matches("[0-9]+")) {
+            ShowLogsWarningLabel.setText("ID skal være med tal");
+            ShowLogsWarningLabel.setVisible(true);
+        }
+        else if (logID.length() != 4) {
+            ShowLogsWarningLabel.setText("ID skal være 4 tal langt");
+            ShowLogsWarningLabel.setVisible(true);
+        }
+        else if (UIRun.getInstance().getLogs(Integer.parseInt(logID)).equalsIgnoreCase("")) {
+            
             ShowLogsWarningLabel.setText("Der er ingen logs med dette ID");
             ShowLogsWarningLabel.setVisible(true);
         }
         else {
+            String ULU = UIRun.getInstance().getLogs(Integer.parseInt(logID));
+            System.out.println(ULU);
         ShowLogsListView.getItems().clear();
         ShowLogsListView.getItems().addAll(UIRun.getInstance().getLogs(Integer.parseInt(logID)).split("\n"));
         ShowLogsWarningLabel.setVisible(false);
@@ -767,13 +814,31 @@ public class GUIController implements Initializable {
         String userID = ChangeDepartmentUserIDTextField.getText();
         String department = ChangeDepartmentChoiceBox.getSelectionModel().getSelectedItem();
         
-        if (UIRun.getInstance().loadEmployee(Integer.parseInt(userID)) == null) {
+        
+        if(!userID.matches("[0-9]+")){
+            ChangeDepartmentWarningLabel.setText("Indtast brugerID med tal");
+            ChangeDepartmentWarningLabel.setVisible(true);
+        
+        }
+        
+        else if (userID.length() != 4) {
+            ChangeDepartmentWarningLabel.setText("Indtast brugerID med 4 tal");
             ChangeDepartmentWarningLabel.setVisible(true);
         }
+        else if (UIRun.getInstance().loadEmployee(Integer.parseInt(userID)) == null) {
+            ChangeDepartmentWarningLabel.setText("BrugerID findes ikke i databasen");
+            ChangeDepartmentWarningLabel.setVisible(true);
+        }
+        else if (ChangeDepartmentChoiceBox.getSelectionModel().getSelectedItem() == null) {
+            ChangeDepartmentWarningLabel.setVisible(true);
+            ChangeDepartmentWarningLabel.setText("Vælg afdeling");
+        }
+        
         else{
             UIRun.getInstance().changeDepartment(Integer.parseInt(userID), department);
             ChangeDepartmentConfirmationLabel.setVisible(true);
             UIRun.getInstance().createLog(userReference, Integer.parseInt(userID), "edit");
+            ChangeDepartmentWarningLabel.setVisible(false);
         }
     
     }

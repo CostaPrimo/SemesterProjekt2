@@ -52,6 +52,8 @@ public class LogDatabase {
             }
         } catch (Exception e) {
             System.out.println("Exception" + e);
+            System.out.println("Test 1");
+            return null;
         }
         finally{
             try {
@@ -59,15 +61,14 @@ public class LogDatabase {
                 st.close();
                 rs.close();
             } catch (Exception e) {
+                System.out.println("test2");
+                return null;
             }
         }
         return output;
     }
     
-    public void deleteLog(){
-        
-    }
-    
+  
     private Statement OpenLDConnection(){
         
         try {

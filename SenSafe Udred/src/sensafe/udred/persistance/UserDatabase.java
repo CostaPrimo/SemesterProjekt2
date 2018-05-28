@@ -441,9 +441,5 @@ public class UserDatabase {
         }
         return isCorrect;
     }
-    public static void main(String[] args) {
-        UserDatabase ud = new UserDatabase();
-        System.out.println(ud.writeInfoToEmployee("Jonh", "2000", "test@test.dk", "testDepartment", "21428416", "testword"));
-                
-    }
+    
 }

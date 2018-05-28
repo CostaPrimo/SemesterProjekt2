@@ -29,7 +29,7 @@
 
 <AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
-      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox fx:id="logInCenterHBox" alignment="CENTER" centerShape="false" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -445,17 +445,20 @@
                               <Insets left="20.0" right="150.0" top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="CreateEmployeeDepartmentTextField" fx:id="CreateEmployeeDepartmentTextField">
+                        <ChoiceBox fx:id="CreateEmployeeDepartmentChoiceBox" prefWidth="150.0">
                            <VBox.margin>
-                              <Insets left="20.0" right="150.0" top="5.0" />
+                              <Insets right="120.0" top="5.0" />
                            </VBox.margin>
-                        </TextField>
+                        </ChoiceBox>
                         <TextField id="CreateEmployeePhonenumberTextField" fx:id="CreateEmployeePhoneNumberTextField">
                            <VBox.margin>
                               <Insets left="20.0" right="150.0" top="5.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button id="CreateEmployeeButton" fx:id="CreateEmployeeCreateEmployeeButton" mnemonicParsing="false" onAction="#createEmployee" text="Opret Bruger" />
+                        <Button id="CreateEmployeeButton" fx:id="CreateEmployeeCreateEmployeeButton" mnemonicParsing="false" onAction="#createEmployee" text="Opret Bruger">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin></Button>
                         <Label fx:id="CreateEmployeeTextLabel" text="Adgangskode er:" />
                         <Label fx:id="CreateEmployeePasswordLabel" />
                         <Label fx:id="CreateEmployeeWarningLabel" text="Udfyld alle felter" visible="false" />
@@ -782,7 +785,7 @@
                   </BorderPane>
                </content>
             </ScrollPane>
-            <Pane fx:id="CreateCaseCaseCreatedPopupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="398.0" prefWidth="163.0" style="-fx-background-color: gray; -fx-pref-width: 160; -fx-pref-height: 100;" visible="false">
+            <Pane fx:id="CreateCaseCaseCreatedPopupPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="142.0" prefWidth="271.0" style="-fx-background-color: gray; -fx-pref-width: 210; -fx-pref-height: 100;" visible="false">
                <children>
                   <Label fx:id="CreateCaseCaseCreatedPopupLabel" layoutX="8.0" layoutY="14.0" text="Case er oprettet" />
                   <Button fx:id="CreateCaseCaseCreatedPopupButton" alignment="CENTER" layoutX="23.0" layoutY="50.0" mnemonicParsing="false" onAction="#createCasePopupButton" text="Tilbage" />
@@ -836,7 +839,7 @@
             <Button fx:id="ChangeDepartmentBackButton" alignment="CENTER" mnemonicParsing="false" onAction="#goBack" text="Tilbage" BorderPane.alignment="BOTTOM_RIGHT" />
          </bottom>
       </BorderPane>
-      <BorderPane fx:id="CreateJournalBorderPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="CreateJournalBorderPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -871,7 +874,8 @@
                               <Insets right="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="CreateJournalSuccesPopUpLabel" text="Journalen er oprettet" />
+                        <Label fx:id="CreateJournalSuccesPopUpLabel" text="Journalen er oprettet" visible="false" />
+                        <Label fx:id="CreateJournalWarningLabel" text="Label" visible="false" />
                      </children>
                   </VBox>
                </children>
