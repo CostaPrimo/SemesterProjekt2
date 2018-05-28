@@ -77,22 +77,25 @@ public class CaseDatabase {
         }
         return output;
     }
+    
 
-    public String loadJournal(int journalID) {
+    public String loadallJournal(int caseID) {
         Statement st = null;
         ResultSet rs = null;
         String output = "";
         try {
             st = OpenCDConnection();
-            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Journal WHERE journalID = ?");
-            PStatement.setInt(1, journalID);
+            PreparedStatement PStatement = st.getConnection().prepareStatement("SELECT * FROM Journal WHERE relatedcase = ?");
+            PStatement.setInt(1, caseID);
             rs = PStatement.executeQuery();
-            rs.next();
-            output += rs.getString(1) + ";";
-            output += rs.getString(2) + ";";
-            output += rs.getString(3) + ";";
-            output += rs.getString(4) + ";";
+            
+            while (rs.next()){
+            output += rs.getString(1) + "; ";
+            output += rs.getString(2) + "; ";
+            output += rs.getString(3) + "; ";
+            output += rs.getString(4) + "; ";
             output += "\n";
+            }
 
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -174,9 +177,10 @@ public class CaseDatabase {
         return id;
     }
 
-    public void writeInfoToJournal(String resume, int writer, int relatedCase) {
+    public String writeInfoToJournal(String resume, int writer, int relatedCase) {
         Statement st = null;
         ResultSet rs = null;
+        String id = "";
         try {
             st = OpenCDConnection();
             PreparedStatement PStatement = st.getConnection().prepareStatement("INSERT INTO Journal(resume, writer, relatedCase) VALUES (?, ?, ?)");
@@ -188,13 +192,33 @@ public class CaseDatabase {
             System.out.println("Exception" + e);
         } finally {
             try {
-                
                 st.getConnection().close();
                 st.close();
+               if (rs != null){
                 rs.close();
+               }
             } catch (SQLException e) {
             }
         }
+        try {
+            st = OpenCDConnection();
+            PreparedStatement PStatement2 = st.getConnection().prepareStatement("SELECT MAX(journalid) AS journalid FROM journal");
+            rs = PStatement2.executeQuery();
+            rs.next();
+            id += rs.getString(1);    
+        }
+        catch(Exception e){
+        }
+        finally {
+            try{
+                st.getConnection().close();
+                st.close();
+                rs.close();
+            }
+            catch(Exception e){
+            }
+        }
+        return id;
     }
 
     public void deleteCase(int caseID) {

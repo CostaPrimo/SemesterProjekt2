@@ -42,8 +42,8 @@ public class PersistanceFacade implements IPersistance {
         return caseDatabase.loadCaseTable(caseID);
     }
     @Override
-    public String loadJournal(int journalID){
-        return caseDatabase.loadJournal(journalID);
+    public String loadallJournal(int caseID){
+        return caseDatabase.loadallJournal(caseID);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class PersistanceFacade implements IPersistance {
     }
     
     @Override
-    public void createJournal(String resume,int writer, int relatedCase){
-        caseDatabase.writeInfoToJournal(resume, writer, relatedCase);
+    public String createJournal(String resume,int writer, int relatedCase){
+       return caseDatabase.writeInfoToJournal(resume, writer, relatedCase);
     }
     @Override
     public boolean validateLogin(int ID, String password){

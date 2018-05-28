@@ -17,12 +17,12 @@ public interface IPersistance {
         public void createCitizenProfile(String name, String email, String CPRNumber);
         public void createLog(Date date, int ActorID, int TargetID, String action);
         public String createCase(String caseDescription, String citizenProfile, int caseResponsible);
-        public void createJournal(String resume, int writer, int relatedCase);
+        public String createJournal(String resume, int writer, int relatedCase);
         public String loadEmployee(int ID);
         public String loadCitizenUser(String CPR);
         public String loadCitizenProfile(String CPR);
         public String loadCase(int caseID);
-        public String loadJournal(int journalID);
+        public String loadallJournal(int caseID);
         public boolean validateLogin(int ID, String password);
         public String showCaseOverview(String CPRNumber, String department);
         public String findCitizenProfile(String CPRNumber);

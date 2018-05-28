@@ -69,8 +69,8 @@ public class UIRun extends Application implements IUI {
         return business.loadCase(caseID);
     }
     
-    public String loadJournal(int journalID){
-        return business.loadJournal(journalID);
+    public String loadallJournal(int caseID){
+        return business.loadallJournal(caseID);
     }
     
     public String[] createCitizenUser(String CPR){
@@ -90,8 +90,8 @@ public class UIRun extends Application implements IUI {
         return business.createCase(caseDescription, citizenProfile, caseResponsible);
     }
     
-    public void createJournal(String resume, int writer, int relatedCase){
-        business.createJournal(resume, writer, relatedCase);
+    public String createJournal(String resume, int writer, int relatedCase){
+        return business.createJournal(resume, writer, relatedCase);
     }
     
     public boolean validateLogin(int ID, String Password){

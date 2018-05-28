@@ -73,8 +73,8 @@ public class BusinessFacade implements IBusiness {
         return persistance.createCase(caseDescription, citizenProfile, caseResponsible);
     }
     @Override
-    public void createJournal(String resume, int writer, int relatedCase){
-        persistance.createJournal(resume, writer, relatedCase);
+    public String createJournal(String resume, int writer, int relatedCase){
+        return persistance.createJournal(resume, writer, relatedCase);
     }
     
     @Override
@@ -99,8 +99,8 @@ public class BusinessFacade implements IBusiness {
     }
     
     @Override
-    public String loadJournal(int journalID){
-        return persistance.loadJournal(journalID);
+    public String loadallJournal(int caseID){
+        return persistance.loadallJournal(caseID);
     }
     
     @Override
