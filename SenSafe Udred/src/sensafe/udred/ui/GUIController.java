@@ -449,7 +449,7 @@ public class GUIController implements Initializable {
             System.out.println(caseIDtest[0]);
            String realcaseID = caseIDtest[0];
             System.out.println(realcaseID);
-            if (journalDescription.isEmpty()  || caseID.isEmpty()) {
+            if (journalDescription.isEmpty()  || realcaseID.isEmpty()) {
                 
                 CreateJournalWarningLabel.setText("Udfyld alle felter");
                 CreateJournalWarningLabel.setVisible(true);
@@ -464,7 +464,7 @@ public class GUIController implements Initializable {
                 int tempID = Integer.parseInt(UIRun.getInstance().createJournal(journalDescription, writer, Integer.parseInt(realcaseID)));
                 UIRun.getInstance().createLog(userReference, tempID, "create"); 
                 CreateJournalResumeTextArea.setText("");
-                CreateJournalUserIDTextField.setText("");
+                
                 CreateJournalSuccesPopUpLabel.setVisible(true);
                 CreateJournalWarningLabel.setVisible(false);
             }

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -27,14 +22,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
+<AnchorPane id="BaggrundAnchorPane" fx:id="BaggrundAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sensafe.udred.ui.GUIController">
    <children>
-      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane id="LogInBorderPane" fx:id="LogInBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <HBox fx:id="logInCenterHBox" alignment="CENTER" centerShape="false" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox fx:id="logInCenterHBox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="350.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox fx:id="LogInLeftVbox" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="200.0" />
-                  <VBox fx:id="LogInMiddleVBox" centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="192.0">
+                  <VBox fx:id="LogInLeftVbox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox fx:id="LogInMiddleVBox" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label id="UsernameLabel" fx:id="LogInUserNameLabel" text="BrugerID">
                            <font>
@@ -56,20 +51,23 @@
                         <PasswordField id="PasswordField" fx:id="LogInPasswordField" />
                      </children>
                   </VBox>
-                  <VBox fx:id="LogInRightVBox" alignment="CENTER_LEFT" centerShape="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="207.0">
+                  <VBox fx:id="LogInRightVBox" alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="207.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button id="LogInButton" fx:id="LogInLogInButton" alignment="CENTER" centerShape="false" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#LogIn" text="Log Ind">
                            <VBox.margin>
                               <Insets bottom="10.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="LogInWarningLabel" visible="false" />
+                        <Label fx:id="LogInWarningLabel" prefHeight="17.0" prefWidth="225.0" visible="false" />
                      </children>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </VBox>
                </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </HBox>
          </center>
          <top>
